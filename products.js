@@ -23,6 +23,26 @@
 const PRODUCTS = [
     {
         id: "ocd-dual-preset",
+        name: "Comming soon",
+        category: "custom",
+        price: "from €200",
+        status: "built-to-order",
+        color: "#A7ACB4",
+        knobs: 5,
+        switches: 1,
+        blurb: "Pedal description will be added here",
+        specs: [
+            "Dual DRV + TONE presets, relay-switched",
+            "All OCD versions V1.1–V2 via internal DIP switches",
+            "MIDI IN / THRU (TRS), CC preset recall",
+            "CLIP (MOSFET/LED) + FILTER (H/L) toggles",
+            "Silent soft-touch footswitch",
+            "9–18 V DC center-negative",
+        ],
+        image: null,
+    },    
+    /*{
+        id: "ocd-dual-preset",
         name: "OCD — Dual Preset MIDI Drive",
         category: "custom",
         price: "from €329",
@@ -154,5 +174,5 @@ const PRODUCTS = [
             "USB-C for configuration",
         ],
         image: null,
-    },
+    },*/
 ];
