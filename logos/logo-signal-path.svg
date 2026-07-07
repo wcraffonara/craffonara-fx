@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" font-family="'Big Shoulders Display','Arial Narrow',Arial,sans-serif">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style>
+    <rect width="640" height="200" rx="14" fill="#0C0D10"/>
+
+    <!-- signal path: IN — [FX block] — OUT -->
+    <g font-family="'IBM Plex Mono',monospace" font-size="15" fill="#9DA0A8" letter-spacing="3">
+        <text x="42" y="72">IN</text>
+        <text x="552" y="72">OUT</text>
+    </g>
+    <line x1="86" y1="66" x2="264" y2="66" stroke="#9DA0A8" stroke-width="4"/>
+    <line x1="376" y1="66" x2="540" y2="66" stroke="#9DA0A8" stroke-width="4"/>
+
+    <!-- FX block glows amber: the pedal in the chain -->
+    <rect x="272" y="36" width="96" height="60" rx="12"
+          fill="none" stroke="#FFAD2E" stroke-width="6"/>
+    <text x="320" y="80" text-anchor="middle" fill="#FFAD2E"
+          font-weight="800" font-size="40" letter-spacing="3">FX</text>
+
+    <!-- wordmark below the chain -->
+    <text x="320" y="158" text-anchor="middle" fill="#EDEAE2"
+          font-weight="800" font-size="54" letter-spacing="6">CRAFFONARA</text>
+</svg>

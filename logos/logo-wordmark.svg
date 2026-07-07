@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" font-family="'Big Shoulders Display','Arial Narrow',Arial,sans-serif">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style>
+    <rect width="640" height="160" rx="14" fill="#0C0D10"/>
+
+    <!-- amber LED replaces the tittle of the brand: status light "on" -->
+    <circle cx="66" cy="80" r="12" fill="#FFAD2E"/>
+    <circle cx="66" cy="80" r="24" fill="none" stroke="#FFAD2E" stroke-opacity="0.35" stroke-width="4"/>
+
+    <text x="112" y="97" fill="#EDEAE2" font-weight="800"
+          font-size="58" letter-spacing="4">CRAFFONARA</text>
+    <text x="480" y="97" fill="#FFAD2E" font-weight="800"
+          font-size="58" letter-spacing="4">FX</text>
+
+    <text x="112" y="128" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace"
+          font-size="15" letter-spacing="8">CUSTOM PEDALS · MIDI MODS</text>
+</svg>
