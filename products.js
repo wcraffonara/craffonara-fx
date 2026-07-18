@@ -18,6 +18,8 @@
  *   specs     list of short spec lines shown in the detail view
  *   image     optional: path to a real photo, e.g. "img/quadra.jpg"
  *             (if set, it replaces the auto-generated artwork)
+ *   gallery   optional: list of photo paths shown in the detail view
+ *             with clickable thumbnails
  */
 
 const PRODUCTS = [
@@ -39,7 +41,8 @@ const PRODUCTS = [
             "Silent soft-touch footswitch",
             "9–18 V DC center-negative",
         ],
-        image: null,
+        image: "img/ocd-card.jpg",
+        gallery: ["img/ocd-hero.jpg", "img/ocd-top.jpg", "img/ocd-side.jpg", "img/ocd-angle.jpg"],
     },
     {
         id: "quadra-midi-switcher",

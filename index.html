@@ -266,7 +266,30 @@
     }
     .hero-hint::before { content: "↳"; color: var(--led); }
 
-    /* ---- the animated signal-flow hero graphic --------------- */
+    /* ---- hero product photo ----------------------------------- */
+    .hero-photo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+    }
+    .hero-photo img {
+        width: min(430px, 80vw);
+        height: auto;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        box-shadow: 0 34px 70px rgba(0, 0, 0, 0.55);
+    }
+    .hero-photo a { display: block; transition: transform 0.25s; }
+    .hero-photo a:hover { transform: translateY(-4px); }
+    .hero-photo-caption {
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        letter-spacing: 0.22em;
+        color: var(--dim);
+    }
+    /* ---- the animated workshop scene (now in the Workshop section) ---- */
+    .workshop-scene { margin-top: 34px; }
     .pedal-stage {
         display: flex;
         justify-content: center;
@@ -452,6 +475,17 @@
     }
     .modal-art svg { width: 170px; height: auto; }
     .modal-art img { border-radius: 8px; }
+    .gallery { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+    .gallery #galleryMain { width: 100%; border-radius: 10px; }
+    .gallery .thumbs { display: flex; gap: 8px; justify-content: center; }
+    .gallery .thumbs img {
+        width: 52px; height: 52px; object-fit: cover;
+        border-radius: 6px; cursor: pointer;
+        border: 2px solid var(--line); opacity: 0.6;
+        transition: opacity 0.2s, border-color 0.2s;
+    }
+    .gallery .thumbs img:hover { opacity: 1; }
+    .gallery .thumbs img.active { opacity: 1; border-color: var(--led); }
     .modal-body { padding: 30px 32px; position: relative; }
     .modal-body h3 { font-size: 34px; margin: 8px 0 12px; }
     .modal-body p { color: var(--dim); font-size: 15px; }
@@ -755,272 +789,15 @@
                 <a class="btn primary" href="#pedals">Browse pedals</a>
                 <a class="btn" href="#contact">Request a build</a>
             </div>
-            <p class="hero-hint">Solder, scope, coffee — this is where your pedal is born</p>
+            <p class="hero-hint">That's a real build — four sounds, one pedal, MIDI-controlled</p>
         </div>
 
-        <!-- The workshop: one bench, one builder. Scope, soldering station,
-             MIDI relay PCB, components, a finished pedal cabled into the amp. -->
-        <div class="pedal-stage">
-            <svg class="sigflow" viewBox="0 0 660 420" role="img"
-                 aria-label="A one-man pedal workshop: workbench with oscilloscope, soldering station, a MIDI relay circuit board, components, pedal schematics and a concert poster on the wall, and a finished pedal cabled into a tube amp on the floor">
-                <defs>
-                    <linearGradient id="heroSilver" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stop-color="#D3D6DB"/>
-                        <stop offset="0.5" stop-color="#B4B9C0"/>
-                        <stop offset="1" stop-color="#9CA1A9"/>
-                    </linearGradient>
-                    <pattern id="grille" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                        <line x1="0" y1="0" x2="0" y2="6" stroke="#23262D" stroke-width="2"/>
-                    </pattern>
-                    <pattern id="pegholes" width="18" height="18" patternUnits="userSpaceOnUse">
-                        <circle cx="9" cy="9" r="1.4" fill="#23262D"/>
-                    </pattern>
-                    <filter id="softGlow" x="-70%" y="-70%" width="240%" height="240%">
-                        <feGaussianBlur stdDeviation="12"/>
-                    </filter>
-                </defs>
-
-                <!-- ============ pegboard with tools ============ -->
-                <rect x="46" y="24" width="242" height="152" rx="8" fill="#13151A" stroke="#2A2E36" stroke-width="1.5"/>
-                <rect x="46" y="24" width="242" height="152" rx="8" fill="url(#pegholes)"/>
-                <!-- screwdriver -->
-                <rect x="76" y="46" width="11" height="27" rx="4" fill="#E23B2E"/>
-                <line x1="81.5" y1="73" x2="81.5" y2="118" stroke="#9DA0A8" stroke-width="2.5" stroke-linecap="round"/>
-                <!-- pliers with amber grips -->
-                <rect x="121" y="42" width="8" height="22" rx="3.5" fill="#FFAD2E"/>
-                <rect x="136" y="42" width="8" height="22" rx="3.5" fill="#FFAD2E"/>
-                <path d="M125 64 C123 86 128 98 132 114" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
-                <path d="M140 64 C142 86 137 98 133 114" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="132.5" cy="86" r="3" fill="#6E747E"/>
-                <!-- wire spool -->
-                <circle cx="192" cy="76" r="16" fill="#101216" stroke="#6E747E" stroke-width="3.5"/>
-                <circle cx="192" cy="76" r="4.5" fill="#2A2E36"/>
-                <path d="M206 84 C214 100 208 116 212 130" fill="none" stroke="#B87333" stroke-width="1.8"/>
-                <!-- hex keys -->
-                <path d="M238 52 v26 h11" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
-                <path d="M252 58 v26 h11" fill="none" stroke="#9DA0A8" stroke-width="2.4" stroke-linecap="round"/>
-
-                <!-- ============ schematic pinned to the wall ============ -->
-                <g transform="rotate(2 336 84)">
-                    <rect x="302" y="38" width="72" height="94" rx="2" fill="#EDEAE2"/>
-                    <circle cx="338" cy="44" r="2.5" fill="#E23B2E"/>
-                    <!-- blueprint of a pedal -->
-                    <rect x="316" y="56" width="42" height="60" rx="6" fill="none" stroke="#2E4E8F" stroke-width="1.6"/>
-                    <circle cx="327" cy="68" r="4.5" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
-                    <circle cx="347" cy="68" r="4.5" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
-                    <circle cx="337" cy="102" r="7" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
-                    <line x1="310" y1="86" x2="316" y2="86" stroke="#2E4E8F" stroke-width="1.2"/>
-                    <line x1="358" y1="86" x2="364" y2="86" stroke="#2E4E8F" stroke-width="1.2"/>
-                    <line x1="316" y1="124" x2="358" y2="124" stroke="#9DA0A8" stroke-width="1"/>
-                </g>
-
-                <!-- sketch 2: MIDI switcher blueprint with the RC cutoff formula -->
-                <g transform="rotate(3 414 66)">
-                    <rect x="384" y="28" width="62" height="80" rx="2" fill="#EDEAE2"/>
-                    <circle cx="415" cy="34" r="2.5" fill="#E23B2E"/>
-                    <rect x="392" y="42" width="46" height="26" rx="4" fill="none" stroke="#2E4E8F" stroke-width="1.5"/>
-                    <rect x="396" y="46" width="12" height="6" rx="1" fill="none" stroke="#2E4E8F" stroke-width="1"/>
-                    <circle cx="399" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
-                    <circle cx="410" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
-                    <circle cx="421" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
-                    <circle cx="432" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
-                    <line x1="392" y1="74" x2="438" y2="74" stroke="#9DA0A8" stroke-width="0.8"/>
-                    <text x="415" y="90" text-anchor="middle" fill="#2B4C9B" font-family="'Caveat',cursive" font-size="13">f = 1/(2πRC)</text>
-                    <text x="415" y="102" text-anchor="middle" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="5.5" letter-spacing="1">TONE CUTOFF</text>
-                </g>
-
-                <!-- sketch 3: clipping stage schematic with Ohm's law -->
-                <g transform="rotate(-3 333 178)">
-                    <rect x="300" y="142" width="66" height="72" rx="2" fill="#EDEAE2"/>
-                    <circle cx="333" cy="148" r="2.5" fill="#E23B2E"/>
-                    <!-- signal line with resistor zigzag into an op-amp -->
-                    <polyline points="306,168 311,168 313,164 317,172 321,164 325,172 328,168 333,168"
-                              fill="none" stroke="#2E4E8F" stroke-width="1.3"/>
-                    <path d="M 333 160 L 333 176 L 348 168 Z" fill="none" stroke="#2E4E8F" stroke-width="1.3"/>
-                    <line x1="348" y1="168" x2="358" y2="168" stroke="#2E4E8F" stroke-width="1.3"/>
-                    <!-- anti-parallel clipping diodes to ground -->
-                    <line x1="353" y1="168" x2="353" y2="180" stroke="#2E4E8F" stroke-width="1.1"/>
-                    <path d="M 349 180 L 357 180 L 353 187 Z" fill="none" stroke="#2E4E8F" stroke-width="1.1"/>
-                    <line x1="349" y1="187" x2="357" y2="187" stroke="#2E4E8F" stroke-width="1.1"/>
-                    <line x1="349" y1="191" x2="357" y2="191" stroke="#2E4E8F" stroke-width="1"/>
-                    <line x1="350.5" y1="193.5" x2="355.5" y2="193.5" stroke="#2E4E8F" stroke-width="1"/>
-                    <line x1="352" y1="196" x2="354" y2="196" stroke="#2E4E8F" stroke-width="1"/>
-                    <text x="326" y="196" text-anchor="middle" fill="#2B4C9B" font-family="'Caveat',cursive" font-size="14">U = R · I</text>
-                    <text x="332" y="208" text-anchor="middle" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="5.5" letter-spacing="1">CLIPPING STAGE</text>
-                </g>
-
-                <!-- concert poster: the iconic top-hat guitarist, stage-light duotone -->
-                <g transform="translate(96,0) rotate(-2 430 74)">
-                    <rect x="388" y="18" width="86" height="116" rx="2" fill="#14100A"/>
-                    <rect x="392" y="22" width="78" height="108" fill="none" stroke="#FFAD2E" stroke-width="1" opacity="0.6"/>
-                    <circle cx="431" cy="24" r="2.5" fill="#C9CDD3"/>
-                    <!-- stage light from below -->
-                    <ellipse cx="431" cy="118" rx="34" ry="14" fill="rgba(255,173,46,0.28)"/>
-                    <!-- figure: leaning back, low-slung guitar -->
-                    <g fill="#FFAD2E">
-                        <!-- top hat, slightly tilted -->
-                        <g transform="rotate(-8 428 40)">
-                            <rect x="416" y="26" width="24" height="16" rx="2"/>
-                            <rect x="410" y="40" width="36" height="4.5" rx="2.2"/>
-                            <rect x="416" y="36" width="24" height="3" fill="#14100A" opacity="0.55"/>
-                        </g>
-                        <!-- big curly mane, face left dark between the masses -->
-                        <path d="M414 46 C405 52 401 64 404 76 C406 86 411 93 417 96 C414 86 413 74 416 62 C412 58 412 51 414 46 Z"/>
-                        <path d="M442 44 C452 50 457 62 455 75 C453 87 447 95 440 98 C444 87 445 74 441 61 C445 57 444 49 442 44 Z"/>
-                        <path d="M418 48 C424 44 434 44 440 48 C441 53 440 57 438 59 C433 56 425 56 420 59 C418 57 417 52 418 48 Z"/>
-                        <!-- chin/mouth hint -->
-                        <path d="M426 66 C428 69 432 69 434 66 L433 72 C431 74 429 74 427 72 Z"/>
-                        <!-- torso leaning back -->
-                        <path d="M419 96 C415 104 415 112 418 118 L442 118 C446 110 446 101 441 95 C434 100 426 100 419 96 Z"/>
-                        <!-- left arm up the neck -->
-                        <path d="M420 98 C412 96 404 90 400 84 L404 79 C410 86 417 91 424 92 Z"/>
-                        <!-- right arm strumming -->
-                        <path d="M441 97 C445 101 447 105 447 109 L441 111 C440 106 438 102 435 100 Z"/>
-                    </g>
-                    <!-- low-slung Les Paul silhouette, neck up-left -->
-                    <g fill="#EDD9B8">
-                        <path d="M430 108 C424 104 417 105 414 110 C411 115 414 121 420 122 C427 123 434 121 436 116 C437 112 434 110 430 108 Z"/>
-                        <rect x="396" y="80" width="32" height="3.6" rx="1.8" transform="rotate(38 412 82)"/>
-                        <rect x="392" y="72" width="8" height="6" rx="1.5" transform="rotate(38 396 75)"/>
-                    </g>
-                    <text x="431" y="129" text-anchor="middle" fill="#EDD9B8" font-family="'IBM Plex Mono',monospace" font-size="6.5" letter-spacing="3.5">SOLD OUT</text>
-                </g>
-
-                <!-- ============ architect lamp + warm light pool ============ -->
-                <rect x="424" y="286" width="18" height="10" rx="2" fill="#22252B"/>
-                <line x1="433" y1="288" x2="452" y2="182" stroke="#33373F" stroke-width="3.5" stroke-linecap="round"/>
-                <circle cx="452" cy="182" r="4" fill="#22252B"/>
-                <line x1="452" y1="182" x2="398" y2="136" stroke="#33373F" stroke-width="3.5" stroke-linecap="round"/>
-                <path d="M 406 128 L 382 150 L 398 162 L 416 142 Z" fill="#22252B" stroke="#33373F" stroke-width="1.5"/>
-                <polygon points="392,154 320,296 460,296" fill="rgba(255,173,46,0.07)"/>
-                <ellipse cx="392" cy="296" rx="66" ry="6" fill="rgba(255,173,46,0.12)" filter="url(#softGlow)"/>
-
-                <!-- ============ workbench ============ -->
-                <rect x="18" y="296" width="498" height="13" rx="3" fill="#4A3524"/>
-                <line x1="20" y1="298" x2="514" y2="298" stroke="#6B4E35" stroke-width="1.6"/>
-                <rect x="30" y="309" width="474" height="22" rx="2" fill="#33251A"/>
-                <text x="267" y="324" text-anchor="middle" fill="#C9A87C" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="4" opacity="0.8">CRAFFONARA FX · WORKSHOP</text>
-                <rect x="48" y="331" width="13" height="56" fill="#2A1F14"/>
-                <rect x="452" y="331" width="13" height="56" fill="#2A1F14"/>
-
-                <!-- ============ oscilloscope (brand wave on screen) ============ -->
-                <rect x="44" y="208" width="128" height="88" rx="8" fill="#15171B" stroke="#33373F" stroke-width="2"/>
-                <rect x="54" y="216" width="108" height="50" rx="4" fill="#0E1013" stroke="#2A2E36"/>
-                <g stroke="#1B1F26" stroke-width="1">
-                    <line x1="54" y1="241" x2="162" y2="241"/>
-                    <line x1="90" y1="216" x2="90" y2="266"/>
-                    <line x1="126" y1="216" x2="126" y2="266"/>
-                </g>
-                <polyline class="scope-trace" fill="none" stroke="#FFAD2E" stroke-width="2" stroke-linejoin="round"
-                          points="56,241 62,226 70,224 76,241 82,257 90,259 96,241 102,226 110,224 116,241 122,257 130,259 136,241 142,226 150,224 156,241 160,250"/>
-                <g fill="#6E747E">
-                    <circle cx="72" cy="281" r="5"/><circle cx="96" cy="281" r="5"/><circle cx="120" cy="281" r="5"/>
-                </g>
-                <g stroke="#C9CDD3" stroke-width="1.4" stroke-linecap="round">
-                    <line x1="72" y1="281" x2="72" y2="277"/><line x1="96" y1="281" x2="96" y2="277"/><line x1="120" y1="281" x2="120" y2="277"/>
-                </g>
-                <circle cx="152" cy="281" r="3.5" fill="#FFAD2E" class="hero-led-pulse"/>
-
-                <!-- ============ soldering station + iron with smoke ============ -->
-                <rect x="182" y="262" width="60" height="34" rx="5" fill="#15171B" stroke="#33373F" stroke-width="1.5"/>
-                <rect x="190" y="270" width="30" height="12" rx="2" fill="#0E1013"/>
-                <text x="205" y="279.5" text-anchor="middle" fill="#FFAD2E" font-family="'IBM Plex Mono',monospace" font-size="8" letter-spacing="1">350°</text>
-                <circle cx="231" cy="276" r="4" fill="#6E747E"/>
-                <!-- iron resting in its coil stand -->
-                <g transform="rotate(-24 258 258)">
-                    <rect x="244" y="252" width="26" height="9" rx="4" fill="#22252B"/>
-                    <line x1="270" y1="256.5" x2="292" y2="256.5" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="292" y1="256.5" x2="300" y2="256.5" stroke="#C9CDD3" stroke-width="1.6" stroke-linecap="round"/>
-                </g>
-                <path d="M256 276 a11 11 0 1 1 22 0" fill="none" stroke="#6E747E" stroke-width="2.2"/>
-                <path d="M260 276 a7 7 0 1 1 14 0" fill="none" stroke="#6E747E" stroke-width="1.6"/>
-                <!-- solder smoke -->
-                <path class="wisp" d="M295 236 C291 228 299 220 295 210" fill="none" stroke="#6E747E" stroke-width="2" stroke-linecap="round"/>
-                <path class="wisp w2" d="M299 240 C303 230 295 224 299 214" fill="none" stroke="#6E747E" stroke-width="1.6" stroke-linecap="round"/>
-
-                <!-- ============ MIDI relay PCB with parts ============ -->
-                <rect x="306" y="252" width="128" height="44" rx="4" fill="#1E4D33" stroke="#0F2A1C" stroke-width="2"/>
-                <g stroke="#D8B36A" stroke-width="1.2" fill="none">
-                    <path d="M316 288 h20 v-14 h16"/>
-                    <path d="M316 262 h30 v10"/>
-                    <path d="M398 262 v14 h18"/>
-                </g>
-                <rect x="318" y="258" width="30" height="19" rx="2" fill="#22252B" stroke="#0B0C0E"/>
-                <rect x="356" y="262" width="24" height="12" rx="1.5" fill="#101216"/>
-                <g stroke="#6E747E" stroke-width="1">
-                    <line x1="358" y1="274" x2="358" y2="278"/><line x1="364" y1="274" x2="364" y2="278"/>
-                    <line x1="370" y1="274" x2="370" y2="278"/><line x1="376" y1="274" x2="376" y2="278"/>
-                </g>
-                <circle cx="392" cy="266" r="5.5" fill="#2A2E36" stroke="#6E747E" stroke-width="1.2"/>
-                <circle cx="406" cy="266" r="5.5" fill="#2A2E36" stroke="#6E747E" stroke-width="1.2"/>
-                <circle cx="421" cy="284" r="8" fill="#101216" stroke="#3C4048" stroke-width="2"/>
-                <g fill="#9DA0A8">
-                    <circle cx="421" cy="288.5" r="1.1"/><circle cx="417.5" cy="286" r="1.1"/><circle cx="424.5" cy="286" r="1.1"/>
-                    <circle cx="418.5" cy="281.5" r="1.1"/><circle cx="423.5" cy="281.5" r="1.1"/>
-                </g>
-                <text x="330" y="292" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="6.5" letter-spacing="1">CFX-MIDI r2</text>
-                <!-- loose resistors on the bench -->
-                <g transform="rotate(-14 288 293)">
-                    <rect x="281" y="290" width="14" height="5" rx="2.5" fill="#C9A87C"/>
-                    <line x1="285" y1="290" x2="285" y2="295" stroke="#8F2E3B" stroke-width="1.6"/>
-                    <line x1="290" y1="290" x2="290" y2="295" stroke="#2E4E8F" stroke-width="1.6"/>
-                </g>
-                <g transform="rotate(9 452 292)">
-                    <rect x="445" y="289" width="14" height="5" rx="2.5" fill="#C9A87C"/>
-                    <line x1="449" y1="289" x2="449" y2="294" stroke="#3E7C4F" stroke-width="1.6"/>
-                    <line x1="454" y1="289" x2="454" y2="294" stroke="#8F2E3B" stroke-width="1.6"/>
-                </g>
-                <circle cx="443" cy="276" r="7" fill="#17191D" stroke="#08090B" stroke-width="1.5"/>
-                <line x1="443" y1="276" x2="443" y2="270" stroke="#EDEAE2" stroke-width="1.8" stroke-linecap="round"/>
-
-                <!-- ============ coffee (essential equipment) ============ -->
-                <rect x="204" y="228" width="26" height="30" rx="4" fill="#B2442C"/>
-                <path d="M230 234 a8 8 0 1 1 0 16" fill="none" stroke="#B2442C" stroke-width="4"/>
-                <path class="wisp steam" d="M213 222 C210 215 217 209 214 202" fill="none" stroke="#9DA0A8" stroke-width="1.6" stroke-linecap="round"/>
-
-                <!-- ============ finished pedal, cabled into the amp ============ -->
-                <g>
-                    <rect x="464" y="224" width="50" height="72" rx="7" fill="url(#heroSilver)" stroke="#6E747E" stroke-width="1.6"/>
-                    <g fill="#17191D">
-                        <circle cx="477" cy="237" r="4.5"/><circle cx="489" cy="237" r="4.5"/><circle cx="501" cy="237" r="4.5"/>
-                    </g>
-                    <circle cx="480" cy="251" r="3.5" fill="none" stroke="#E23B2E" stroke-width="1.6"/>
-                    <circle cx="494" cy="251" r="3.5" fill="none" stroke="#8A8F98" stroke-width="1.6"/>
-                    <circle cx="489" cy="264" r="2.5" fill="#4FA3FF" filter="drop-shadow(0 0 4px rgba(79,163,255,0.9))"/>
-                    <circle cx="489" cy="281" r="8.5" fill="none" stroke="#565B63" stroke-width="2.5"/>
-                    <circle cx="489" cy="281" r="3.5" fill="#565B63"/>
-                </g>
-<!-- ============ floor ============ -->
-                <line x1="18" y1="388" x2="658" y2="388" stroke="#1B1F26" stroke-width="2"/>
-                <ellipse cx="591" cy="385" rx="62" ry="5" fill="rgba(0,0,0,0.45)"/>
-
-                <!-- ============ tube amp, on the floor ============ -->
-                <rect x="566" y="226" width="50" height="9" rx="4.5" fill="#101216" stroke="#33373F" stroke-width="1.5"/>
-                <rect x="524" y="234" width="134" height="146" rx="9" fill="#15171B" stroke="#33373F" stroke-width="2"/>
-                <rect x="533" y="243" width="116" height="22" rx="4" fill="#0E1013" stroke="#2A2E36"/>
-                <g fill="#6E747E">
-                    <circle cx="548" cy="254" r="4.5"/><circle cx="566" cy="254" r="4.5"/>
-                    <circle cx="584" cy="254" r="4.5"/><circle cx="602" cy="254" r="4.5"/>
-                </g>
-                <g stroke="#C9CDD3" stroke-width="1.4" stroke-linecap="round">
-                    <line x1="548" y1="254" x2="548" y2="250"/><line x1="566" y1="254" x2="566" y2="250"/>
-                    <line x1="584" y1="254" x2="584" y2="250"/><line x1="602" y1="254" x2="602" y2="250"/>
-                </g>
-                <circle cx="636" cy="254" r="3.5" fill="#FFAD2E" class="hero-led-pulse" filter="drop-shadow(0 0 4px rgba(255,173,46,0.9))"/>
-                <ellipse cx="591" cy="268" rx="48" ry="6" fill="rgba(255,140,40,0.28)" filter="url(#softGlow)"/>
-                <rect x="535" y="272" width="112" height="84" rx="6" fill="url(#grille)" stroke="#2A2E36" stroke-width="1.5"/>
-                <circle cx="591" cy="314" r="31" fill="none" stroke="#3A3F49" stroke-width="2.5"/>
-                <circle cx="591" cy="314" r="10" fill="none" stroke="#3A3F49" stroke-width="2"/>
-                <rect x="534" y="380" width="16" height="6" rx="3" fill="#101216"/>
-                <rect x="632" y="380" width="16" height="6" rx="3" fill="#101216"/>
-
-                <!-- cable from the finished pedal down into the amp -->
-                <path d="M514 268 C534 274 518 316 536 322 C548 326 552 300 546 268"
-                      fill="none" stroke="#6E747E" stroke-width="2.5" stroke-linecap="round"/>
-
-                <!-- caption -->
-                <text x="24" y="410" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="2">ONE BENCH · EVERY PEDAL HAND-BUILT, MEASURED &amp; PLAYED</text>
-            </svg>
+        <!-- Flagship photo: the OCD dual-preset MIDI drive, front and centre -->
+        <div class="hero-photo">
+            <a href="#pedals" aria-label="See the OCD in the pedal catalog">
+                <img src="img/ocd-hero.jpg" alt="CRAFFONARA FX OCD — silver dual-preset overdrive pedal with MIDI, studio shot on dark background" width="1300" height="1500">
+            </a>
+            <span class="hero-photo-caption">OCD · DUAL PRESET MIDI DRIVE — BUILT RIGHT HERE</span>
         </div>
     </div>
 </header>
@@ -1371,6 +1148,270 @@
     <div class="wrap">
         <span class="eyebrow reveal">Behind the pedals</span>
         <h2 class="section-title reveal">The workshop</h2>
+        <div class="workshop-scene reveal">
+<div class="pedal-stage">
+            <svg class="sigflow" viewBox="0 0 660 420" role="img"
+                 aria-label="A one-man pedal workshop: workbench with oscilloscope, soldering station, a MIDI relay circuit board, components, pedal schematics and a concert poster on the wall, and a finished pedal cabled into a tube amp on the floor">
+                <defs>
+                    <linearGradient id="heroSilver" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#D3D6DB"/>
+                        <stop offset="0.5" stop-color="#B4B9C0"/>
+                        <stop offset="1" stop-color="#9CA1A9"/>
+                    </linearGradient>
+                    <pattern id="grille" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                        <line x1="0" y1="0" x2="0" y2="6" stroke="#23262D" stroke-width="2"/>
+                    </pattern>
+                    <pattern id="pegholes" width="18" height="18" patternUnits="userSpaceOnUse">
+                        <circle cx="9" cy="9" r="1.4" fill="#23262D"/>
+                    </pattern>
+                    <filter id="softGlow" x="-70%" y="-70%" width="240%" height="240%">
+                        <feGaussianBlur stdDeviation="12"/>
+                    </filter>
+                </defs>
+
+                <!-- ============ pegboard with tools ============ -->
+                <rect x="46" y="24" width="242" height="152" rx="8" fill="#13151A" stroke="#2A2E36" stroke-width="1.5"/>
+                <rect x="46" y="24" width="242" height="152" rx="8" fill="url(#pegholes)"/>
+                <!-- screwdriver -->
+                <rect x="76" y="46" width="11" height="27" rx="4" fill="#E23B2E"/>
+                <line x1="81.5" y1="73" x2="81.5" y2="118" stroke="#9DA0A8" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- pliers with amber grips -->
+                <rect x="121" y="42" width="8" height="22" rx="3.5" fill="#FFAD2E"/>
+                <rect x="136" y="42" width="8" height="22" rx="3.5" fill="#FFAD2E"/>
+                <path d="M125 64 C123 86 128 98 132 114" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                <path d="M140 64 C142 86 137 98 133 114" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="132.5" cy="86" r="3" fill="#6E747E"/>
+                <!-- wire spool -->
+                <circle cx="192" cy="76" r="16" fill="#101216" stroke="#6E747E" stroke-width="3.5"/>
+                <circle cx="192" cy="76" r="4.5" fill="#2A2E36"/>
+                <path d="M206 84 C214 100 208 116 212 130" fill="none" stroke="#B87333" stroke-width="1.8"/>
+                <!-- hex keys -->
+                <path d="M238 52 v26 h11" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                <path d="M252 58 v26 h11" fill="none" stroke="#9DA0A8" stroke-width="2.4" stroke-linecap="round"/>
+
+                <!-- ============ schematic pinned to the wall ============ -->
+                <g transform="rotate(2 336 84)">
+                    <rect x="302" y="38" width="72" height="94" rx="2" fill="#EDEAE2"/>
+                    <circle cx="338" cy="44" r="2.5" fill="#E23B2E"/>
+                    <!-- blueprint of a pedal -->
+                    <rect x="316" y="56" width="42" height="60" rx="6" fill="none" stroke="#2E4E8F" stroke-width="1.6"/>
+                    <circle cx="327" cy="68" r="4.5" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
+                    <circle cx="347" cy="68" r="4.5" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
+                    <circle cx="337" cy="102" r="7" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
+                    <line x1="310" y1="86" x2="316" y2="86" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <line x1="358" y1="86" x2="364" y2="86" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <line x1="316" y1="124" x2="358" y2="124" stroke="#9DA0A8" stroke-width="1"/>
+                </g>
+
+                <!-- sketch 2: MIDI switcher blueprint with the RC cutoff formula -->
+                <g transform="rotate(3 414 66)">
+                    <rect x="384" y="28" width="62" height="80" rx="2" fill="#EDEAE2"/>
+                    <circle cx="415" cy="34" r="2.5" fill="#E23B2E"/>
+                    <rect x="392" y="42" width="46" height="26" rx="4" fill="none" stroke="#2E4E8F" stroke-width="1.5"/>
+                    <rect x="396" y="46" width="12" height="6" rx="1" fill="none" stroke="#2E4E8F" stroke-width="1"/>
+                    <circle cx="399" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <circle cx="410" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <circle cx="421" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <circle cx="432" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <line x1="392" y1="74" x2="438" y2="74" stroke="#9DA0A8" stroke-width="0.8"/>
+                    <text x="415" y="90" text-anchor="middle" fill="#2B4C9B" font-family="'Caveat',cursive" font-size="13">f = 1/(2πRC)</text>
+                    <text x="415" y="102" text-anchor="middle" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="5.5" letter-spacing="1">TONE CUTOFF</text>
+                </g>
+
+                <!-- sketch 3: clipping stage schematic with Ohm's law -->
+                <g transform="rotate(-3 333 178)">
+                    <rect x="300" y="142" width="66" height="72" rx="2" fill="#EDEAE2"/>
+                    <circle cx="333" cy="148" r="2.5" fill="#E23B2E"/>
+                    <!-- signal line with resistor zigzag into an op-amp -->
+                    <polyline points="306,168 311,168 313,164 317,172 321,164 325,172 328,168 333,168"
+                              fill="none" stroke="#2E4E8F" stroke-width="1.3"/>
+                    <path d="M 333 160 L 333 176 L 348 168 Z" fill="none" stroke="#2E4E8F" stroke-width="1.3"/>
+                    <line x1="348" y1="168" x2="358" y2="168" stroke="#2E4E8F" stroke-width="1.3"/>
+                    <!-- anti-parallel clipping diodes to ground -->
+                    <line x1="353" y1="168" x2="353" y2="180" stroke="#2E4E8F" stroke-width="1.1"/>
+                    <path d="M 349 180 L 357 180 L 353 187 Z" fill="none" stroke="#2E4E8F" stroke-width="1.1"/>
+                    <line x1="349" y1="187" x2="357" y2="187" stroke="#2E4E8F" stroke-width="1.1"/>
+                    <line x1="349" y1="191" x2="357" y2="191" stroke="#2E4E8F" stroke-width="1"/>
+                    <line x1="350.5" y1="193.5" x2="355.5" y2="193.5" stroke="#2E4E8F" stroke-width="1"/>
+                    <line x1="352" y1="196" x2="354" y2="196" stroke="#2E4E8F" stroke-width="1"/>
+                    <text x="326" y="196" text-anchor="middle" fill="#2B4C9B" font-family="'Caveat',cursive" font-size="14">U = R · I</text>
+                    <text x="332" y="208" text-anchor="middle" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="5.5" letter-spacing="1">CLIPPING STAGE</text>
+                </g>
+
+                <!-- concert poster: the iconic top-hat guitarist, stage-light duotone -->
+                <g transform="translate(96,0) rotate(-2 430 74)">
+                    <rect x="388" y="18" width="86" height="116" rx="2" fill="#14100A"/>
+                    <rect x="392" y="22" width="78" height="108" fill="none" stroke="#FFAD2E" stroke-width="1" opacity="0.6"/>
+                    <circle cx="431" cy="24" r="2.5" fill="#C9CDD3"/>
+                    <!-- stage light from below -->
+                    <ellipse cx="431" cy="118" rx="34" ry="14" fill="rgba(255,173,46,0.28)"/>
+                    <!-- figure: leaning back, low-slung guitar -->
+                    <g fill="#FFAD2E">
+                        <!-- top hat, slightly tilted -->
+                        <g transform="rotate(-8 428 40)">
+                            <rect x="416" y="26" width="24" height="16" rx="2"/>
+                            <rect x="410" y="40" width="36" height="4.5" rx="2.2"/>
+                            <rect x="416" y="36" width="24" height="3" fill="#14100A" opacity="0.55"/>
+                        </g>
+                        <!-- big curly mane, face left dark between the masses -->
+                        <path d="M414 46 C405 52 401 64 404 76 C406 86 411 93 417 96 C414 86 413 74 416 62 C412 58 412 51 414 46 Z"/>
+                        <path d="M442 44 C452 50 457 62 455 75 C453 87 447 95 440 98 C444 87 445 74 441 61 C445 57 444 49 442 44 Z"/>
+                        <path d="M418 48 C424 44 434 44 440 48 C441 53 440 57 438 59 C433 56 425 56 420 59 C418 57 417 52 418 48 Z"/>
+                        <!-- chin/mouth hint -->
+                        <path d="M426 66 C428 69 432 69 434 66 L433 72 C431 74 429 74 427 72 Z"/>
+                        <!-- torso leaning back -->
+                        <path d="M419 96 C415 104 415 112 418 118 L442 118 C446 110 446 101 441 95 C434 100 426 100 419 96 Z"/>
+                        <!-- left arm up the neck -->
+                        <path d="M420 98 C412 96 404 90 400 84 L404 79 C410 86 417 91 424 92 Z"/>
+                        <!-- right arm strumming -->
+                        <path d="M441 97 C445 101 447 105 447 109 L441 111 C440 106 438 102 435 100 Z"/>
+                    </g>
+                    <!-- low-slung Les Paul silhouette, neck up-left -->
+                    <g fill="#EDD9B8">
+                        <path d="M430 108 C424 104 417 105 414 110 C411 115 414 121 420 122 C427 123 434 121 436 116 C437 112 434 110 430 108 Z"/>
+                        <rect x="396" y="80" width="32" height="3.6" rx="1.8" transform="rotate(38 412 82)"/>
+                        <rect x="392" y="72" width="8" height="6" rx="1.5" transform="rotate(38 396 75)"/>
+                    </g>
+                    <text x="431" y="129" text-anchor="middle" fill="#EDD9B8" font-family="'IBM Plex Mono',monospace" font-size="6.5" letter-spacing="3.5">SOLD OUT</text>
+                </g>
+
+                <!-- ============ architect lamp + warm light pool ============ -->
+                <rect x="424" y="286" width="18" height="10" rx="2" fill="#22252B"/>
+                <line x1="433" y1="288" x2="452" y2="182" stroke="#33373F" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="452" cy="182" r="4" fill="#22252B"/>
+                <line x1="452" y1="182" x2="398" y2="136" stroke="#33373F" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M 406 128 L 382 150 L 398 162 L 416 142 Z" fill="#22252B" stroke="#33373F" stroke-width="1.5"/>
+                <polygon points="392,154 320,296 460,296" fill="rgba(255,173,46,0.07)"/>
+                <ellipse cx="392" cy="296" rx="66" ry="6" fill="rgba(255,173,46,0.12)" filter="url(#softGlow)"/>
+
+                <!-- ============ workbench ============ -->
+                <rect x="18" y="296" width="498" height="13" rx="3" fill="#4A3524"/>
+                <line x1="20" y1="298" x2="514" y2="298" stroke="#6B4E35" stroke-width="1.6"/>
+                <rect x="30" y="309" width="474" height="22" rx="2" fill="#33251A"/>
+                <text x="267" y="324" text-anchor="middle" fill="#C9A87C" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="4" opacity="0.8">CRAFFONARA FX · WORKSHOP</text>
+                <rect x="48" y="331" width="13" height="56" fill="#2A1F14"/>
+                <rect x="452" y="331" width="13" height="56" fill="#2A1F14"/>
+
+                <!-- ============ oscilloscope (brand wave on screen) ============ -->
+                <rect x="44" y="208" width="128" height="88" rx="8" fill="#15171B" stroke="#33373F" stroke-width="2"/>
+                <rect x="54" y="216" width="108" height="50" rx="4" fill="#0E1013" stroke="#2A2E36"/>
+                <g stroke="#1B1F26" stroke-width="1">
+                    <line x1="54" y1="241" x2="162" y2="241"/>
+                    <line x1="90" y1="216" x2="90" y2="266"/>
+                    <line x1="126" y1="216" x2="126" y2="266"/>
+                </g>
+                <polyline class="scope-trace" fill="none" stroke="#FFAD2E" stroke-width="2" stroke-linejoin="round"
+                          points="56,241 62,226 70,224 76,241 82,257 90,259 96,241 102,226 110,224 116,241 122,257 130,259 136,241 142,226 150,224 156,241 160,250"/>
+                <g fill="#6E747E">
+                    <circle cx="72" cy="281" r="5"/><circle cx="96" cy="281" r="5"/><circle cx="120" cy="281" r="5"/>
+                </g>
+                <g stroke="#C9CDD3" stroke-width="1.4" stroke-linecap="round">
+                    <line x1="72" y1="281" x2="72" y2="277"/><line x1="96" y1="281" x2="96" y2="277"/><line x1="120" y1="281" x2="120" y2="277"/>
+                </g>
+                <circle cx="152" cy="281" r="3.5" fill="#FFAD2E" class="hero-led-pulse"/>
+
+                <!-- ============ soldering station + iron with smoke ============ -->
+                <rect x="182" y="262" width="60" height="34" rx="5" fill="#15171B" stroke="#33373F" stroke-width="1.5"/>
+                <rect x="190" y="270" width="30" height="12" rx="2" fill="#0E1013"/>
+                <text x="205" y="279.5" text-anchor="middle" fill="#FFAD2E" font-family="'IBM Plex Mono',monospace" font-size="8" letter-spacing="1">350°</text>
+                <circle cx="231" cy="276" r="4" fill="#6E747E"/>
+                <!-- iron resting in its coil stand -->
+                <g transform="rotate(-24 258 258)">
+                    <rect x="244" y="252" width="26" height="9" rx="4" fill="#22252B"/>
+                    <line x1="270" y1="256.5" x2="292" y2="256.5" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="292" y1="256.5" x2="300" y2="256.5" stroke="#C9CDD3" stroke-width="1.6" stroke-linecap="round"/>
+                </g>
+                <path d="M256 276 a11 11 0 1 1 22 0" fill="none" stroke="#6E747E" stroke-width="2.2"/>
+                <path d="M260 276 a7 7 0 1 1 14 0" fill="none" stroke="#6E747E" stroke-width="1.6"/>
+                <!-- solder smoke -->
+                <path class="wisp" d="M295 236 C291 228 299 220 295 210" fill="none" stroke="#6E747E" stroke-width="2" stroke-linecap="round"/>
+                <path class="wisp w2" d="M299 240 C303 230 295 224 299 214" fill="none" stroke="#6E747E" stroke-width="1.6" stroke-linecap="round"/>
+
+                <!-- ============ MIDI relay PCB with parts ============ -->
+                <rect x="306" y="252" width="128" height="44" rx="4" fill="#1E4D33" stroke="#0F2A1C" stroke-width="2"/>
+                <g stroke="#D8B36A" stroke-width="1.2" fill="none">
+                    <path d="M316 288 h20 v-14 h16"/>
+                    <path d="M316 262 h30 v10"/>
+                    <path d="M398 262 v14 h18"/>
+                </g>
+                <rect x="318" y="258" width="30" height="19" rx="2" fill="#22252B" stroke="#0B0C0E"/>
+                <rect x="356" y="262" width="24" height="12" rx="1.5" fill="#101216"/>
+                <g stroke="#6E747E" stroke-width="1">
+                    <line x1="358" y1="274" x2="358" y2="278"/><line x1="364" y1="274" x2="364" y2="278"/>
+                    <line x1="370" y1="274" x2="370" y2="278"/><line x1="376" y1="274" x2="376" y2="278"/>
+                </g>
+                <circle cx="392" cy="266" r="5.5" fill="#2A2E36" stroke="#6E747E" stroke-width="1.2"/>
+                <circle cx="406" cy="266" r="5.5" fill="#2A2E36" stroke="#6E747E" stroke-width="1.2"/>
+                <circle cx="421" cy="284" r="8" fill="#101216" stroke="#3C4048" stroke-width="2"/>
+                <g fill="#9DA0A8">
+                    <circle cx="421" cy="288.5" r="1.1"/><circle cx="417.5" cy="286" r="1.1"/><circle cx="424.5" cy="286" r="1.1"/>
+                    <circle cx="418.5" cy="281.5" r="1.1"/><circle cx="423.5" cy="281.5" r="1.1"/>
+                </g>
+                <text x="330" y="292" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="6.5" letter-spacing="1">CFX-MIDI r2</text>
+                <!-- loose resistors on the bench -->
+                <g transform="rotate(-14 288 293)">
+                    <rect x="281" y="290" width="14" height="5" rx="2.5" fill="#C9A87C"/>
+                    <line x1="285" y1="290" x2="285" y2="295" stroke="#8F2E3B" stroke-width="1.6"/>
+                    <line x1="290" y1="290" x2="290" y2="295" stroke="#2E4E8F" stroke-width="1.6"/>
+                </g>
+                <g transform="rotate(9 452 292)">
+                    <rect x="445" y="289" width="14" height="5" rx="2.5" fill="#C9A87C"/>
+                    <line x1="449" y1="289" x2="449" y2="294" stroke="#3E7C4F" stroke-width="1.6"/>
+                    <line x1="454" y1="289" x2="454" y2="294" stroke="#8F2E3B" stroke-width="1.6"/>
+                </g>
+                <circle cx="443" cy="276" r="7" fill="#17191D" stroke="#08090B" stroke-width="1.5"/>
+                <line x1="443" y1="276" x2="443" y2="270" stroke="#EDEAE2" stroke-width="1.8" stroke-linecap="round"/>
+
+                <!-- ============ coffee (essential equipment) ============ -->
+                <rect x="204" y="228" width="26" height="30" rx="4" fill="#B2442C"/>
+                <path d="M230 234 a8 8 0 1 1 0 16" fill="none" stroke="#B2442C" stroke-width="4"/>
+                <path class="wisp steam" d="M213 222 C210 215 217 209 214 202" fill="none" stroke="#9DA0A8" stroke-width="1.6" stroke-linecap="round"/>
+
+                <!-- ============ finished pedal, cabled into the amp ============ -->
+                <g>
+                    <rect x="464" y="224" width="50" height="72" rx="7" fill="url(#heroSilver)" stroke="#6E747E" stroke-width="1.6"/>
+                    <g fill="#17191D">
+                        <circle cx="477" cy="237" r="4.5"/><circle cx="489" cy="237" r="4.5"/><circle cx="501" cy="237" r="4.5"/>
+                    </g>
+                    <circle cx="480" cy="251" r="3.5" fill="none" stroke="#E23B2E" stroke-width="1.6"/>
+                    <circle cx="494" cy="251" r="3.5" fill="none" stroke="#8A8F98" stroke-width="1.6"/>
+                    <circle cx="489" cy="264" r="2.5" fill="#4FA3FF" filter="drop-shadow(0 0 4px rgba(79,163,255,0.9))"/>
+                    <circle cx="489" cy="281" r="8.5" fill="none" stroke="#565B63" stroke-width="2.5"/>
+                    <circle cx="489" cy="281" r="3.5" fill="#565B63"/>
+                </g>
+<!-- ============ floor ============ -->
+                <line x1="18" y1="388" x2="658" y2="388" stroke="#1B1F26" stroke-width="2"/>
+                <ellipse cx="591" cy="385" rx="62" ry="5" fill="rgba(0,0,0,0.45)"/>
+
+                <!-- ============ tube amp, on the floor ============ -->
+                <rect x="566" y="226" width="50" height="9" rx="4.5" fill="#101216" stroke="#33373F" stroke-width="1.5"/>
+                <rect x="524" y="234" width="134" height="146" rx="9" fill="#15171B" stroke="#33373F" stroke-width="2"/>
+                <rect x="533" y="243" width="116" height="22" rx="4" fill="#0E1013" stroke="#2A2E36"/>
+                <g fill="#6E747E">
+                    <circle cx="548" cy="254" r="4.5"/><circle cx="566" cy="254" r="4.5"/>
+                    <circle cx="584" cy="254" r="4.5"/><circle cx="602" cy="254" r="4.5"/>
+                </g>
+                <g stroke="#C9CDD3" stroke-width="1.4" stroke-linecap="round">
+                    <line x1="548" y1="254" x2="548" y2="250"/><line x1="566" y1="254" x2="566" y2="250"/>
+                    <line x1="584" y1="254" x2="584" y2="250"/><line x1="602" y1="254" x2="602" y2="250"/>
+                </g>
+                <circle cx="636" cy="254" r="3.5" fill="#FFAD2E" class="hero-led-pulse" filter="drop-shadow(0 0 4px rgba(255,173,46,0.9))"/>
+                <ellipse cx="591" cy="268" rx="48" ry="6" fill="rgba(255,140,40,0.28)" filter="url(#softGlow)"/>
+                <rect x="535" y="272" width="112" height="84" rx="6" fill="url(#grille)" stroke="#2A2E36" stroke-width="1.5"/>
+                <circle cx="591" cy="314" r="31" fill="none" stroke="#3A3F49" stroke-width="2.5"/>
+                <circle cx="591" cy="314" r="10" fill="none" stroke="#3A3F49" stroke-width="2"/>
+                <rect x="534" y="380" width="16" height="6" rx="3" fill="#101216"/>
+                <rect x="632" y="380" width="16" height="6" rx="3" fill="#101216"/>
+
+                <!-- cable from the finished pedal down into the amp -->
+                <path d="M514 268 C534 274 518 316 536 322 C548 326 552 300 546 268"
+                      fill="none" stroke="#6E747E" stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- caption -->
+                <text x="24" y="410" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="2">ONE BENCH · EVERY PEDAL HAND-BUILT, MEASURED &amp; PLAYED</text>
+            </svg>
+        </div>
+        </div>
         <div class="workshop-grid">
             <div class="workshop-copy reveal">
                 <p><strong>CRAFFONARA FX is a one-man workshop in Austria.</strong>
@@ -1591,8 +1632,28 @@
     document.body.appendChild(backdrop);
 
     function openModal(p) {
-        document.getElementById("modalArt").innerHTML =
-            p.image ? `<img src="${p.image}" alt="${p.name}">` : pedalArt(p, 170);
+        const art = document.getElementById("modalArt");
+        if (p.gallery && p.gallery.length) {
+            // main photo + clickable thumbnails
+            art.innerHTML = `
+                <div class="gallery">
+                    <img id="galleryMain" src="${p.gallery[0]}" alt="${p.name}">
+                    <div class="thumbs">
+                        ${p.gallery.map((g, i) =>
+                            `<img src="${g}" data-i="${i}" class="${i === 0 ? "active" : ""}" alt="${p.name} photo ${i + 1}">`).join("")}
+                    </div>
+                </div>`;
+            art.querySelectorAll(".thumbs img").forEach(t => {
+                t.addEventListener("click", e => {
+                    e.stopPropagation();
+                    document.getElementById("galleryMain").src = t.src;
+                    art.querySelectorAll(".thumbs img").forEach(x => x.classList.remove("active"));
+                    t.classList.add("active");
+                });
+            });
+        } else {
+            art.innerHTML = p.image ? `<img src="${p.image}" alt="${p.name}">` : pedalArt(p, 170);
+        }
         document.getElementById("modalCat").textContent =
             p.category === "midi" ? "MIDI" : p.category === "mod" ? "Mod" : "Custom build";
         document.getElementById("modalTitle").textContent = p.name;
