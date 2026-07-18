@@ -1,22 +1,1886 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" font-family="'Big Shoulders Display','Arial Narrow',Arial,sans-serif">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style>
-    <rect width="640" height="200" rx="14" fill="#0C0D10"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRAFFONARA FX — Custom Guitar Pedals & MIDI Mods, Handmade in Austria</title>
+<meta name="description" content="CRAFFONARA FX: hand-built boutique guitar pedals, true bypass mods and MIDI relay retrofits. Dual-preset builds — four sounds from one pedal, switchable via MIDI. Handmade in Austria.">
+<link rel="canonical" href="https://wcraffonara.github.io/craffonara-fx/">
+<meta name="theme-color" content="#0C0D10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CRAFFONARA FX">
+<meta property="og:title" content="CRAFFONARA FX — Custom Guitar Pedals & MIDI Mods">
+<meta property="og:description" content="Hand-built boutique pedals, mods and MIDI relay retrofits. Four sounds from one pedal, switchable via MIDI. Handmade in Austria.">
+<meta property="og:url" content="https://wcraffonara.github.io/craffonara-fx/">
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "CRAFFONARA FX",
+    "description": "Hand-built boutique guitar pedals, pedal modifications and MIDI relay retrofits. Custom dual-preset builds switchable via MIDI.",
+    "url": "https://wcraffonara.github.io/craffonara-fx/",
+    "email": "hello@craffonara-fx.com",
+    "address": { "@type": "PostalAddress", "addressCountry": "AT" },
+    "knowsAbout": ["guitar effects pedals", "MIDI retrofits", "true bypass modification", "pedal repair"]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="logos/logo-midi-badge.svg">
+<style>
+    /* ============================================================
+       CRAFFONARA FX — design tokens
+       Palette inspired by powder-coated enclosures, silkscreen
+       print and amber status LEDs.
+       ============================================================ */
+    :root {
+        --ink:      #0C0D10;   /* page background — matte black enclosure */
+        --panel:    #15171B;   /* card surface */
+        --panel-2:  #1B1E24;   /* raised surface */
+        --line:     #2A2E36;   /* hairline borders */
+        --text:     #EDEAE2;   /* silkscreen off-white */
+        --dim:      #9DA0A8;   /* secondary text */
+        --led:      #FFAD2E;   /* amber status LED */
+        --led-glow: rgba(255, 173, 46, 0.45);
+        --jewel:    #E23B2E;   /* red jewel lamp — used sparingly */
+        --metal:    #6E747E;   /* brushed metal */
+        --radius:   10px;
+        --font-display: "Big Shoulders Display", sans-serif;
+        --font-body:    "Archivo", sans-serif;
+        --font-mono:    "IBM Plex Mono", monospace;
+    }
 
-    <!-- signal path: IN — [FX block] — OUT -->
-    <g font-family="'IBM Plex Mono',monospace" font-size="15" fill="#9DA0A8" letter-spacing="3">
-        <text x="42" y="72">IN</text>
-        <text x="552" y="72">OUT</text>
-    </g>
-    <line x1="86" y1="66" x2="264" y2="66" stroke="#9DA0A8" stroke-width="4"/>
-    <line x1="376" y1="66" x2="540" y2="66" stroke="#9DA0A8" stroke-width="4"/>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- FX block glows amber: the pedal in the chain -->
-    <rect x="272" y="36" width="96" height="60" rx="12"
-          fill="none" stroke="#FFAD2E" stroke-width="6"/>
-    <text x="320" y="80" text-anchor="middle" fill="#FFAD2E"
-          font-weight="800" font-size="40" letter-spacing="3">FX</text>
+    html { scroll-behavior: smooth; }
 
-    <!-- wordmark below the chain -->
-    <text x="320" y="158" text-anchor="middle" fill="#EDEAE2"
-          font-weight="800" font-size="54" letter-spacing="6">CRAFFONARA</text>
-</svg>
+    body {
+        background: var(--ink);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+
+    ::selection { background: var(--led); color: #14100A; }
+
+    a { color: inherit; }
+
+    img { max-width: 100%; display: block; }
+
+    .wrap {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+    }
+
+    /* ---- silkscreen eyebrow label with LED dot ---------------- */
+    .eyebrow {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dim);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .eyebrow::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--led);
+        box-shadow: 0 0 10px var(--led-glow);
+        flex: none;
+    }
+
+    h1, h2, h3 {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        line-height: 0.95;
+        letter-spacing: 0.01em;
+        font-weight: 800;
+    }
+
+    h2.section-title {
+        font-size: clamp(38px, 6vw, 64px);
+        margin: 14px 0 18px;
+    }
+
+    .section {
+        padding: 110px 0;
+        border-top: 1px solid var(--line);
+    }
+
+    .section-intro {
+        max-width: 560px;
+        color: var(--dim);
+    }
+
+    /* ============================================================
+       Navigation
+       ============================================================ */
+    .nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: rgba(12, 13, 16, 0.78);
+        border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+    }
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 22px;
+        letter-spacing: 0.06em;
+    }
+    .brand svg { width: 30px; height: 30px; }
+    .brand em {
+        font-style: normal;
+        color: var(--led);
+    }
+    .nav-links {
+        display: flex;
+        gap: 28px;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+    .nav-links a {
+        text-decoration: none;
+        color: var(--dim);
+        transition: color 0.2s;
+        padding: 6px 0;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--led); }
+
+    .nav-toggle {
+        display: none;
+        background: none;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--text);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+
+    /* ============================================================
+       Hero — copy on the left, interactive pedal on the right
+       ============================================================ */
+    .hero {
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        padding: 120px 0 70px;
+        position: relative;
+    }
+    /* subtle drilled-enclosure dot grid in the background */
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.4px);
+        background-size: 26px 26px;
+        mask-image: radial-gradient(ellipse 75% 70% at 65% 40%, #000 0%, transparent 70%);
+        -webkit-mask-image: radial-gradient(ellipse 75% 70% at 65% 40%, #000 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 60px;
+        align-items: center;
+    }
+    .hero h1 {
+        font-size: clamp(52px, 8.5vw, 104px);
+        margin: 18px 0 22px;
+    }
+    .hero h1 .amber { color: var(--led); text-shadow: 0 0 34px var(--led-glow); }
+    .hero p.lead {
+        color: var(--dim);
+        font-size: 18px;
+        max-width: 480px;
+        margin-bottom: 34px;
+    }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 15px 26px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: var(--panel);
+        transition: transform 0.15s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+        cursor: pointer;
+        display: inline-block;
+    }
+    .btn:hover, .btn:focus-visible {
+        transform: translateY(-2px);
+        border-color: var(--led);
+    }
+    .btn.primary {
+        background: var(--led);
+        border-color: var(--led);
+        color: #191106;
+        font-weight: 500;
+        box-shadow: 0 0 0 rgba(255,173,46,0);
+    }
+    .btn.primary:hover, .btn.primary:focus-visible {
+        box-shadow: 0 8px 30px var(--led-glow);
+    }
+
+    .hero-hint {
+        margin-top: 16px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--dim);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .hero-hint::before { content: "↳"; color: var(--led); }
+
+    /* ---- the animated signal-flow hero graphic --------------- */
+    .pedal-stage {
+        display: flex;
+        justify-content: center;
+    }
+    .sigflow {
+        width: min(600px, 92vw);
+        height: auto;
+        user-select: none;
+    }
+    /* workshop scene animations */
+    @keyframes ledPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+    .hero-led-pulse { animation: ledPulse 2.2s ease-in-out infinite; }
+    @keyframes wispRise {
+        0%   { opacity: 0; transform: translateY(5px); }
+        25%  { opacity: 0.65; }
+        100% { opacity: 0; transform: translateY(-24px); }
+    }
+    .wisp { animation: wispRise 3.2s ease-out infinite; }
+    .wisp.w2 { animation-delay: 1.6s; }
+    .wisp.steam { animation-duration: 4s; animation-delay: 0.7s; }
+    @keyframes traceFlow { to { stroke-dashoffset: -18; } }
+    .scope-trace { stroke-dasharray: 5 3; animation: traceFlow 1.1s linear infinite; }
+    @media (prefers-reduced-motion: reduce) {
+        .hero-led-pulse, .wisp, .scope-trace { animation: none; }
+        .wisp { opacity: 0.4; }
+    }
+
+    /* ============================================================
+       Services
+       ============================================================ */
+    .cards-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 48px;
+    }
+    .svc {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 30px 26px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+    .svc:hover { transform: translateY(-4px); border-color: #3A3F49; }
+    .svc .tag {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        color: var(--led);
+        text-transform: uppercase;
+    }
+    .svc h3 {
+        font-size: 30px;
+        margin: 12px 0 10px;
+    }
+    .svc p { color: var(--dim); font-size: 15px; }
+    .svc .num {
+        position: absolute;
+        right: 18px;
+        top: 14px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--metal);
+    }
+
+    /* ============================================================
+       Products
+       ============================================================ */
+    .filters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 38px 0 26px;
+    }
+    .chip {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--dim);
+        background: transparent;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 9px 18px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .chip:hover { color: var(--text); border-color: var(--metal); }
+    .chip.active {
+        color: #191106;
+        background: var(--led);
+        border-color: var(--led);
+        box-shadow: 0 4px 18px var(--led-glow);
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+    .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+    }
+    .card:hover, .card:focus-visible {
+        transform: translateY(-5px);
+        border-color: #3A3F49;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .card:hover .mini-led { fill: var(--led); filter: drop-shadow(0 0 6px var(--led-glow)); }
+    .card-art {
+        background: var(--panel-2);
+        display: flex;
+        justify-content: center;
+        padding: 26px 0 18px;
+        border-bottom: 1px solid var(--line);
+    }
+    .card-art svg { width: 120px; height: auto; }
+    .card-art img { width: 100%; height: 210px; object-fit: cover; }
+    .card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+    .card-cat {
+        font-family: var(--font-mono);
+        font-size: 10.5px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--led);
+    }
+    .card h3 { font-size: 26px; margin: 8px 0 8px; }
+    .card p { color: var(--dim); font-size: 14px; flex: 1; }
+    .card-foot {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 12.5px;
+    }
+    .price { color: var(--text); }
+    .status { letter-spacing: 0.1em; text-transform: uppercase; font-size: 10.5px; }
+    .status.available      { color: #6FD08C; }
+    .status.built-to-order { color: var(--led); }
+    .status.sold           { color: var(--jewel); }
+
+    /* ---- product modal ---------------------------------------- */
+    .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        background: rgba(8, 9, 11, 0.8);
+        backdrop-filter: blur(6px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        max-width: 760px;
+        width: 100%;
+        max-height: 88svh;
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+    }
+    .modal-art {
+        background: var(--panel-2);
+        border-right: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .modal-art svg { width: 170px; height: auto; }
+    .modal-art img { border-radius: 8px; }
+    .modal-body { padding: 30px 32px; position: relative; }
+    .modal-body h3 { font-size: 34px; margin: 8px 0 12px; }
+    .modal-body p { color: var(--dim); font-size: 15px; }
+    .modal-close {
+        position: absolute;
+        top: 14px; right: 14px;
+        background: none;
+        border: 1px solid var(--line);
+        color: var(--dim);
+        border-radius: 6px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        padding: 6px 10px;
+        cursor: pointer;
+    }
+    .modal-close:hover { color: var(--text); border-color: var(--metal); }
+    .spec-list {
+        list-style: none;
+        margin: 20px 0 24px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+    }
+    .spec-list li {
+        padding: 9px 0;
+        border-bottom: 1px dashed var(--line);
+        color: var(--text);
+        display: flex;
+        gap: 10px;
+    }
+    .spec-list li::before { content: "▸"; color: var(--led); }
+
+    /* ============================================================
+       Workshop / about
+       ============================================================ */
+    .workshop-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+        margin-top: 40px;
+    }
+    .bench {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 28px;
+    }
+    .bench h4 {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--led);
+        margin-bottom: 16px;
+    }
+    .bench ul {
+        list-style: none;
+        font-family: var(--font-mono);
+        font-size: 13px;
+    }
+    .bench li {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 10px 0;
+        border-bottom: 1px dashed var(--line);
+    }
+    .bench li:last-child { border-bottom: none; }
+    .bench .k { color: var(--dim); }
+    .workshop-copy p { color: var(--dim); margin-bottom: 16px; }
+    .workshop-copy strong { color: var(--text); font-weight: 600; }
+
+    /* ============================================================
+       Contact
+       ============================================================ */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 60px;
+        margin-top: 40px;
+    }
+    .contact-note p { color: var(--dim); margin-bottom: 18px; }
+    .contact-direct {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        margin-top: 24px;
+    }
+    .contact-direct a { color: var(--led); text-decoration: none; }
+    .contact-direct a:hover { text-decoration: underline; }
+    form .row { margin-bottom: 16px; }
+    label {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-bottom: 8px;
+    }
+    input, select, textarea {
+        width: 100%;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 15px;
+        padding: 13px 15px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--led);
+        box-shadow: 0 0 0 3px rgba(255, 173, 46, 0.15);
+    }
+    textarea { resize: vertical; min-height: 130px; }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    footer {
+        border-top: 1px solid var(--line);
+        padding: 44px 0;
+        display: block;
+    }
+    .foot-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--dim);
+    }
+    .foot-inner .sig { display: flex; align-items: center; gap: 10px; }
+    .foot-inner .sig svg { width: 22px; height: 22px; }
+
+    /* ============================================================
+       How it works — interactive OCD demo
+       ============================================================ */
+    .how-stage {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 30px;
+        margin-top: 44px;
+    }
+    .how-stage svg { width: 100%; height: auto; display: block; }
+    .demo .dk { cursor: ns-resize; touch-action: none; }
+    /* NOTE: no transform-origin/transform-box here — the pointer group sits
+       inside a translated parent, so rotate() spins around the knob centre */
+    .demo .press { cursor: pointer; }
+    .demo .press .cap { transition: transform 0.08s; transform-origin: center; transform-box: fill-box; }
+    .demo .press:active .cap { transform: scale(0.92); }
+    .demo text { user-select: none; }
+    .how-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 22px;
+    }
+    .how-step {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 20px 22px;
+        background: var(--panel);
+    }
+    .how-step .k {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        color: var(--led);
+        text-transform: uppercase;
+    }
+    .how-step p { color: var(--dim); font-size: 14px; margin-top: 8px; }
+    .vibe {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 18px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px 22px;
+    }
+    .vibe-emoji { font-size: 36px; line-height: 1; flex: none; }
+    .vibe-main { flex: 1; min-width: 0; }
+    .vibe-head {
+        font-family: var(--font-display);
+        text-transform: uppercase;
+        font-size: 22px;
+        letter-spacing: 0.01em;
+        color: var(--text);
+    }
+    .vibe-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .vibe-tag {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--dim);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px 12px;
+    }
+    .vibe-tag.hot { color: var(--led); border-color: var(--led); }
+    @media (max-width: 900px) {
+        .how-steps { grid-template-columns: 1fr; }
+        .how-stage { padding: 14px; }
+    }
+
+    /* ============================================================
+       Scroll reveal + reduced motion
+       ============================================================ */
+    .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .reveal { opacity: 1; transform: none; transition: none; }
+        * { transition: none !important; animation: none !important; }
+    }
+
+    :focus-visible { outline: 2px solid var(--led); outline-offset: 2px; }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 900px) {
+        .hero-grid, .workshop-grid, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+        .cards-3 { grid-template-columns: 1fr; }
+        .product-grid { grid-template-columns: repeat(2, 1fr); }
+        .modal { grid-template-columns: 1fr; }
+        .modal-art { border-right: none; border-bottom: 1px solid var(--line); }
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 64px; left: 0; right: 0;
+            flex-direction: column;
+            gap: 0;
+            background: rgba(12, 13, 16, 0.97);
+            border-bottom: 1px solid var(--line);
+            padding: 10px 4vw 18px;
+        }
+        .nav-links.open { display: flex; }
+        .nav-links a { padding: 13px 0; border-bottom: 1px dashed var(--line); }
+        .nav-toggle { display: block; }
+        .section { padding: 80px 0; }
+    }
+    @media (max-width: 560px) {
+        .product-grid { grid-template-columns: 1fr; }
+        .hero { padding-top: 100px; }
+    }
+</style>
+</head>
+<body>
+
+<!-- ================= NAVIGATION ================= -->
+<nav class="nav">
+    <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="Craffonara FX home">
+            <!-- MIDI DIN-5 badge mark -->
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+                <circle cx="20" cy="20" r="18" fill="none" stroke="#EDEAE2" stroke-width="2.5"/>
+                <circle cx="20" cy="27" r="2.2" fill="#EDEAE2"/>
+                <circle cx="11.5" cy="22" r="2.2" fill="#EDEAE2"/>
+                <circle cx="28.5" cy="22" r="2.2" fill="#EDEAE2"/>
+                <circle cx="13.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
+                <circle cx="26.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
+            </svg>
+            CRAFFONARA<em>&nbsp;FX</em>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">MENU</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#how">How it works</a>
+            <a href="#pedals">Pedals</a>
+            <a href="#services">Services</a>
+            <a href="#workshop">Workshop</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+    <div class="wrap hero-grid">
+        <div>
+            <span class="eyebrow">Handmade in Austria · Est. 2026</span>
+            <h1>Custom pedals.<br><span class="amber">MIDI</span> in<br>everything.</h1>
+            <p class="lead">
+                Boutique builds, mods and MIDI retrofits for guitarists and tinkerers.
+                One-off circuits, relay bypass conversions, and DIN-5 sockets where the
+                factory never planned one.
+            </p>
+            <div class="cta-row">
+                <a class="btn primary" href="#pedals">Browse pedals</a>
+                <a class="btn" href="#contact">Request a build</a>
+            </div>
+            <p class="hero-hint">Solder, scope, coffee — this is where your pedal is born</p>
+        </div>
+
+        <!-- The workshop: one bench, one builder. Scope, soldering station,
+             MIDI relay PCB, components, a finished pedal cabled into the amp. -->
+        <div class="pedal-stage">
+            <svg class="sigflow" viewBox="0 0 660 420" role="img"
+                 aria-label="A one-man pedal workshop: workbench with oscilloscope, soldering station, a MIDI relay circuit board, components, pedal schematics and a concert poster on the wall, and a finished pedal cabled into a tube amp on the floor">
+                <defs>
+                    <linearGradient id="heroSilver" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#D3D6DB"/>
+                        <stop offset="0.5" stop-color="#B4B9C0"/>
+                        <stop offset="1" stop-color="#9CA1A9"/>
+                    </linearGradient>
+                    <pattern id="grille" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                        <line x1="0" y1="0" x2="0" y2="6" stroke="#23262D" stroke-width="2"/>
+                    </pattern>
+                    <pattern id="pegholes" width="18" height="18" patternUnits="userSpaceOnUse">
+                        <circle cx="9" cy="9" r="1.4" fill="#23262D"/>
+                    </pattern>
+                    <filter id="softGlow" x="-70%" y="-70%" width="240%" height="240%">
+                        <feGaussianBlur stdDeviation="12"/>
+                    </filter>
+                </defs>
+
+                <!-- ============ pegboard with tools ============ -->
+                <rect x="46" y="24" width="242" height="152" rx="8" fill="#13151A" stroke="#2A2E36" stroke-width="1.5"/>
+                <rect x="46" y="24" width="242" height="152" rx="8" fill="url(#pegholes)"/>
+                <!-- screwdriver -->
+                <rect x="76" y="46" width="11" height="27" rx="4" fill="#E23B2E"/>
+                <line x1="81.5" y1="73" x2="81.5" y2="118" stroke="#9DA0A8" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- pliers with amber grips -->
+                <rect x="121" y="42" width="8" height="22" rx="3.5" fill="#FFAD2E"/>
+                <rect x="136" y="42" width="8" height="22" rx="3.5" fill="#FFAD2E"/>
+                <path d="M125 64 C123 86 128 98 132 114" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                <path d="M140 64 C142 86 137 98 133 114" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="132.5" cy="86" r="3" fill="#6E747E"/>
+                <!-- wire spool -->
+                <circle cx="192" cy="76" r="16" fill="#101216" stroke="#6E747E" stroke-width="3.5"/>
+                <circle cx="192" cy="76" r="4.5" fill="#2A2E36"/>
+                <path d="M206 84 C214 100 208 116 212 130" fill="none" stroke="#B87333" stroke-width="1.8"/>
+                <!-- hex keys -->
+                <path d="M238 52 v26 h11" fill="none" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                <path d="M252 58 v26 h11" fill="none" stroke="#9DA0A8" stroke-width="2.4" stroke-linecap="round"/>
+
+                <!-- ============ schematic pinned to the wall ============ -->
+                <g transform="rotate(2 336 84)">
+                    <rect x="302" y="38" width="72" height="94" rx="2" fill="#EDEAE2"/>
+                    <circle cx="338" cy="44" r="2.5" fill="#E23B2E"/>
+                    <!-- blueprint of a pedal -->
+                    <rect x="316" y="56" width="42" height="60" rx="6" fill="none" stroke="#2E4E8F" stroke-width="1.6"/>
+                    <circle cx="327" cy="68" r="4.5" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
+                    <circle cx="347" cy="68" r="4.5" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
+                    <circle cx="337" cy="102" r="7" fill="none" stroke="#2E4E8F" stroke-width="1.4"/>
+                    <line x1="310" y1="86" x2="316" y2="86" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <line x1="358" y1="86" x2="364" y2="86" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <line x1="316" y1="124" x2="358" y2="124" stroke="#9DA0A8" stroke-width="1"/>
+                </g>
+
+                <!-- sketch 2: MIDI switcher blueprint with the RC cutoff formula -->
+                <g transform="rotate(3 414 66)">
+                    <rect x="384" y="28" width="62" height="80" rx="2" fill="#EDEAE2"/>
+                    <circle cx="415" cy="34" r="2.5" fill="#E23B2E"/>
+                    <rect x="392" y="42" width="46" height="26" rx="4" fill="none" stroke="#2E4E8F" stroke-width="1.5"/>
+                    <rect x="396" y="46" width="12" height="6" rx="1" fill="none" stroke="#2E4E8F" stroke-width="1"/>
+                    <circle cx="399" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <circle cx="410" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <circle cx="421" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <circle cx="432" cy="61" r="2.6" fill="none" stroke="#2E4E8F" stroke-width="1.2"/>
+                    <line x1="392" y1="74" x2="438" y2="74" stroke="#9DA0A8" stroke-width="0.8"/>
+                    <text x="415" y="90" text-anchor="middle" fill="#2B4C9B" font-family="'Caveat',cursive" font-size="13">f = 1/(2πRC)</text>
+                    <text x="415" y="102" text-anchor="middle" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="5.5" letter-spacing="1">TONE CUTOFF</text>
+                </g>
+
+                <!-- sketch 3: clipping stage schematic with Ohm's law -->
+                <g transform="rotate(-3 333 178)">
+                    <rect x="300" y="142" width="66" height="72" rx="2" fill="#EDEAE2"/>
+                    <circle cx="333" cy="148" r="2.5" fill="#E23B2E"/>
+                    <!-- signal line with resistor zigzag into an op-amp -->
+                    <polyline points="306,168 311,168 313,164 317,172 321,164 325,172 328,168 333,168"
+                              fill="none" stroke="#2E4E8F" stroke-width="1.3"/>
+                    <path d="M 333 160 L 333 176 L 348 168 Z" fill="none" stroke="#2E4E8F" stroke-width="1.3"/>
+                    <line x1="348" y1="168" x2="358" y2="168" stroke="#2E4E8F" stroke-width="1.3"/>
+                    <!-- anti-parallel clipping diodes to ground -->
+                    <line x1="353" y1="168" x2="353" y2="180" stroke="#2E4E8F" stroke-width="1.1"/>
+                    <path d="M 349 180 L 357 180 L 353 187 Z" fill="none" stroke="#2E4E8F" stroke-width="1.1"/>
+                    <line x1="349" y1="187" x2="357" y2="187" stroke="#2E4E8F" stroke-width="1.1"/>
+                    <line x1="349" y1="191" x2="357" y2="191" stroke="#2E4E8F" stroke-width="1"/>
+                    <line x1="350.5" y1="193.5" x2="355.5" y2="193.5" stroke="#2E4E8F" stroke-width="1"/>
+                    <line x1="352" y1="196" x2="354" y2="196" stroke="#2E4E8F" stroke-width="1"/>
+                    <text x="326" y="196" text-anchor="middle" fill="#2B4C9B" font-family="'Caveat',cursive" font-size="14">U = R · I</text>
+                    <text x="332" y="208" text-anchor="middle" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="5.5" letter-spacing="1">CLIPPING STAGE</text>
+                </g>
+
+                <!-- concert poster: the iconic top-hat guitarist, stage-light duotone -->
+                <g transform="translate(96,0) rotate(-2 430 74)">
+                    <rect x="388" y="18" width="86" height="116" rx="2" fill="#14100A"/>
+                    <rect x="392" y="22" width="78" height="108" fill="none" stroke="#FFAD2E" stroke-width="1" opacity="0.6"/>
+                    <circle cx="431" cy="24" r="2.5" fill="#C9CDD3"/>
+                    <!-- stage light from below -->
+                    <ellipse cx="431" cy="118" rx="34" ry="14" fill="rgba(255,173,46,0.28)"/>
+                    <!-- figure: leaning back, low-slung guitar -->
+                    <g fill="#FFAD2E">
+                        <!-- top hat, slightly tilted -->
+                        <g transform="rotate(-8 428 40)">
+                            <rect x="416" y="26" width="24" height="16" rx="2"/>
+                            <rect x="410" y="40" width="36" height="4.5" rx="2.2"/>
+                            <rect x="416" y="36" width="24" height="3" fill="#14100A" opacity="0.55"/>
+                        </g>
+                        <!-- big curly mane, face left dark between the masses -->
+                        <path d="M414 46 C405 52 401 64 404 76 C406 86 411 93 417 96 C414 86 413 74 416 62 C412 58 412 51 414 46 Z"/>
+                        <path d="M442 44 C452 50 457 62 455 75 C453 87 447 95 440 98 C444 87 445 74 441 61 C445 57 444 49 442 44 Z"/>
+                        <path d="M418 48 C424 44 434 44 440 48 C441 53 440 57 438 59 C433 56 425 56 420 59 C418 57 417 52 418 48 Z"/>
+                        <!-- chin/mouth hint -->
+                        <path d="M426 66 C428 69 432 69 434 66 L433 72 C431 74 429 74 427 72 Z"/>
+                        <!-- torso leaning back -->
+                        <path d="M419 96 C415 104 415 112 418 118 L442 118 C446 110 446 101 441 95 C434 100 426 100 419 96 Z"/>
+                        <!-- left arm up the neck -->
+                        <path d="M420 98 C412 96 404 90 400 84 L404 79 C410 86 417 91 424 92 Z"/>
+                        <!-- right arm strumming -->
+                        <path d="M441 97 C445 101 447 105 447 109 L441 111 C440 106 438 102 435 100 Z"/>
+                    </g>
+                    <!-- low-slung Les Paul silhouette, neck up-left -->
+                    <g fill="#EDD9B8">
+                        <path d="M430 108 C424 104 417 105 414 110 C411 115 414 121 420 122 C427 123 434 121 436 116 C437 112 434 110 430 108 Z"/>
+                        <rect x="396" y="80" width="32" height="3.6" rx="1.8" transform="rotate(38 412 82)"/>
+                        <rect x="392" y="72" width="8" height="6" rx="1.5" transform="rotate(38 396 75)"/>
+                    </g>
+                    <text x="431" y="129" text-anchor="middle" fill="#EDD9B8" font-family="'IBM Plex Mono',monospace" font-size="6.5" letter-spacing="3.5">SOLD OUT</text>
+                </g>
+
+                <!-- ============ architect lamp + warm light pool ============ -->
+                <rect x="424" y="286" width="18" height="10" rx="2" fill="#22252B"/>
+                <line x1="433" y1="288" x2="452" y2="182" stroke="#33373F" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="452" cy="182" r="4" fill="#22252B"/>
+                <line x1="452" y1="182" x2="398" y2="136" stroke="#33373F" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M 406 128 L 382 150 L 398 162 L 416 142 Z" fill="#22252B" stroke="#33373F" stroke-width="1.5"/>
+                <polygon points="392,154 320,296 460,296" fill="rgba(255,173,46,0.07)"/>
+                <ellipse cx="392" cy="296" rx="66" ry="6" fill="rgba(255,173,46,0.12)" filter="url(#softGlow)"/>
+
+                <!-- ============ workbench ============ -->
+                <rect x="18" y="296" width="498" height="13" rx="3" fill="#4A3524"/>
+                <line x1="20" y1="298" x2="514" y2="298" stroke="#6B4E35" stroke-width="1.6"/>
+                <rect x="30" y="309" width="474" height="22" rx="2" fill="#33251A"/>
+                <text x="267" y="324" text-anchor="middle" fill="#C9A87C" font-family="'IBM Plex Mono',monospace" font-size="9" letter-spacing="4" opacity="0.8">CRAFFONARA FX · WORKSHOP</text>
+                <rect x="48" y="331" width="13" height="56" fill="#2A1F14"/>
+                <rect x="452" y="331" width="13" height="56" fill="#2A1F14"/>
+
+                <!-- ============ oscilloscope (brand wave on screen) ============ -->
+                <rect x="44" y="208" width="128" height="88" rx="8" fill="#15171B" stroke="#33373F" stroke-width="2"/>
+                <rect x="54" y="216" width="108" height="50" rx="4" fill="#0E1013" stroke="#2A2E36"/>
+                <g stroke="#1B1F26" stroke-width="1">
+                    <line x1="54" y1="241" x2="162" y2="241"/>
+                    <line x1="90" y1="216" x2="90" y2="266"/>
+                    <line x1="126" y1="216" x2="126" y2="266"/>
+                </g>
+                <polyline class="scope-trace" fill="none" stroke="#FFAD2E" stroke-width="2" stroke-linejoin="round"
+                          points="56,241 62,226 70,224 76,241 82,257 90,259 96,241 102,226 110,224 116,241 122,257 130,259 136,241 142,226 150,224 156,241 160,250"/>
+                <g fill="#6E747E">
+                    <circle cx="72" cy="281" r="5"/><circle cx="96" cy="281" r="5"/><circle cx="120" cy="281" r="5"/>
+                </g>
+                <g stroke="#C9CDD3" stroke-width="1.4" stroke-linecap="round">
+                    <line x1="72" y1="281" x2="72" y2="277"/><line x1="96" y1="281" x2="96" y2="277"/><line x1="120" y1="281" x2="120" y2="277"/>
+                </g>
+                <circle cx="152" cy="281" r="3.5" fill="#FFAD2E" class="hero-led-pulse"/>
+
+                <!-- ============ soldering station + iron with smoke ============ -->
+                <rect x="182" y="262" width="60" height="34" rx="5" fill="#15171B" stroke="#33373F" stroke-width="1.5"/>
+                <rect x="190" y="270" width="30" height="12" rx="2" fill="#0E1013"/>
+                <text x="205" y="279.5" text-anchor="middle" fill="#FFAD2E" font-family="'IBM Plex Mono',monospace" font-size="8" letter-spacing="1">350°</text>
+                <circle cx="231" cy="276" r="4" fill="#6E747E"/>
+                <!-- iron resting in its coil stand -->
+                <g transform="rotate(-24 258 258)">
+                    <rect x="244" y="252" width="26" height="9" rx="4" fill="#22252B"/>
+                    <line x1="270" y1="256.5" x2="292" y2="256.5" stroke="#9DA0A8" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="292" y1="256.5" x2="300" y2="256.5" stroke="#C9CDD3" stroke-width="1.6" stroke-linecap="round"/>
+                </g>
+                <path d="M256 276 a11 11 0 1 1 22 0" fill="none" stroke="#6E747E" stroke-width="2.2"/>
+                <path d="M260 276 a7 7 0 1 1 14 0" fill="none" stroke="#6E747E" stroke-width="1.6"/>
+                <!-- solder smoke -->
+                <path class="wisp" d="M295 236 C291 228 299 220 295 210" fill="none" stroke="#6E747E" stroke-width="2" stroke-linecap="round"/>
+                <path class="wisp w2" d="M299 240 C303 230 295 224 299 214" fill="none" stroke="#6E747E" stroke-width="1.6" stroke-linecap="round"/>
+
+                <!-- ============ MIDI relay PCB with parts ============ -->
+                <rect x="306" y="252" width="128" height="44" rx="4" fill="#1E4D33" stroke="#0F2A1C" stroke-width="2"/>
+                <g stroke="#D8B36A" stroke-width="1.2" fill="none">
+                    <path d="M316 288 h20 v-14 h16"/>
+                    <path d="M316 262 h30 v10"/>
+                    <path d="M398 262 v14 h18"/>
+                </g>
+                <rect x="318" y="258" width="30" height="19" rx="2" fill="#22252B" stroke="#0B0C0E"/>
+                <rect x="356" y="262" width="24" height="12" rx="1.5" fill="#101216"/>
+                <g stroke="#6E747E" stroke-width="1">
+                    <line x1="358" y1="274" x2="358" y2="278"/><line x1="364" y1="274" x2="364" y2="278"/>
+                    <line x1="370" y1="274" x2="370" y2="278"/><line x1="376" y1="274" x2="376" y2="278"/>
+                </g>
+                <circle cx="392" cy="266" r="5.5" fill="#2A2E36" stroke="#6E747E" stroke-width="1.2"/>
+                <circle cx="406" cy="266" r="5.5" fill="#2A2E36" stroke="#6E747E" stroke-width="1.2"/>
+                <circle cx="421" cy="284" r="8" fill="#101216" stroke="#3C4048" stroke-width="2"/>
+                <g fill="#9DA0A8">
+                    <circle cx="421" cy="288.5" r="1.1"/><circle cx="417.5" cy="286" r="1.1"/><circle cx="424.5" cy="286" r="1.1"/>
+                    <circle cx="418.5" cy="281.5" r="1.1"/><circle cx="423.5" cy="281.5" r="1.1"/>
+                </g>
+                <text x="330" y="292" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="6.5" letter-spacing="1">CFX-MIDI r2</text>
+                <!-- loose resistors on the bench -->
+                <g transform="rotate(-14 288 293)">
+                    <rect x="281" y="290" width="14" height="5" rx="2.5" fill="#C9A87C"/>
+                    <line x1="285" y1="290" x2="285" y2="295" stroke="#8F2E3B" stroke-width="1.6"/>
+                    <line x1="290" y1="290" x2="290" y2="295" stroke="#2E4E8F" stroke-width="1.6"/>
+                </g>
+                <g transform="rotate(9 452 292)">
+                    <rect x="445" y="289" width="14" height="5" rx="2.5" fill="#C9A87C"/>
+                    <line x1="449" y1="289" x2="449" y2="294" stroke="#3E7C4F" stroke-width="1.6"/>
+                    <line x1="454" y1="289" x2="454" y2="294" stroke="#8F2E3B" stroke-width="1.6"/>
+                </g>
+                <circle cx="443" cy="276" r="7" fill="#17191D" stroke="#08090B" stroke-width="1.5"/>
+                <line x1="443" y1="276" x2="443" y2="270" stroke="#EDEAE2" stroke-width="1.8" stroke-linecap="round"/>
+
+                <!-- ============ coffee (essential equipment) ============ -->
+                <rect x="204" y="228" width="26" height="30" rx="4" fill="#B2442C"/>
+                <path d="M230 234 a8 8 0 1 1 0 16" fill="none" stroke="#B2442C" stroke-width="4"/>
+                <path class="wisp steam" d="M213 222 C210 215 217 209 214 202" fill="none" stroke="#9DA0A8" stroke-width="1.6" stroke-linecap="round"/>
+
+                <!-- ============ finished pedal, cabled into the amp ============ -->
+                <g>
+                    <rect x="464" y="224" width="50" height="72" rx="7" fill="url(#heroSilver)" stroke="#6E747E" stroke-width="1.6"/>
+                    <g fill="#17191D">
+                        <circle cx="477" cy="237" r="4.5"/><circle cx="489" cy="237" r="4.5"/><circle cx="501" cy="237" r="4.5"/>
+                    </g>
+                    <circle cx="480" cy="251" r="3.5" fill="none" stroke="#E23B2E" stroke-width="1.6"/>
+                    <circle cx="494" cy="251" r="3.5" fill="none" stroke="#8A8F98" stroke-width="1.6"/>
+                    <circle cx="489" cy="264" r="2.5" fill="#4FA3FF" filter="drop-shadow(0 0 4px rgba(79,163,255,0.9))"/>
+                    <circle cx="489" cy="281" r="8.5" fill="none" stroke="#565B63" stroke-width="2.5"/>
+                    <circle cx="489" cy="281" r="3.5" fill="#565B63"/>
+                </g>
+<!-- ============ floor ============ -->
+                <line x1="18" y1="388" x2="658" y2="388" stroke="#1B1F26" stroke-width="2"/>
+                <ellipse cx="591" cy="385" rx="62" ry="5" fill="rgba(0,0,0,0.45)"/>
+
+                <!-- ============ tube amp, on the floor ============ -->
+                <rect x="566" y="226" width="50" height="9" rx="4.5" fill="#101216" stroke="#33373F" stroke-width="1.5"/>
+                <rect x="524" y="234" width="134" height="146" rx="9" fill="#15171B" stroke="#33373F" stroke-width="2"/>
+                <rect x="533" y="243" width="116" height="22" rx="4" fill="#0E1013" stroke="#2A2E36"/>
+                <g fill="#6E747E">
+                    <circle cx="548" cy="254" r="4.5"/><circle cx="566" cy="254" r="4.5"/>
+                    <circle cx="584" cy="254" r="4.5"/><circle cx="602" cy="254" r="4.5"/>
+                </g>
+                <g stroke="#C9CDD3" stroke-width="1.4" stroke-linecap="round">
+                    <line x1="548" y1="254" x2="548" y2="250"/><line x1="566" y1="254" x2="566" y2="250"/>
+                    <line x1="584" y1="254" x2="584" y2="250"/><line x1="602" y1="254" x2="602" y2="250"/>
+                </g>
+                <circle cx="636" cy="254" r="3.5" fill="#FFAD2E" class="hero-led-pulse" filter="drop-shadow(0 0 4px rgba(255,173,46,0.9))"/>
+                <ellipse cx="591" cy="268" rx="48" ry="6" fill="rgba(255,140,40,0.28)" filter="url(#softGlow)"/>
+                <rect x="535" y="272" width="112" height="84" rx="6" fill="url(#grille)" stroke="#2A2E36" stroke-width="1.5"/>
+                <circle cx="591" cy="314" r="31" fill="none" stroke="#3A3F49" stroke-width="2.5"/>
+                <circle cx="591" cy="314" r="10" fill="none" stroke="#3A3F49" stroke-width="2"/>
+                <rect x="534" y="380" width="16" height="6" rx="3" fill="#101216"/>
+                <rect x="632" y="380" width="16" height="6" rx="3" fill="#101216"/>
+
+                <!-- cable from the finished pedal down into the amp -->
+                <path d="M514 268 C534 274 518 316 536 322 C548 326 552 300 546 268"
+                      fill="none" stroke="#6E747E" stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- caption -->
+                <text x="24" y="410" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="2">ONE BENCH · EVERY PEDAL HAND-BUILT, MEASURED &amp; PLAYED</text>
+            </svg>
+        </div>
+    </div>
+</header>
+
+<!-- ================= HOW IT WORKS — interactive OCD demo ================= -->
+<section class="section" id="how">
+    <div class="wrap">
+        <span class="eyebrow reveal">The principle behind my builds</span>
+        <h2 class="section-title reveal">One pedal, four sounds</h2>
+        <p class="section-intro reveal">
+            Here is the trick I build into most of my pedals, shown on my OCD-style drive:
+            the knobs that matter exist <strong style="color:var(--text)">twice</strong>.
+            A soft push button — or a MIDI message from your switcher — decides which of the
+            two is live. Dial in two Drive and two Tone settings and one pedal covers your
+            rhythm sound, your solo boost and everything in between. This demo actually works,
+            go ahead:
+        </p>
+
+        <div class="how-stage reveal demo">
+            <svg id="demoScene" viewBox="0 0 920 620" role="application" aria-label="Interactive demo: dual-preset pedal with MIDI controller">
+                <defs>
+                    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#D3D6DB"/>
+                        <stop offset="0.45" stop-color="#B9BEC5"/>
+                        <stop offset="1" stop-color="#9CA1A9"/>
+                    </linearGradient>
+                    <pattern id="brush" width="7" height="2.4" patternUnits="userSpaceOnUse">
+                        <line x1="0" y1="1.2" x2="7" y2="1.2" stroke="rgba(255,255,255,0.14)" stroke-width="0.7"/>
+                    </pattern>
+                    <radialGradient id="bkKnob" cx="0.35" cy="0.3" r="1">
+                        <stop offset="0" stop-color="#3E4147"/>
+                        <stop offset="0.7" stop-color="#1B1D21"/>
+                        <stop offset="1" stop-color="#0B0C0E"/>
+                    </radialGradient>
+                    <radialGradient id="chromeBtn" cx="0.4" cy="0.35" r="1">
+                        <stop offset="0" stop-color="#F0F2F5"/>
+                        <stop offset="0.55" stop-color="#AEB3BB"/>
+                        <stop offset="1" stop-color="#6E747E"/>
+                    </radialGradient>
+                    <radialGradient id="fsCap" cx="0.4" cy="0.35" r="1">
+                        <stop offset="0" stop-color="#DDE0E5"/>
+                        <stop offset="0.55" stop-color="#9CA1A9"/>
+                        <stop offset="1" stop-color="#565B63"/>
+                    </radialGradient>
+                    <radialGradient id="ledBlue" cx="0.4" cy="0.35" r="0.9">
+                        <stop offset="0" stop-color="#BFE0FF"/>
+                        <stop offset="0.4" stop-color="#4FA3FF"/>
+                        <stop offset="1" stop-color="#1C5FC8"/>
+                    </radialGradient>
+                    <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="rgba(255,173,46,0.35)"/>
+                        <stop offset="0.5" stop-color="rgba(255,173,46,0.05)"/>
+                        <stop offset="1" stop-color="rgba(255,173,46,0.35)"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- ============ THE PEDAL — Hammond 1590B proportions ============ -->
+                <!-- LEFT edge: POWER (top), OUT 6.35mm (middle), MIDI THRU (bottom) -->
+                <rect x="40" y="238" width="22" height="26" rx="4" fill="#2F333A"/>
+                <rect x="44" y="244" width="10" height="14" rx="2" fill="#101216"/>
+                <rect x="32" y="292" width="30" height="40" rx="6" fill="#2A2D33"/>
+                <circle cx="47" cy="312" r="11" fill="#15171B"/><circle cx="47" cy="312" r="5" fill="#0A0B0D"/>
+                <rect x="38" y="450" width="24" height="32" rx="5" fill="#2F333A"/>
+                <circle cx="50" cy="466" r="7" fill="#101216"/>
+                <!-- RIGHT edge: IN 6.35mm (middle), MIDI IN (bottom) -->
+                <rect x="318" y="292" width="30" height="40" rx="6" fill="#2A2D33"/>
+                <circle cx="333" cy="312" r="11" fill="#15171B"/><circle cx="333" cy="312" r="5" fill="#0A0B0D"/>
+                <rect x="318" y="450" width="24" height="32" rx="5" fill="#2F333A"/>
+                <circle cx="330" cy="466" r="7" fill="#101216"/>
+
+                <!-- enclosure: brushed aluminium -->
+                <rect x="60" y="40" width="260" height="470" rx="18" fill="url(#silver)" stroke="#6E747E" stroke-width="2"/>
+                <rect x="60" y="40" width="260" height="470" rx="18" fill="url(#brush)"/>
+
+                <!-- port labels — OUTSIDE the enclosure, on the dark background -->
+                <g fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="1">
+                    <text x="30" y="255" text-anchor="end">POWER</text>
+                    <text x="30" y="316" text-anchor="end">OUT</text>
+                    <text x="30" y="470" text-anchor="end">THRU</text>
+                    <text x="352" y="316">IN</text>
+                    <text x="352" y="445">MIDI IN</text>
+                </g>
+
+                <!-- knob labels -->
+                <g fill="#26292E" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="23" text-anchor="middle" letter-spacing="1">
+                    <text x="120" y="90">DRV</text>
+                    <text x="196" y="90">TONE</text>
+                    <text x="270" y="90">VOL</text>
+                </g>
+
+                <!-- brackets linking each Drive/Tone pair -->
+                <g stroke="#4A4E55" stroke-width="1.6" fill="none">
+                    <line x1="96" y1="132" x2="96" y2="196"/><line x1="144" y1="132" x2="144" y2="196"/>
+                    <line x1="172" y1="132" x2="172" y2="196"/><line x1="220" y1="132" x2="220" y2="196"/>
+                </g>
+
+                <!-- knobs: pointer rotates around the knob centre (parent translate = centre) -->
+                <g id="kDrv1" class="dk" tabindex="0" role="slider" aria-label="Drive preset 1" transform="translate(120,132)">
+                    <circle r="24" fill="url(#bkKnob)"/>
+                    <circle r="22.5" fill="none" stroke="#08090B" stroke-width="2.5" stroke-dasharray="2.2 3"/>
+                    <circle r="15" fill="#17191D"/>
+                    <g class="rot"><line x1="0" y1="-4" x2="0" y2="-21" stroke="#EDEAE2" stroke-width="4" stroke-linecap="round"/></g>
+                </g>
+                <g id="kDrv2" class="dk" tabindex="0" role="slider" aria-label="Drive preset 2" transform="translate(120,196)">
+                    <circle r="24" fill="url(#bkKnob)"/>
+                    <circle r="22.5" fill="none" stroke="#08090B" stroke-width="2.5" stroke-dasharray="2.2 3"/>
+                    <circle r="15" fill="#17191D"/>
+                    <g class="rot"><line x1="0" y1="-4" x2="0" y2="-21" stroke="#E23B2E" stroke-width="4" stroke-linecap="round"/></g>
+                </g>
+                <g id="kTone1" class="dk" tabindex="0" role="slider" aria-label="Tone preset 1" transform="translate(196,132)">
+                    <circle r="24" fill="url(#bkKnob)"/>
+                    <circle r="22.5" fill="none" stroke="#08090B" stroke-width="2.5" stroke-dasharray="2.2 3"/>
+                    <circle r="15" fill="#17191D"/>
+                    <g class="rot"><line x1="0" y1="-4" x2="0" y2="-21" stroke="#EDEAE2" stroke-width="4" stroke-linecap="round"/></g>
+                </g>
+                <g id="kTone2" class="dk" tabindex="0" role="slider" aria-label="Tone preset 2" transform="translate(196,196)">
+                    <circle r="24" fill="url(#bkKnob)"/>
+                    <circle r="22.5" fill="none" stroke="#08090B" stroke-width="2.5" stroke-dasharray="2.2 3"/>
+                    <circle r="15" fill="#17191D"/>
+                    <g class="rot"><line x1="0" y1="-4" x2="0" y2="-21" stroke="#E23B2E" stroke-width="4" stroke-linecap="round"/></g>
+                </g>
+                <g id="kVol" class="dk" tabindex="0" role="slider" aria-label="Volume" transform="translate(270,132)">
+                    <circle r="24" fill="url(#bkKnob)"/>
+                    <circle r="22.5" fill="none" stroke="#08090B" stroke-width="2.5" stroke-dasharray="2.2 3"/>
+                    <circle r="15" fill="#17191D"/>
+                    <g class="rot"><line x1="0" y1="-4" x2="0" y2="-21" stroke="#6FD08C" stroke-width="4" stroke-linecap="round"/></g>
+                </g>
+
+                <!-- chrome preset buttons with built-in red LED ring (slightly larger) -->
+                <g id="btnDrv" class="press" tabindex="0" role="button" aria-label="Switch Drive preset">
+                    <circle cx="120" cy="250" r="17" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.5"/>
+                    <circle id="ringDrv" cx="120" cy="250" r="12" fill="none" stroke="#8A8F98" stroke-width="3.2"/>
+                    <circle class="cap" cx="120" cy="250" r="6" fill="#B4B9C0" stroke="#6E747E" stroke-width="1"/>
+                </g>
+                <g id="btnTone" class="press" tabindex="0" role="button" aria-label="Switch Tone preset">
+                    <circle cx="196" cy="250" r="17" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.5"/>
+                    <circle id="ringTone" cx="196" cy="250" r="12" fill="none" stroke="#8A8F98" stroke-width="3.2"/>
+                    <circle class="cap" cx="196" cy="250" r="6" fill="#B4B9C0" stroke="#6E747E" stroke-width="1"/>
+                </g>
+
+                <!-- CLIP toggle: M = germanium, L = LED clipping -->
+                <g id="tglClip" class="press" tabindex="0" role="button" aria-label="Clipping: M germanium or L LED">
+                    <text x="270" y="184" fill="#26292E" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle" letter-spacing="1">CLIP</text>
+                    <text x="243" y="204" fill="#26292E" font-family="'IBM Plex Mono',monospace" font-size="11">M</text>
+                    <text x="290" y="204" fill="#26292E" font-family="'IBM Plex Mono',monospace" font-size="11">L</text>
+                    <rect x="254" y="193" width="30" height="11" rx="5.5" fill="#7A7F88" stroke="#5F646D"/>
+                    <circle id="levClip" cx="261" cy="198.5" r="7" fill="#22252B"/>
+                </g>
+                <!-- FILTER toggle: H = high peak, L = low peak -->
+                <g id="tglFilter" class="press" tabindex="0" role="button" aria-label="Filter: H high peak or L low peak">
+                    <text x="270" y="234" fill="#26292E" font-family="'IBM Plex Mono',monospace" font-size="12" font-weight="600" text-anchor="middle" letter-spacing="1">FILTER</text>
+                    <text x="243" y="254" fill="#26292E" font-family="'IBM Plex Mono',monospace" font-size="11">H</text>
+                    <text x="290" y="254" fill="#26292E" font-family="'IBM Plex Mono',monospace" font-size="11">L</text>
+                    <rect x="254" y="243" width="30" height="11" rx="5.5" fill="#7A7F88" stroke="#5F646D"/>
+                    <circle id="levFilter" cx="261" cy="248.5" r="7" fill="#22252B"/>
+                </g>
+
+                <!-- silkscreen -->
+                <text x="190" y="336" text-anchor="middle" fill="#26292E" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="50" letter-spacing="4">OCD</text>
+
+                <!-- blue status LED in an aluminium socket (bezel) -->
+                <circle cx="190" cy="372" r="12" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.2"/>
+                <circle cx="190" cy="372" r="8.5" fill="#0B0C0E"/>
+                <circle id="ledFx" cx="190" cy="372" r="6.5" fill="#26314A"/>
+                <circle id="ledFxHi" cx="187.5" cy="369.5" r="1.8" fill="rgba(255,255,255,0.5)" style="opacity:0"/>
+
+                <!-- both arrows point LEFT (signal flow) -->
+                <path d="M 120 396 l -22 12 l 22 12 z" fill="#26292E"/>
+                <path d="M 286 396 l -22 12 l 22 12 z" fill="#26292E"/>
+
+                <!-- silent footswitch -->
+                <g id="demoFs" class="press" tabindex="0" role="button" aria-pressed="true" aria-label="Footswitch — effect on/off">
+                    <circle cx="190" cy="440" r="38" fill="#8A8F98" stroke="#565B63" stroke-width="2"/>
+                    <circle cx="190" cy="440" r="36" fill="none" stroke="#565B63" stroke-width="2.5" stroke-dasharray="2.5 3.5"/>
+                    <circle class="cap" cx="190" cy="440" r="26" fill="url(#fsCap)"/>
+                    <circle cx="190" cy="440" r="11" fill="#33373F"/>
+                </g>
+                <text x="190" y="500" text-anchor="middle" fill="#26292E" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="23" letter-spacing="3">CRAFFONARA FX</text>
+
+                <!-- ============ SCOPE — what Drive & Tone do to the signal ============ -->
+                <rect x="500" y="40" width="380" height="172" rx="12" fill="#0E1013" stroke="#2A2E36" stroke-width="1.5"/>
+                <g stroke="#1B1F26" stroke-width="1">
+                    <line x1="500" y1="83"  x2="880" y2="83"/>
+                    <line x1="500" y1="126" x2="880" y2="126"/>
+                    <line x1="500" y1="169" x2="880" y2="169"/>
+                    <line x1="595" y1="40"  x2="595" y2="212"/>
+                    <line x1="690" y1="40"  x2="690" y2="212"/>
+                    <line x1="785" y1="40"  x2="785" y2="212"/>
+                </g>
+                <text x="514" y="60" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="2">SIGNAL PREVIEW</text>
+                <text id="waveDesc" x="866" y="60" fill="#FFAD2E" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="1" text-anchor="end">ROUNDED WAVE</text>
+                <polygon id="waveFill" fill="url(#waveGrad)" stroke="none" points=""/>
+                <polyline id="wave" fill="none" stroke="#FFAD2E" stroke-width="2.5" stroke-linejoin="round" points=""/>
+
+                <!-- status + MIDI monitor -->
+                <text id="statusLine" x="500" y="246" fill="#EDEAE2" font-family="'IBM Plex Mono',monospace" font-size="15" letter-spacing="1"></text>
+                <text id="midiLog" x="500" y="274" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="12.5" letter-spacing="1">MIDI monitor: waiting for a message…</text>
+
+                <!-- ============ TRS cable: controller MIDI OUT -> pedal MIDI IN ============ -->
+                <path id="midiCable" d="M 498 446 C 448 452, 404 462, 356 468"
+                      fill="none" stroke="#FFAD2E" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+                <rect x="344" y="459" width="15" height="17" rx="3" fill="#B7BCC5"/>
+                <circle id="msgDot" r="6" fill="#FFAD2E" style="display:none" filter="drop-shadow(0 0 6px rgba(255,173,46,0.9))"/>
+
+                <!-- ============ CFX MICRO — matching brushed-aluminium controller ============ -->
+                <text x="474" y="440" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="1" text-anchor="end">MIDI OUT</text>
+                <rect x="482" y="434" width="20" height="26" rx="4" fill="#2F333A"/>
+                <circle cx="492" cy="447" r="6" fill="#101216"/>
+
+                <rect x="500" y="330" width="380" height="230" rx="16" fill="url(#silver)" stroke="#6E747E" stroke-width="2"/>
+                <rect x="500" y="330" width="380" height="230" rx="16" fill="url(#brush)"/>
+                <text x="526" y="374" fill="#26292E" font-family="'Big Shoulders Display',sans-serif" font-weight="800" font-size="26" letter-spacing="2">MIDI STATION</text>
+                <text x="526" y="394" fill="#4A4E55" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="2">MIDI CONTROLLER</text>
+                <rect x="726" y="352" width="132" height="42" rx="5" fill="#0E1013" stroke="#5F646D"/>
+                <text id="ctlDisplay" x="792" y="379" fill="#FFAD2E" font-family="'IBM Plex Mono',monospace" font-size="15" text-anchor="middle" letter-spacing="2">READY</text>
+
+                <g font-family="'IBM Plex Mono',monospace" font-size="13" text-anchor="middle">
+                    <g id="p0" class="press ctlBtn" tabindex="0" role="button" aria-label="Sound 1: Drive 1 and Tone 1">
+                        <circle class="cap" cx="552" cy="466" r="22" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.5"/>
+                        <circle class="ctlLed" cx="552" cy="466" r="15" fill="none" stroke="#8A8F98" stroke-width="3.5"/>
+                        <circle cx="552" cy="466" r="7" fill="#B4B9C0" stroke="#6E747E"/>
+                    </g>
+                    <g id="p1" class="press ctlBtn" tabindex="0" role="button" aria-label="Sound 2: Drive 1 and Tone 2">
+                        <circle class="cap" cx="622" cy="466" r="22" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.5"/>
+                        <circle class="ctlLed" cx="622" cy="466" r="15" fill="none" stroke="#8A8F98" stroke-width="3.5"/>
+                        <circle cx="622" cy="466" r="7" fill="#B4B9C0" stroke="#6E747E"/>
+                    </g>
+                    <g id="p2" class="press ctlBtn" tabindex="0" role="button" aria-label="Sound 3: Drive 2 and Tone 1">
+                        <circle class="cap" cx="692" cy="466" r="22" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.5"/>
+                        <circle class="ctlLed" cx="692" cy="466" r="15" fill="none" stroke="#8A8F98" stroke-width="3.5"/>
+                        <circle cx="692" cy="466" r="7" fill="#B4B9C0" stroke="#6E747E"/>
+                    </g>
+                    <g id="p3" class="press ctlBtn" tabindex="0" role="button" aria-label="Sound 4: Drive 2 and Tone 2">
+                        <circle class="cap" cx="762" cy="466" r="22" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.5"/>
+                        <circle class="ctlLed" cx="762" cy="466" r="15" fill="none" stroke="#8A8F98" stroke-width="3.5"/>
+                        <circle cx="762" cy="466" r="7" fill="#B4B9C0" stroke="#6E747E"/>
+                    </g>
+                    <g id="pFx" class="press" tabindex="0" role="button" aria-label="Effect on/off via MIDI">
+                        <circle class="cap" cx="832" cy="466" r="22" fill="url(#chromeBtn)" stroke="#5F646D" stroke-width="1.5"/>
+                        <circle id="fxLedRing" cx="832" cy="466" r="15" fill="none" stroke="#8A8F98" stroke-width="3.5"/>
+                        <circle cx="832" cy="466" r="7" fill="#B4B9C0" stroke="#6E747E"/>
+                    </g>
+                    <g fill="#26292E" font-weight="600">
+                        <text x="552" y="516">1</text>
+                        <text x="622" y="516">2</text>
+                        <text x="692" y="516">3</text>
+                        <text x="762" y="516">4</text>
+                        <text x="832" y="516">FX</text>
+                    </g>
+                </g>
+                <text x="690" y="546" fill="#4A4E55" font-family="'IBM Plex Mono',monospace" font-size="10" text-anchor="middle" letter-spacing="2">SOUND PRESETS · CC00 0–3 · FX CC50</text>
+
+                <!-- caption below the controller -->
+                <text x="690" y="592" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="10.5" text-anchor="middle" letter-spacing="2">ONE TAP = ONE CC MESSAGE — WATCH IT TRAVEL DOWN THE CABLE</text>
+
+                <!-- hint under the pedal -->
+                <text x="64" y="600" fill="#9DA0A8" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="1">DRAG KNOBS ↕ · TAP BUTTONS · STOMP THE SWITCH</text>
+            </svg>
+
+            <div class="vibe">
+                <div class="vibe-emoji" id="vibeEmoji">🎸</div>
+                <div class="vibe-main">
+                    <div class="vibe-head" id="vibeHead">Classic crunch — warm germanium grit, bright and cutting</div>
+                    <div class="vibe-tags" id="vibeTags"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="how-steps">
+            <div class="how-step reveal">
+                <span class="k">01 · Turn</span>
+                <p>Drag the knobs up and down. The white knobs are preset one, the red-marked
+                   knobs below are preset two. The scope shows exactly what Drive and Tone
+                   do to your signal — more drive, more clipping; more tone, more bite.</p>
+            </div>
+            <div class="how-step reveal">
+                <span class="k">02 · Tap</span>
+                <p>The small buttons under each pair switch presets. Red ring lit = the red
+                   knob is live. Drive and Tone switch independently, so two knob pairs
+                   quietly turn into four complete sounds. No pops, relay-switched.</p>
+            </div>
+            <div class="how-step reveal">
+                <span class="k">03 · Send</span>
+                <p>Or don't touch the pedal at all. Tap a sound on the little controller and
+                   watch the CC message run down the TRS cable — the pedal flips presets
+                   from across the stage. That's the whole magic, and it fits in any pedal.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="section" id="services">
+    <div class="wrap">
+        <span class="eyebrow reveal">What happens on the bench</span>
+        <h2 class="section-title reveal">Builds · Mods · MIDI</h2>
+        <p class="section-intro reveal">
+            Every job leaves the workshop tested, documented and road-ready —
+            whether it is a full custom circuit or a DIN-5 socket in a forty-year-old fuzz.
+        </p>
+        <div class="cards-3">
+            <article class="svc reveal">
+                <span class="num">IN</span>
+                <span class="tag">Custom builds</span>
+                <h3>One-off pedals, your spec</h3>
+                <p>Drives, boosts, switchers and utility boxes designed around your rig.
+                   You pick the voicing, controls and enclosure finish — I handle the rest.</p>
+            </article>
+            <article class="svc reveal">
+                <span class="num">FX</span>
+                <span class="tag">Mods &amp; repairs</span>
+                <h3>Your pedal, upgraded</h3>
+                <p>True bypass conversions, bias trims, modern DC jacks, LED indicators
+                   and component-level repair. Reversible wherever possible.</p>
+            </article>
+            <article class="svc reveal">
+                <span class="num">OUT</span>
+                <span class="tag">MIDI retrofits</span>
+                <h3>Relay switching via MIDI</h3>
+                <p>Any switchable function in your pedal — bypass, channels, modes —
+                   brought under Program Change and CC control with a clean DIN-5 install.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="section" id="pedals">
+    <div class="wrap">
+        <span class="eyebrow reveal">Current builds &amp; services</span>
+        <h2 class="section-title reveal">Pedals</h2>
+        <p class="section-intro reveal">
+            A selection of recent builds and standard retrofit packages.
+            Everything can be adapted — colors, controls, MIDI mapping.
+        </p>
+        <div class="filters reveal" id="filters" role="group" aria-label="Filter products">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="custom">Custom builds</button>
+            <button class="chip" data-filter="mod">Mods</button>
+            <button class="chip" data-filter="midi">MIDI</button>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+</section>
+
+<!-- ================= WORKSHOP ================= -->
+<section class="section" id="workshop">
+    <div class="wrap">
+        <span class="eyebrow reveal">Behind the pedals</span>
+        <h2 class="section-title reveal">The workshop</h2>
+        <div class="workshop-grid">
+            <div class="workshop-copy reveal">
+                <p><strong>CRAFFONARA FX is a one-man workshop in Austria.</strong>
+                   By day I design automotive electronics; by night the same discipline goes
+                   into guitar pedals — proper PCB layout, clean wiring, and measurements
+                   instead of guesswork.</p>
+                <p>The MIDI obsession started on my own pedalboard: too many great pedals,
+                   not enough feet. Since then I have been putting relay bypass and DIN-5
+                   sockets into anything with a footswitch, so one controller can run the
+                   whole board.</p>
+                <p>Every build ships with a spec sheet, MIDI implementation chart where
+                   relevant, and a photo log of the work done inside your pedal.</p>
+            </div>
+            <div class="bench reveal">
+                <h4>Bench notes</h4>
+                <ul>
+                    <li><span class="k">PCB design</span><span>Altium Designer</span></li>
+                    <li><span class="k">Switching</span><span>Relay true bypass</span></li>
+                    <li><span class="k">MIDI</span><span>PC · CC · DIN-5 / TRS</span></li>
+                    <li><span class="k">Enclosures</span><span>CNC-drilled aluminium</span></li>
+                    <li><span class="k">Testing</span><span>Scope + audio analyser</span></li>
+                    <li><span class="k">Docs</span><span>Spec sheet with every build</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section" id="contact">
+    <div class="wrap">
+        <span class="eyebrow reveal">Start a build</span>
+        <h2 class="section-title reveal">Contact</h2>
+        <div class="contact-grid">
+            <div class="contact-note reveal">
+                <p>Tell me what you want to build, mod or MIDI-fy. A rough idea is enough —
+                   pedal model, what should switch, and how you want to control it.</p>
+                <p>I usually reply within one or two days with questions, options and a quote.</p>
+                <div class="contact-direct">
+                    ✉ <a href="mailto:hello@craffonara-fx.com">hello@craffonara-fx.com</a>
+                </div>
+            </div>
+            <form id="contactForm" class="reveal">
+                <div class="row">
+                    <label for="fName">Name</label>
+                    <input id="fName" type="text" required autocomplete="name">
+                </div>
+                <div class="row">
+                    <label for="fMail">Email</label>
+                    <input id="fMail" type="email" required autocomplete="email">
+                </div>
+                <div class="row">
+                    <label for="fTopic">Topic</label>
+                    <select id="fTopic">
+                        <option>Custom build</option>
+                        <option>Pedal mod / repair</option>
+                        <option>MIDI retrofit</option>
+                        <option>Something else</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label for="fMsg">Your project</label>
+                    <textarea id="fMsg" required placeholder="e.g. Boss DD-7 — I want bypass and mode switchable via MIDI CC…"></textarea>
+                </div>
+                <button class="btn primary" type="submit">Send message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="wrap foot-inner">
+        <span class="sig">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+                <circle cx="20" cy="20" r="18" fill="none" stroke="#9DA0A8" stroke-width="2.5"/>
+                <circle cx="20" cy="27" r="2.2" fill="#9DA0A8"/>
+                <circle cx="11.5" cy="22" r="2.2" fill="#9DA0A8"/>
+                <circle cx="28.5" cy="22" r="2.2" fill="#9DA0A8"/>
+                <circle cx="13.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
+                <circle cx="26.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
+            </svg>
+            CRAFFONARA FX — handmade pedal electronics
+        </span>
+        <span>© 2026 · Austria · All signals true bypass</span>
+    </div>
+</footer>
+
+<!-- product data lives in its own file so new pedals can be added without touching this page -->
+<script src="products.js"></script>
+<script>
+    /* ============================================================
+       Product rendering
+       ============================================================ */
+
+    // Draw a stylized mini pedal as SVG from a product definition.
+    // Used whenever no real photo is provided in products.js.
+    function pedalArt(p, scale) {
+        const w = 120, h = 180;
+        const knobs = Math.min(p.knobs, 4);
+        const switches = Math.max(1, Math.min(p.switches, 4));
+
+        // knob positions along the upper area
+        let knobSvg = "";
+        for (let i = 0; i < knobs; i++) {
+            const cols = Math.min(knobs, 3);
+            const row = Math.floor(i / 3);
+            const cx = w / 2 + ((i % cols) - (cols - 1) / 2) * 30;
+            const cy = 44 + row * 30;
+            knobSvg += `
+                <circle cx="${cx}" cy="${cy}" r="11" fill="#1A1C21" stroke="#0C0D10" stroke-width="1.5"/>
+                <line x1="${cx}" y1="${cy}" x2="${cx}" y2="${cy - 9}" stroke="#EDEAE2" stroke-width="2" stroke-linecap="round"/>`;
+        }
+
+        // footswitches along the bottom
+        let swSvg = "";
+        for (let i = 0; i < switches; i++) {
+            const cx = w / 2 + (i - (switches - 1) / 2) * 26;
+            swSvg += `
+                <circle cx="${cx}" cy="${h - 32}" r="11" fill="#101216" stroke="#33373F" stroke-width="1.5"/>
+                <circle cx="${cx}" cy="${h - 32}" r="7" fill="#6E747E"/>`;
+        }
+
+        // MIDI socket hint for midi products
+        const midiSvg = p.category === "midi" || p.category === "mod"
+            ? `<circle cx="${w / 2}" cy="4" r="7" fill="#101216" stroke="#33373F" stroke-width="2"/>`
+            : "";
+
+        const initials = p.name.split(" ").map(s => s[0]).join("").slice(0, 3).toUpperCase();
+
+        return `
+        <svg viewBox="0 0 ${w} ${h}" style="width:${scale}px" aria-hidden="true">
+            ${midiSvg}
+            <rect x="8" y="8" width="${w - 16}" height="${h - 16}" rx="12"
+                  fill="${p.color}" stroke="rgba(0,0,0,0.35)" stroke-width="2"/>
+            <rect x="8" y="8" width="${w - 16}" height="${(h - 16) / 2}" rx="12"
+                  fill="rgba(255,255,255,0.06)"/>
+            <circle class="mini-led" cx="${w / 2}" cy="26" r="3.5" fill="rgba(0,0,0,0.4)"/>
+            ${knobSvg}
+            <text x="${w / 2}" y="${h / 2 + 14}" text-anchor="middle" fill="#EDEAE2"
+                  font-family="'Big Shoulders Display',sans-serif" font-weight="800"
+                  font-size="24" letter-spacing="2">${initials}</text>
+            ${swSvg}
+        </svg>`;
+    }
+
+    const grid = document.getElementById("productGrid");
+    const statusText = {
+        "available": "available",
+        "built-to-order": "built to order",
+        "sold": "sold",
+    };
+
+    // Render all product cards for the active filter
+    function renderProducts(filter) {
+        grid.innerHTML = "";
+        PRODUCTS
+            .filter(p => filter === "all" || p.category === filter)
+            .forEach((p, i) => {
+                const card = document.createElement("article");
+                card.className = "card reveal";
+                card.tabIndex = 0;
+                card.setAttribute("role", "button");
+                card.setAttribute("aria-label", `${p.name} — show details`);
+                const art = p.image
+                    ? `<img src="${p.image}" alt="${p.name}">`
+                    : pedalArt(p, 120);
+                card.innerHTML = `
+                    <div class="card-art">${art}</div>
+                    <div class="card-body">
+                        <span class="card-cat">${p.category === "midi" ? "MIDI" : p.category === "mod" ? "Mod" : "Custom build"}</span>
+                        <h3>${p.name}</h3>
+                        <p>${p.blurb}</p>
+                        <div class="card-foot">
+                            <span class="price">${p.price}</span>
+                            <span class="status ${p.status}">● ${statusText[p.status] || p.status}</span>
+                        </div>
+                    </div>`;
+                card.addEventListener("click", () => openModal(p));
+                card.addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(p); }
+                });
+                grid.appendChild(card);
+                // staggered reveal
+                setTimeout(() => card.classList.add("in"), 60 * i);
+            });
+    }
+
+    // Filter chips
+    document.querySelectorAll(".chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+            document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
+            renderProducts(chip.dataset.filter);
+        });
+    });
+
+    /* ============================================================
+       Product modal
+       ============================================================ */
+    const backdrop = document.createElement("div");
+    backdrop.className = "modal-backdrop";
+    backdrop.innerHTML = `
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-art" id="modalArt"></div>
+            <div class="modal-body">
+                <button class="modal-close" id="modalClose" aria-label="Close">ESC ✕</button>
+                <span class="card-cat" id="modalCat"></span>
+                <h3 id="modalTitle"></h3>
+                <p id="modalBlurb"></p>
+                <ul class="spec-list" id="modalSpecs"></ul>
+                <div class="card-foot">
+                    <span class="price" id="modalPrice"></span>
+                    <a class="btn primary" href="#contact" id="modalCta">Ask about this</a>
+                </div>
+            </div>
+        </div>`;
+    document.body.appendChild(backdrop);
+
+    function openModal(p) {
+        document.getElementById("modalArt").innerHTML =
+            p.image ? `<img src="${p.image}" alt="${p.name}">` : pedalArt(p, 170);
+        document.getElementById("modalCat").textContent =
+            p.category === "midi" ? "MIDI" : p.category === "mod" ? "Mod" : "Custom build";
+        document.getElementById("modalTitle").textContent = p.name;
+        document.getElementById("modalBlurb").textContent = p.blurb;
+        document.getElementById("modalPrice").textContent = p.price;
+        document.getElementById("modalSpecs").innerHTML =
+            p.specs.map(s => `<li>${s}</li>`).join("");
+        backdrop.classList.add("open");
+        document.getElementById("modalClose").focus();
+    }
+    function closeModal() { backdrop.classList.remove("open"); }
+    backdrop.addEventListener("click", e => { if (e.target === backdrop) closeModal(); });
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    document.getElementById("modalCta").addEventListener("click", closeModal);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+    /* Hero workshop scene animates via pure CSS (smoke, steam,
+       scope trace, lamps) — no JS needed and reduced motion is
+       respected in the stylesheet. */
+
+    /* ============================================================
+       Contact form — static hosting friendly (mailto compose).
+       See README.md for the optional Formspree upgrade.
+       ============================================================ */
+    document.getElementById("contactForm").addEventListener("submit", e => {
+        e.preventDefault();
+        const name = document.getElementById("fName").value;
+        const mail = document.getElementById("fMail").value;
+        const topic = document.getElementById("fTopic").value;
+        const msg = document.getElementById("fMsg").value;
+        const subject = encodeURIComponent(`[CRAFFONARA FX] ${topic} — ${name}`);
+        const body = encodeURIComponent(`${msg}\n\n—\n${name}\n${mail}`);
+        window.location.href = `mailto:hello@craffonara-fx.com?subject=${subject}&body=${body}`;
+    });
+
+    /* ============================================================
+       Mobile navigation
+       ============================================================ */
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    navToggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", String(open));
+    });
+    navLinks.querySelectorAll("a").forEach(a =>
+        a.addEventListener("click", () => navLinks.classList.remove("open")));
+
+    /* ============================================================
+       Scroll reveal (respects prefers-reduced-motion via CSS)
+       ============================================================ */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // Initial render
+    renderProducts("all");
+
+    /* ============================================================
+       "How it works" — interactive dual-preset OCD demo
+       ============================================================ */
+    (function () {
+        // demo state: two values per Drive/Tone pair, like the real pedal
+        const S = {
+            drv1: 0.35, drv2: 0.78,
+            tone1: 0.5, tone2: 0.72,
+            vol: 0.6,
+            drvP: 1, toneP: 1,          // active preset per column
+            fxOn: true,
+            clip: "M",                  // M = germanium, L = LED (more distortion)
+            filter: "H",                // H = high peak (aggressive), L = low peak (smooth)
+        };
+        const $ = id => document.getElementById(id);
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* ---- OCD-style clipping shape, shared by scope and audio ----
+           Modeled after the real circuit: MOSFET hard clipping with
+           smooth edges, made asymmetric by the germanium diode.
+           M (germanium): soft knee, low thresholds, compressed.
+           L (LED): harder knee, more pre-gain -> more distortion.   */
+        function clipParams(d) {
+            return S.clip === "L"
+                ? { g: 1 + d * 24, tp: 0.88, tn: 0.70, k: 7 }
+                : { g: 1 + d * 15, tp: 0.62, tn: 0.40, k: 2.4 };
+        }
+        function ocdShape(x, p) {
+            const y = x * p.g, T = y >= 0 ? p.tp : p.tn;
+            return y / Math.pow(1 + Math.pow(Math.abs(y / T), p.k), 1 / p.k);
+        }
+
+        /* ---- scope: draw the ACTIVE Drive/Tone signal, gently animated ---- */
+        let wavePhase = 0;
+        function drawWave() {
+            const d = S["drv" + S.drvP], t = S["tone" + S.toneP];
+            const N = 220, x0 = 514, x1 = 866, midY = 126;
+            const p = clipParams(d);
+            // tone = treble bleed (low-pass); FILTER sets how much
+            // presence peak comes back on top (high vs low peak)
+            const alpha = 0.09 + t * (S.filter === "H" ? 0.5 : 0.3);
+            const peak = S.filter === "H" ? 0.8 : 0.3;
+            let lp = 0, line = [];
+            for (let i = 0; i <= N; i++) {
+                let s = Math.sin((i / N) * Math.PI * 7 + wavePhase);
+                let out;
+                if (S.fxOn) {
+                    s = ocdShape(s, p);
+                    lp += alpha * (s - lp);
+                    out = lp + (s - lp) * peak * t;
+                } else {
+                    out = s * 0.55;
+                }
+                const amp = S.fxOn ? (20 + S.vol * 56) : 44;
+                line.push((x0 + (i / N) * (x1 - x0)).toFixed(1) + "," + (midY - out * amp).toFixed(1));
+            }
+            $("wave").setAttribute("points", line.join(" "));
+            // filled body between the wave and the centre line
+            $("waveFill").setAttribute("points", x0 + "," + midY + " " + line.join(" ") + " " + x1 + "," + midY);
+        }
+
+        /* ---- plain-language "sound character" so non-techies get it ---- */
+        function describeSound() {
+            const d = S["drv" + S.drvP], t = S["tone" + S.toneP];
+            const emojiEl = $("vibeEmoji"), headEl = $("vibeHead"), tagsEl = $("vibeTags");
+            if (!S.fxOn) {
+                emojiEl.textContent = "\uD83D\uDD0C";   // plug
+                headEl.textContent = "True bypass — your clean, natural tone, pedal out of the way";
+                tagsEl.innerHTML = '<span class="vibe-tag">clean</span><span class="vibe-tag">untouched</span>';
+                $("waveDesc").textContent = "CLEAN SIGNAL — PASSING THROUGH";
+                return;
+            }
+            const gain = d < 0.34 ? { w: "Edge-of-breakup shimmer", e: "\uD83D\uDE0C", tag: "dynamic" }
+                       : d < 0.7  ? { w: "Classic crunch",          e: "\uD83C\uDFB8", tag: "crunchy" }
+                       :            { w: "Thick, singing saturation", e: "\uD83D\uDD25", tag: "high-gain" };
+            const clip = S.clip === "M" ? "warm germanium grit" : "hot, compressed LED bite";
+            const filt = S.filter === "H" ? "bright and cutting" : "smooth and round";
+            emojiEl.textContent = gain.e;
+            headEl.textContent = gain.w + " — " + clip + ", " + filt;
+            const tone = t < 0.4 ? "dark" : t > 0.72 ? "sparkly" : "balanced";
+            const sound = (S.drvP === 2 ? 2 : 0) + (S.toneP === 2 ? 1 : 0) + 1;
+            const hot = s => '<span class="vibe-tag hot">' + s + '</span>';
+            const cool = s => '<span class="vibe-tag">' + s + '</span>';
+            tagsEl.innerHTML = [
+                hot(gain.tag),
+                hot(S.clip === "M" ? "germanium" : "LED"),
+                hot(S.filter === "H" ? "bright" : "smooth"),
+                cool(tone + " tone"),
+                cool("sound " + sound + "/4"),
+            ].join("");
+            $("waveDesc").textContent =
+                d < 0.34 ? "ROUNDED WAVE — LIGHT CLIP" :
+                d < 0.7  ? "SOFT-CLIPPED — CRUNCHY" :
+                           "HARD-CLIPPED — SQUARISH = HEAVY";
+        }
+
+        // gentle scope animation (a living waveform), off for reduced motion
+        function animateWave() {
+            wavePhase += 0.045;
+            drawWave();
+            requestAnimationFrame(animateWave);
+        }
+
+
+
+        /* ---- visual refresh: LEDs, dimming, status line ---- */
+        function refresh() {
+            // dim the knob that is NOT live in each column
+            $("kDrv1").style.opacity  = S.drvP === 1 ? 1 : 0.4;
+            $("kDrv2").style.opacity  = S.drvP === 2 ? 1 : 0.4;
+            $("kTone1").style.opacity = S.toneP === 1 ? 1 : 0.4;
+            $("kTone2").style.opacity = S.toneP === 2 ? 1 : 0.4;
+            // red LED ring on = the red (lower) knob is live
+            const on = "#E23B2E", off = "#8A8F98", glow = "drop-shadow(0 0 6px rgba(226,59,46,0.85))";
+            $("ringDrv").setAttribute("stroke", S.drvP === 2 ? on : off);
+            $("ringDrv").style.filter = S.drvP === 2 ? glow : "none";
+            $("ringTone").setAttribute("stroke", S.toneP === 2 ? on : off);
+            $("ringTone").style.filter = S.toneP === 2 ? glow : "none";
+            // blue status LED with a bright, glowing lit state
+            $("ledFx").setAttribute("fill", S.fxOn ? "url(#ledBlue)" : "#26314A");
+            $("ledFx").style.filter = S.fxOn
+                ? "drop-shadow(0 0 6px rgba(79,163,255,0.95)) drop-shadow(0 0 14px rgba(79,163,255,0.7))"
+                : "none";
+            $("ledFxHi").style.opacity = S.fxOn ? 1 : 0;
+            // toggle levers: M/H left, L right
+            $("levClip").setAttribute("cx", S.clip === "M" ? 261 : 277);
+            $("levFilter").setAttribute("cx", S.filter === "H" ? 261 : 277);
+            // status + controller LED rings
+            const val = (S.drvP === 2 ? 2 : 0) + (S.toneP === 2 ? 1 : 0);
+            $("statusLine").textContent =
+                `SOUND ${val + 1}/4 · DRV #${S.drvP} · TONE #${S.toneP} · FX ${S.fxOn ? "ON" : "BYPASS"}`;
+            const amber = "#FFAD2E", ring = "#8A8F98";
+            const aglow = "drop-shadow(0 0 6px rgba(255,173,46,0.85))";
+            document.querySelectorAll(".ctlLed").forEach((l, i) => {
+                l.setAttribute("stroke", i === val ? amber : ring);
+                l.style.filter = i === val ? aglow : "none";
+            });
+            $("fxLedRing").setAttribute("stroke", S.fxOn ? "#3D8BFF" : ring);
+            $("fxLedRing").style.filter = S.fxOn ? "drop-shadow(0 0 6px rgba(61,139,255,0.85))" : "none";
+            drawWave();
+            describeSound();
+        }
+
+        /* ---- draggable knobs: the pointer rotates around the knob centre ---- */
+        function knob(id, key) {
+            const g = $(id), rot = g.querySelector(".rot");
+            function set(v) {
+                S[key] = Math.max(0, Math.min(1, v));
+                // SVG rotate() around the local origin = the knob centre
+                rot.setAttribute("transform", `rotate(${-135 + S[key] * 270})`);
+                refresh();
+            }
+            g.addEventListener("pointerdown", e => {
+                e.preventDefault();
+                const y0 = e.clientY, v0 = S[key];
+                g.setPointerCapture(e.pointerId);
+                const move = ev => set(v0 + (y0 - ev.clientY) * 0.006);
+                const up = () => {
+                    g.removeEventListener("pointermove", move);
+                    g.removeEventListener("pointerup", up);
+                };
+                g.addEventListener("pointermove", move);
+                g.addEventListener("pointerup", up);
+            });
+            g.addEventListener("keydown", e => {
+                if (["ArrowUp", "ArrowRight"].includes(e.key)) { e.preventDefault(); set(S[key] + 0.05); }
+                if (["ArrowDown", "ArrowLeft"].includes(e.key)) { e.preventDefault(); set(S[key] - 0.05); }
+            });
+            set(S[key]);   // paint initial angle
+        }
+        knob("kDrv1", "drv1"); knob("kDrv2", "drv2");
+        knob("kTone1", "tone1"); knob("kTone2", "tone2");
+        knob("kVol", "vol");
+
+        // click + keyboard helper for buttons/toggles
+        function press(id, fn) {
+            const el = $(id);
+            el.addEventListener("click", fn);
+            el.addEventListener("keydown", e => {
+                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); }
+            });
+        }
+
+        /* ---- on-pedal controls ---- */
+        press("btnDrv", () => { S.drvP = S.drvP === 1 ? 2 : 1; refresh(); });
+        press("btnTone", () => { S.toneP = S.toneP === 1 ? 2 : 1; refresh(); });
+        press("demoFs", () => {
+            S.fxOn = !S.fxOn;
+            $("demoFs").setAttribute("aria-pressed", String(S.fxOn));
+            refresh();
+        });
+        press("tglClip", () => { S.clip = S.clip === "M" ? "L" : "M"; refresh(); });
+        press("tglFilter", () => { S.filter = S.filter === "H" ? "L" : "H"; refresh(); });
+
+        /* ---- MIDI controller: animate a CC message along the cable ---- */
+        const cable = $("midiCable"), dot = $("msgDot"), cableLen = cable.getTotalLength();
+        let flying = false;
+        function sendMIDI(display, log, apply) {
+            $("ctlDisplay").textContent = display;
+            $("midiLog").textContent = "MIDI monitor: " + log;
+            if (reduced || flying) { apply(); refresh(); return; }
+            flying = true;
+            dot.style.display = "block";
+            const t0 = performance.now(), dur = 520;
+            (function step(now) {
+                const p = Math.min(1, (now - t0) / dur);
+                const pt = cable.getPointAtLength(cableLen * p);   // controller -> pedal
+                dot.setAttribute("cx", pt.x); dot.setAttribute("cy", pt.y);
+                if (p < 1) requestAnimationFrame(step);
+                else { dot.style.display = "none"; flying = false; apply(); refresh(); }
+            })(t0);
+        }
+        // CC 00 values 0–3 recall the four Drive/Tone combinations (see manual)
+        for (let v = 0; v < 4; v++) {
+            press("p" + v, () => sendMIDI(
+                `CC00·0${v}`,
+                `CC 00 val 0${v}  →  DRV #${v > 1 ? 2 : 1} + TONE #${v % 2 ? 2 : 1}`,
+                () => { S.drvP = v > 1 ? 2 : 1; S.toneP = v % 2 ? 2 : 1; S.fxOn = true; }
+            ));
+        }
+        // CC 50 toggles the effect on/off
+        press("pFx", () => sendMIDI(
+            "CC50·00",
+            `CC 50 val 00  →  effect ${S.fxOn ? "OFF" : "ON"}`,
+            () => { S.fxOn = !S.fxOn; }
+        ));
+
+        refresh();
+        if (!reduced) requestAnimationFrame(animateWave);
+    })();
+</script>
+</body>
+</html>
