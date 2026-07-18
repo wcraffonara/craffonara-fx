@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" font-family="'Big Shoulders Display','Arial Narrow',Arial,sans-serif">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap');</style>
+    <!-- dark plate for preview -->
+    <rect width="400" height="300" rx="16" fill="#0C0D10"/>
+
+    <!-- MIDI DIN-5 badge: the five pins of a MIDI socket -->
+    <g transform="translate(200,110)">
+        <circle r="62" fill="none" stroke="#EDEAE2" stroke-width="7"/>
+        <circle cx="0"    cy="26"  r="8" fill="#EDEAE2"/>
+        <circle cx="-30"  cy="8"   r="8" fill="#EDEAE2"/>
+        <circle cx="30"   cy="8"   r="8" fill="#EDEAE2"/>
+        <circle cx="-23"  cy="-24" r="8" fill="#FFAD2E"/>
+        <circle cx="23"   cy="-24" r="8" fill="#FFAD2E"/>
+    </g>
+
+    <!-- wordmark -->
+    <text x="200" y="235" text-anchor="middle" fill="#EDEAE2"
+          font-weight="800" font-size="46" letter-spacing="4">CRAFFONARA</text>
+    <text x="200" y="272" text-anchor="middle" fill="#FFAD2E"
+          font-family="'IBM Plex Mono',monospace" font-weight="500"
+          font-size="20" letter-spacing="14">F X</text>
+</svg>
