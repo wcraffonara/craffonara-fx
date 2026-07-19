@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRAFFONARA FX — Custom Guitar Pedals & MIDI Mods, Handmade in Austria</title>
-<meta name="description" content="CRAFFONARA FX: hand-built boutique guitar pedals, true bypass mods and MIDI relay retrofits. Dual-preset builds — four sounds from one pedal, switchable via MIDI. Handmade in Austria.">
+<meta name="description" content="CRAFFONARA FX: hand-built boutique guitar pedals, true bypass mods and MIDI relay retrofits. Dual-preset builds — four sounds from one pedal, switchable via MIDI. Handmade in Austria by Walter Craffonara.">
 <link rel="canonical" href="https://wcraffonara.github.io/craffonara-fx/">
 <meta name="google-site-verification" content="4m1vdwFYcO3z8KPdegUHL0wh3D6-WNImnof4Buwhm8Y" />
 <meta name="theme-color" content="#0C0D10">
@@ -18,6 +18,7 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "CRAFFONARA FX",
+    "founder": { "@type": "Person", "name": "Walter Craffonara" },
     "description": "Hand-built boutique guitar pedals, pedal modifications and MIDI relay retrofits. Custom dual-preset builds switchable via MIDI.",
     "url": "https://wcraffonara.github.io/craffonara-fx/",
     "email": "wcraffonara@gmail.com",
@@ -222,6 +223,21 @@
         max-width: 480px;
         margin-bottom: 34px;
     }
+    .lang-switch { display: flex; gap: 6px; margin-left: 10px; }
+    .lang-switch button {
+        background: none;
+        border: 1px solid var(--line);
+        color: var(--dim);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s;
+    }
+    .lang-switch button:hover { color: var(--text); }
+    .lang-switch button.active { color: var(--led); border-color: var(--led); }
     .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
 
     .btn {
@@ -787,11 +803,15 @@
         </a>
         <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">MENU</button>
         <div class="nav-links" id="navLinks">
-            <a href="#how">How it works</a>
-            <a href="#pedals">Pedals</a>
-            <a href="#services">Services</a>
-            <a href="#workshop">Workshop</a>
-            <a href="#contact">Contact</a>
+            <a href="#how" data-i18n="nav.how">How it works</a>
+            <a href="#pedals" data-i18n="nav.pedals">Pedals</a>
+            <a href="#services" data-i18n="nav.services">Services</a>
+            <a href="#workshop" data-i18n="nav.workshop">Workshop</a>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" data-lang="en" class="active">EN</button>
+                <button type="button" data-lang="de">DE</button>
+            </div>
         </div>
     </div>
 </nav>
@@ -800,18 +820,18 @@
 <header class="hero" id="top">
     <div class="wrap hero-grid">
         <div>
-            <span class="eyebrow">Handmade in Austria · Est. 2021</span>
-            <h1>Custom pedals.<br><span class="amber">MIDI</span> in<br>everything.</h1>
-            <p class="lead">
+            <span class="eyebrow" data-i18n="hero.eyebrow">Handmade in Austria · Est. 2021</span>
+            <h1 data-i18n="hero.title">Custom pedals.<br><span class="amber">MIDI</span> in<br>everything.</h1>
+            <p class="lead" data-i18n="hero.lead">
                 Boutique builds, mods and MIDI retrofits for guitarists and tinkerers.
                 One-off circuits, relay bypass conversions, and MIDI TRS sockets where the
                 factory never planned one.
             </p>
             <div class="cta-row">
-                <a class="btn primary" href="#pedals">Browse pedals</a>
-                <a class="btn" href="#contact">Request a build</a>
+                <a class="btn primary" href="#pedals" data-i18n="hero.cta1">Browse pedals</a>
+                <a class="btn" href="#contact" data-i18n="hero.cta2">Request a build</a>
             </div>
-            <p class="hero-hint">Solder, scope, coffee — this is where your pedal is born</p>
+            <p class="hero-hint" data-i18n="hero.hint">Solder, scope, coffee — this is where your pedal is born</p>
         </div>
 
         <!-- The workshop: one bench, one builder. Scope, soldering station,
@@ -1096,9 +1116,9 @@
             <img src="img/ocd-hero.webp" alt="CRAFFONARA FX OCD — silver dual-preset overdrive pedal with MIDI" width="626" height="940">
         </div>
         <div class="flagship-copy">
-            <span class="eyebrow reveal">Fresh off the bench</span>
-            <h2 class="section-title reveal">The OCD — four sounds, one box</h2>
-            <p class="section-intro reveal">
+            <span class="eyebrow reveal" data-i18n="flag.eyebrow">Fresh off the bench</span>
+            <h2 class="section-title reveal" data-i18n="flag.title">The OCD — four sounds, one box</h2>
+            <p class="section-intro reveal" data-i18n="flag.intro">
                 This is what leaves my workshop: an OCD-style drive with doubled
                 Drive and Tone pots, relay-switched presets and a MIDI socket where
                 the factory never planned one. Photographed exactly as built —
@@ -1108,8 +1128,8 @@
                 <span>DUAL PRESETS</span><span>MIDI TRS</span><span>RELAY BYPASS</span><span>HANDMADE</span>
             </div>
             <div class="cta-row reveal" style="margin-top:26px">
-                <a class="btn primary" href="#how">See how it works</a>
-                <a class="btn" href="#pedals">More photos</a>
+                <a class="btn primary" href="#how" data-i18n="flag.cta1">See how it works</a>
+                <a class="btn" href="#pedals" data-i18n="flag.cta2">More photos</a>
             </div>
         </div>
     </div>
@@ -1118,9 +1138,9 @@
 <!-- ================= HOW IT WORKS — interactive OCD demo ================= -->
 <section class="section" id="how">
     <div class="wrap">
-        <span class="eyebrow reveal">The principle behind my builds</span>
-        <h2 class="section-title reveal">One pedal, four sounds</h2>
-        <p class="section-intro reveal">
+        <span class="eyebrow reveal" data-i18n="how.eyebrow">The principle behind my builds</span>
+        <h2 class="section-title reveal" data-i18n="how.title">One pedal, four sounds</h2>
+        <p class="section-intro reveal" data-i18n="how.intro">
             Here is the trick I build into most of my pedals, shown on my OCD-style drive:
             the knobs that matter exist <strong style="color:var(--text)">twice</strong>.
             A soft push button — or a MIDI message from your switcher — decides which of the
@@ -1405,32 +1425,32 @@
 <!-- ================= SERVICES ================= -->
 <section class="section" id="services">
     <div class="wrap">
-        <span class="eyebrow reveal">What happens on the bench</span>
-        <h2 class="section-title reveal">Builds · Mods · MIDI</h2>
-        <p class="section-intro reveal">
+        <span class="eyebrow reveal" data-i18n="svc.eyebrow">What happens on the bench</span>
+        <h2 class="section-title reveal" data-i18n="svc.title">Builds · Mods · MIDI</h2>
+        <p class="section-intro reveal" data-i18n="svc.intro">
             Every job leaves the workshop tested, documented and road-ready —
             whether it is a full custom circuit or a MIDI TRS socket in a forty-year-old fuzz.
         </p>
         <div class="cards-3">
             <article class="svc reveal">
                 <span class="num">IN</span>
-                <span class="tag">Custom builds</span>
-                <h3>One-off pedals, your spec</h3>
-                <p>Drives, boosts, switchers and utility boxes designed around your rig.
+                <span class="tag" data-i18n="svc.t1">Custom builds</span>
+                <h3 data-i18n="svc.h1">One-off pedals, your spec</h3>
+                <p data-i18n="svc.p1">Drives, boosts, switchers and utility boxes designed around your rig.
                    You pick the voicing, controls and enclosure finish — I handle the rest.</p>
             </article>
             <article class="svc reveal">
                 <span class="num">FX</span>
-                <span class="tag">Mods &amp; repairs</span>
-                <h3>Your pedal, upgraded</h3>
-                <p>True bypass conversions, bias trims, modern DC jacks, LED indicators
+                <span class="tag" data-i18n="svc.t2">Mods &amp; repairs</span>
+                <h3 data-i18n="svc.h2">Your pedal, upgraded</h3>
+                <p data-i18n="svc.p2">True bypass conversions, bias trims, modern DC jacks, LED indicators
                    and component-level repair. Reversible wherever possible.</p>
             </article>
             <article class="svc reveal">
                 <span class="num">OUT</span>
-                <span class="tag">MIDI retrofits</span>
-                <h3>Relay switching via MIDI</h3>
-                <p>Any switchable function in your pedal — bypass, channels, modes —
+                <span class="tag" data-i18n="svc.t3">MIDI retrofits</span>
+                <h3 data-i18n="svc.h3">Relay switching via MIDI</h3>
+                <p data-i18n="svc.p3">Any switchable function in your pedal — bypass, channels, modes —
                    brought under Program Change and CC control with a clean TRS MIDI install.</p>
             </article>
         </div>
@@ -1440,10 +1460,10 @@
 <!-- ================= PRODUCTS ================= -->
 <section class="section" id="pedals">
     <div class="wrap">
-        <span class="eyebrow reveal">Current builds &amp; services</span>
-        <h2 class="section-title reveal">Pedals</h2>
-        <p class="section-intro reveal">
-            The current build, fresh off the bench — more pedals are in the
+        <span class="eyebrow reveal" data-i18n="ped.eyebrow">Current builds &amp; services</span>
+        <h2 class="section-title reveal" data-i18n="ped.title">Pedals</h2>
+        <p class="section-intro reveal" data-i18n="ped.intro">
+            The current builds, fresh off the bench — more pedals are in the
             works and will land here soon. Everything can be adapted: colors,
             controls, MIDI mapping.
         </p>
@@ -1462,27 +1482,27 @@
 <section class="section" id="workshop">
     <div class="wrap">
         <span class="eyebrow reveal">Behind the pedals</span>
-        <h2 class="section-title reveal">The workshop</h2>
+        <h2 class="section-title reveal" data-i18n="ws.title">The workshop</h2>
         <div class="workshop-grid">
             <div class="workshop-copy reveal">
-                <p><strong>CRAFFONARA FX is a one-man workshop in Austria.</strong>
+                <p data-i18n="ws.p1"><strong>CRAFFONARA FX is a one-man workshop in Austria, run by Walter Craffonara.</strong>
                    By day I design automotive electronics; by night the same discipline goes
                    into guitar pedals — proper PCB layout, clean wiring, and measurements
                    instead of guesswork.</p>
-                <p>The MIDI obsession started on my own pedalboard: too many great pedals,
+                <p data-i18n="ws.p2">The MIDI obsession started on my own pedalboard: too many great pedals,
                    not enough feet. Since then I have been putting relay bypass and MIDI TRS
                    sockets into anything with a footswitch, so one controller can run the
                    whole board.</p>
-                <p>Every build ships with a spec sheet, MIDI implementation chart where
+                <p data-i18n="ws.p3">Every build ships with a spec sheet, MIDI implementation chart where
                    relevant, and a photo log of the work done inside your pedal.</p>
             </div>
             <div class="bench reveal">
-                <h4>Bench notes</h4>
+                <h4 data-i18n="ws.bench">Bench notes</h4>
                 <ul>
-                    <li><span class="k">Switching</span><span>Relay true bypass</span></li>
+                    <li data-i18n="ws.b1"><span class="k">Switching</span><span>Relay true bypass</span></li>
                     <li><span class="k">MIDI</span><span>PC · CC · TRS</span></li>
-                    <li><span class="k">Enclosures</span><span>CNC-drilled aluminium</span></li>
-                    <li><span class="k">Docs</span><span>Spec sheet with every build</span></li>
+                    <li data-i18n="ws.b3"><span class="k">Enclosures</span><span>CNC-drilled aluminium</span></li>
+                    <li data-i18n="ws.b4"><span class="k">Docs</span><span>Spec sheet with every build</span></li>
                 </ul>
             </div>
         </div>
@@ -1492,40 +1512,40 @@
 <!-- ================= CONTACT ================= -->
 <section class="section" id="contact">
     <div class="wrap">
-        <span class="eyebrow reveal">Start a build</span>
-        <h2 class="section-title reveal">Contact</h2>
+        <span class="eyebrow reveal" data-i18n="ct.eyebrow">Start a build</span>
+        <h2 class="section-title reveal" data-i18n="ct.title">Contact</h2>
         <div class="contact-grid">
             <div class="contact-note reveal">
-                <p>Tell me what you want to build, mod or MIDI-fy. A rough idea is enough —
+                <p data-i18n="ct.p1">Tell me what you want to build, mod or MIDI-fy. A rough idea is enough —
                    pedal model, what should switch, and how you want to control it.</p>
-                <p>I usually reply within one or two days with questions, options and a quote.</p>
+                <p data-i18n="ct.p2">I usually reply within one or two days with questions, options and a quote.</p>
                 <div class="contact-direct">
                     ✉ <a href="mailto:wcraffonara@gmail.com">wcraffonara@gmail.com</a>
                 </div>
             </div>
             <form id="contactForm" class="reveal">
                 <div class="row">
-                    <label for="fName">Name</label>
+                    <label for="fName" data-i18n="ct.lName">Name</label>
                     <input id="fName" type="text" required autocomplete="name">
                 </div>
                 <div class="row">
-                    <label for="fMail">Email</label>
+                    <label for="fMail" data-i18n="ct.lMail">Email</label>
                     <input id="fMail" type="email" required autocomplete="email">
                 </div>
                 <div class="row">
-                    <label for="fTopic">Topic</label>
+                    <label for="fTopic" data-i18n="ct.lTopic">Topic</label>
                     <select id="fTopic">
-                        <option>Custom build</option>
-                        <option>Pedal mod / repair</option>
-                        <option>MIDI retrofit</option>
-                        <option>Something else</option>
+                        <option data-i18n="ct.o1">Custom build</option>
+                        <option data-i18n="ct.o2">Pedal mod / repair</option>
+                        <option data-i18n="ct.o3">MIDI retrofit</option>
+                        <option data-i18n="ct.o4">Something else</option>
                     </select>
                 </div>
                 <div class="row">
-                    <label for="fMsg">Your project</label>
-                    <textarea id="fMsg" required placeholder="e.g. MXR Phase 90 — I want the bypass switchable via MIDI CC…"></textarea>
+                    <label for="fMsg" data-i18n="ct.lMsg">Your project</label>
+                    <textarea id="fMsg" required data-i18n-ph="ct.ph" placeholder="e.g. MXR Phase 90 — I want the bypass switchable via MIDI CC…"></textarea>
                 </div>
-                <button class="btn primary" type="submit">Send message</button>
+                <button class="btn primary" type="submit" data-i18n="ct.send">Send message</button>
             </form>
         </div>
     </div>
@@ -1543,9 +1563,9 @@
                 <circle cx="13.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
                 <circle cx="26.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
             </svg>
-            CRAFFONARA FX — handmade pedal electronics
+            <span data-i18n="foot.sig">CRAFFONARA FX — handmade pedal electronics by Walter Craffonara</span>
         </span>
-        <span>© 2026 · Austria · All signals true bypass</span>
+        <span data-i18n="foot.right">© 2026 · Austria · All signals true bypass</span>
     </div>
 </footer>
 
@@ -1608,11 +1628,134 @@
     }
 
     const grid = document.getElementById("productGrid");
+    // ---- language handling ------------------------------------------
+    let LANG = localStorage.getItem("cfx-lang") || "en";
+    // resolve a bilingual value {en:…, de:…} (plain values pass through)
+    function L(v) {
+        return v && typeof v === "object" && !Array.isArray(v) ? (v[LANG] ?? v.en) : v;
+    }
     const statusText = {
-        "available": "available",
-        "built-to-order": "built to order",
-        "sold": "sold",
+        en: { "available": "available", "built-to-order": "built to order", "sold": "sold" },
+        de: { "available": "verfügbar", "built-to-order": "auf Bestellung", "sold": "verkauft" },
     };
+    const CAT = {
+        en: { custom: "Custom build", mod: "Mod", midi: "MIDI" },
+        de: { custom: "Custom Build", mod: "Mod", midi: "MIDI" },
+    };
+    // ---- UI strings (English defaults also live in the markup) -------
+    const I18N = {
+        en: {
+            "nav.how": "How it works", "nav.pedals": "Pedals", "nav.services": "Services",
+            "nav.workshop": "Workshop", "nav.contact": "Contact",
+            "hero.eyebrow": "Handmade in Austria · Est. 2021",
+            "hero.title": 'Custom pedals.<br><span class="amber">MIDI</span> in<br>everything.',
+            "hero.lead": "Boutique builds, mods and MIDI retrofits for guitarists and tinkerers. One-off circuits, relay bypass conversions, and MIDI TRS sockets where the factory never planned one.",
+            "hero.cta1": "Browse pedals", "hero.cta2": "Request a build",
+            "hero.hint": "Solder, scope, coffee — this is where your pedal is born",
+            "flag.eyebrow": "Fresh off the bench",
+            "flag.title": "The OCD — four sounds, one box",
+            "flag.intro": "This is what leaves my workshop: an OCD-style drive with doubled Drive and Tone pots, relay-switched presets and a MIDI socket where the factory never planned one. Photographed exactly as built — brushed aluminium, silent footswitch, no shortcuts.",
+            "flag.cta1": "See how it works", "flag.cta2": "More photos",
+            "how.eyebrow": "The principle behind my builds",
+            "how.title": "One pedal, four sounds",
+            "how.intro": 'Here is the trick I build into most of my pedals, shown on my OCD-style drive: the knobs that matter exist <strong style="color:var(--text)">twice</strong>. A soft push button — or a MIDI message from your switcher — decides which of the two is live. Dial in two Drive and two Tone settings and one pedal covers your rhythm sound, your solo boost and everything in between. This demo actually works, go ahead:',
+            "svc.eyebrow": "What happens on the bench",
+            "svc.title": "Builds · Mods · MIDI",
+            "svc.intro": "Every job leaves the workshop tested, documented and road-ready — whether it is a full custom circuit or a MIDI TRS socket in a forty-year-old fuzz.",
+            "svc.t1": "Custom builds", "svc.h1": "One-off pedals, your spec",
+            "svc.p1": "Drives, boosts, switchers and utility boxes designed around your rig. You pick the voicing, controls and enclosure finish — I handle the rest.",
+            "svc.t2": "Mods &amp; repairs", "svc.h2": "Your pedal, upgraded",
+            "svc.p2": "True bypass conversions, bias trims, modern DC jacks, LED indicators and component-level repair. Reversible wherever possible.",
+            "svc.t3": "MIDI retrofits", "svc.h3": "Relay switching via MIDI",
+            "svc.p3": "Any switchable function in your pedal — bypass, channels, modes — brought under Program Change and CC control with a clean TRS MIDI install.",
+            "ped.eyebrow": "Current builds &amp; services", "ped.title": "Pedals",
+            "ped.intro": "The current builds, fresh off the bench — more pedals are in the works and will land here soon. Everything can be adapted: colors, controls, MIDI mapping.",
+            "ws.title": "The workshop",
+            "ws.p1": "<strong>CRAFFONARA FX is a one-man workshop in Austria, run by Walter Craffonara.</strong> By day I design automotive electronics; by night the same discipline goes into guitar pedals — proper PCB layout, clean wiring, and measurements instead of guesswork.",
+            "ws.p2": "The MIDI obsession started on my own pedalboard: too many great pedals, not enough feet. Since then I have been putting relay bypass and MIDI TRS sockets into anything with a footswitch, so one controller can run the whole board.",
+            "ws.p3": "Every build ships with a spec sheet, MIDI implementation chart where relevant, and a photo log of the work done inside your pedal.",
+            "ws.bench": "Bench notes",
+            "ws.b1": '<span class="k">Switching</span><span>Relay true bypass</span>',
+            "ws.b3": '<span class="k">Enclosures</span><span>CNC-drilled aluminium</span>',
+            "ws.b4": '<span class="k">Docs</span><span>Spec sheet with every build</span>',
+            "ct.eyebrow": "Start a build", "ct.title": "Contact",
+            "ct.p1": "Tell me what you want to build, mod or MIDI-fy. A rough idea is enough — pedal model, what should switch, and how you want to control it.",
+            "ct.p2": "I usually reply within one or two days with questions, options and a quote.",
+            "ct.lName": "Name", "ct.lMail": "Email", "ct.lTopic": "Topic",
+            "ct.o1": "Custom build", "ct.o2": "Pedal mod / repair", "ct.o3": "MIDI retrofit", "ct.o4": "Something else",
+            "ct.lMsg": "Your project",
+            "ct.ph": "e.g. MXR Phase 90 — I want the bypass switchable via MIDI CC…",
+            "ct.send": "Send message",
+            "foot.sig": "CRAFFONARA FX — handmade pedal electronics by Walter Craffonara",
+            "foot.right": "© 2026 · Austria · All signals true bypass",
+            "modal.cta": "Ask about this",
+        },
+        de: {
+            "nav.how": "So funktioniert's", "nav.pedals": "Pedale", "nav.services": "Leistungen",
+            "nav.workshop": "Werkstatt", "nav.contact": "Kontakt",
+            "hero.eyebrow": "Handgebaut in Österreich · Seit 2021",
+            "hero.title": 'Custom-Pedale.<br><span class="amber">MIDI</span> in<br>allem.',
+            "hero.lead": "Boutique-Builds, Mods und MIDI-Retrofits für Gitarristen und Bastler. Einzelanfertigungen, Relais-Bypass-Umbauten und MIDI-TRS-Buchsen, wo das Werk nie welche vorgesehen hat.",
+            "hero.cta1": "Pedale ansehen", "hero.cta2": "Build anfragen",
+            "hero.hint": "Lötkolben, Oszi, Kaffee — hier entsteht dein Pedal",
+            "flag.eyebrow": "Frisch von der Werkbank",
+            "flag.title": "Das OCD — vier Sounds, eine Box",
+            "flag.intro": "Das hier verlässt meine Werkstatt: ein OCD-Style-Drive mit doppelten Drive- und Tone-Potis, relaisgeschalteten Presets und einer MIDI-Buchse, wo das Werk nie eine geplant hat. Fotografiert genau so, wie es gebaut ist — gebürstetes Aluminium, geräuschloser Fußschalter, keine Abkürzungen.",
+            "flag.cta1": "So funktioniert's", "flag.cta2": "Mehr Fotos",
+            "how.eyebrow": "Das Prinzip hinter meinen Builds",
+            "how.title": "Ein Pedal, vier Sounds",
+            "how.intro": 'Das ist der Trick, den ich in die meisten meiner Pedale einbaue, gezeigt am OCD-Style-Drive: Die wichtigen Regler gibt es <strong style="color:var(--text)">doppelt</strong>. Ein Soft-Touch-Taster — oder ein MIDI-Befehl von deinem Switcher — entscheidet, welcher gerade aktiv ist. Stell zwei Drive- und zwei Tone-Settings ein, und ein Pedal deckt deinen Rhythmus-Sound, deinen Solo-Boost und alles dazwischen ab. Die Demo funktioniert wirklich, probier es aus:',
+            "svc.eyebrow": "Was auf der Werkbank passiert",
+            "svc.title": "Builds · Mods · MIDI",
+            "svc.intro": "Jede Arbeit verlässt die Werkstatt getestet, dokumentiert und bühnenfertig — egal ob kompletter Custom-Schaltkreis oder eine MIDI-TRS-Buchse in einem vierzig Jahre alten Fuzz.",
+            "svc.t1": "Custom Builds", "svc.h1": "Einzelstücke nach deiner Spezifikation",
+            "svc.p1": "Drives, Boosts, Switcher und Utility-Boxen, entworfen rund um dein Rig. Du wählst Voicing, Regler und Gehäuse-Finish — den Rest übernehme ich.",
+            "svc.t2": "Mods &amp; Reparaturen", "svc.h2": "Dein Pedal, aufgewertet",
+            "svc.p2": "True-Bypass-Umbauten, Bias-Abgleich, moderne DC-Buchsen, LED-Anzeigen und Reparaturen auf Bauteilebene. Reversibel, wo immer möglich.",
+            "svc.t3": "MIDI-Retrofits", "svc.h3": "Relais-Schaltung per MIDI",
+            "svc.p3": "Jede schaltbare Funktion in deinem Pedal — Bypass, Kanäle, Modi — gesteuert über Program Change und CC, mit sauberem TRS-MIDI-Einbau.",
+            "ped.eyebrow": "Aktuelle Builds &amp; Services", "ped.title": "Pedale",
+            "ped.intro": "Die aktuellen Builds, frisch von der Werkbank — weitere Pedale sind in Arbeit und landen bald hier. Alles ist anpassbar: Farben, Regler, MIDI-Mapping.",
+            "ws.title": "Die Werkstatt",
+            "ws.p1": "<strong>CRAFFONARA FX ist eine Ein-Mann-Werkstatt in Österreich, geführt von Walter Craffonara.</strong> Tagsüber entwickle ich Automotive-Elektronik; abends fließt dieselbe Disziplin in Gitarrenpedale — sauberes PCB-Layout, ordentliche Verdrahtung und Messungen statt Raterei.",
+            "ws.p2": "Die MIDI-Obsession begann auf meinem eigenen Pedalboard: zu viele gute Pedale, zu wenig Füße. Seitdem baue ich Relais-Bypass und MIDI-TRS-Buchsen in alles ein, was einen Fußschalter hat — damit ein Controller das ganze Board steuern kann.",
+            "ws.p3": "Jeder Build kommt mit Datenblatt, MIDI-Implementation-Chart (wo relevant) und einem Foto-Protokoll der Arbeiten in deinem Pedal.",
+            "ws.bench": "Bench Notes",
+            "ws.b1": '<span class="k">Schaltung</span><span>Relais True Bypass</span>',
+            "ws.b3": '<span class="k">Gehäuse</span><span>CNC-gebohrtes Aluminium</span>',
+            "ws.b4": '<span class="k">Doku</span><span>Datenblatt zu jedem Build</span>',
+            "ct.eyebrow": "Starte einen Build", "ct.title": "Kontakt",
+            "ct.p1": "Erzähl mir, was du bauen, modden oder MIDI-fähig machen willst. Eine grobe Idee reicht — Pedalmodell, was geschaltet werden soll und wie du es steuern möchtest.",
+            "ct.p2": "Ich antworte meist innerhalb von ein bis zwei Tagen mit Rückfragen, Optionen und einem Angebot.",
+            "ct.lName": "Name", "ct.lMail": "E-Mail", "ct.lTopic": "Thema",
+            "ct.o1": "Custom Build", "ct.o2": "Pedal-Mod / Reparatur", "ct.o3": "MIDI-Retrofit", "ct.o4": "Etwas anderes",
+            "ct.lMsg": "Dein Projekt",
+            "ct.ph": "z. B. MXR Phase 90 — der Bypass soll per MIDI CC schaltbar sein…",
+            "ct.send": "Nachricht senden",
+            "foot.sig": "CRAFFONARA FX — Pedal-Elektronik, handgebaut von Walter Craffonara",
+            "foot.right": "© 2026 · Österreich · Alle Signale True Bypass",
+            "modal.cta": "Anfrage zu diesem Pedal",
+        },
+    };
+    // apply a language to all tagged elements and re-render the catalog
+    function applyLang(lang) {
+        LANG = lang;
+        localStorage.setItem("cfx-lang", lang);
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+            const t = I18N[lang][el.dataset.i18n];
+            if (t !== undefined) el.innerHTML = t;
+        });
+        document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+            const t = I18N[lang][el.dataset.i18nPh];
+            if (t !== undefined) el.placeholder = t;
+        });
+        document.querySelectorAll(".lang-switch button").forEach(b =>
+            b.classList.toggle("active", b.dataset.lang === lang));
+        renderProducts("all");
+    }
+    document.querySelectorAll(".lang-switch button").forEach(b =>
+        b.addEventListener("click", () => applyLang(b.dataset.lang)));
 
     // Render all product cards for the active filter
     function renderProducts(filter) {
@@ -1631,12 +1774,12 @@
                 card.innerHTML = `
                     <div class="card-art">${art}</div>
                     <div class="card-body">
-                        <span class="card-cat">${p.category === "midi" ? "MIDI" : p.category === "mod" ? "Mod" : "Custom build"}</span>
+                        <span class="card-cat">${CAT[LANG][p.category]}</span>
                         <h3>${p.name}</h3>
-                        <p>${p.blurb}</p>
+                        <p>${L(p.blurb)}</p>
                         <div class="card-foot">
-                            <span class="price">${p.price}</span>
-                            <span class="status ${p.status}">● ${statusText[p.status] || p.status}</span>
+                            <span class="price">${L(p.price)}</span>
+                            <span class="status ${p.status}">● ${statusText[LANG][p.status] || p.status}</span>
                         </div>
                     </div>`;
                 card.addEventListener("click", () => openModal(p));
@@ -1674,7 +1817,7 @@
                 <ul class="spec-list" id="modalSpecs"></ul>
                 <div class="card-foot">
                     <span class="price" id="modalPrice"></span>
-                    <a class="btn primary" href="#contact" id="modalCta">Ask about this</a>
+                    <a class="btn primary" href="#contact" id="modalCta" data-i18n="modal.cta">Ask about this</a>
                 </div>
             </div>
         </div>`;
@@ -1719,10 +1862,10 @@
         document.getElementById("modalCat").textContent =
             p.category === "midi" ? "MIDI" : p.category === "mod" ? "Mod" : "Custom build";
         document.getElementById("modalTitle").textContent = p.name;
-        document.getElementById("modalBlurb").textContent = p.blurb;
-        document.getElementById("modalPrice").textContent = p.price;
+        document.getElementById("modalBlurb").textContent = L(p.blurb);
+        document.getElementById("modalPrice").textContent = L(p.price);
         document.getElementById("modalSpecs").innerHTML =
-            p.specs.map(s => `<li>${s}</li>`).join("");
+            L(p.specs).map(s => `<li>${s}</li>`).join("");
         backdrop.classList.add("open");
         document.getElementById("modalClose").focus();
     }
@@ -1771,8 +1914,8 @@
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
-    // Initial render
-    renderProducts("all");
+    // Initial render + apply saved language
+    applyLang(LANG);
 
     /* ============================================================
        "How it works" — interactive dual-preset OCD demo
