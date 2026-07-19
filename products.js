@@ -27,7 +27,7 @@ const PRODUCTS = [
         id: "ocd-dual-preset",
         name: "OCD — Dual Preset MIDI Drive",
         category: "custom",
-        price: "from €329",
+        price: "€180",
         status: "built-to-order",
         color: "#A7ACB4",
         knobs: 5,
@@ -41,7 +41,7 @@ const PRODUCTS = [
             "Silent soft-touch footswitch",
             "9–18 V DC center-negative",
         ],
-        image: "img/ocd-card.jpg",
-        gallery: ["img/ocd-hero.jpg", "img/ocd-top.jpg", "img/ocd-side.jpg", "img/ocd-angle.jpg"],
+        image: "img/ocd-top.webp",
+        gallery: ["img/ocd-hero.webp", "img/ocd-top.webp", "img/ocd-side.webp", "img/ocd-angle.webp"],
     },
 ];
