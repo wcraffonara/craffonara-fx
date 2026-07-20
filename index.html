@@ -30,6 +30,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="logos/logo-midi-badge.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <style>
     /* ============================================================
        CRAFFONARA FX — design tokens
@@ -432,7 +436,7 @@
     }
     .card:hover .mini-led { fill: var(--led); filter: drop-shadow(0 0 6px var(--led-glow)); }
     .card-art {
-        background: var(--panel-2);
+        background: radial-gradient(120% 90% at 50% 42%, #17191E 0%, #0A0B0D 62%, #050607 100%);
         display: flex;
         justify-content: center;
         padding: 26px 0 18px;
@@ -493,7 +497,7 @@
         grid-template-columns: 400px 1fr;
     }
     .modal-art {
-        background: var(--panel-2);
+        background: radial-gradient(130% 100% at 50% 40%, #17191E 0%, #0A0B0D 62%, #050607 100%);
         border-right: 1px solid var(--line);
         display: flex;
         align-items: center;
