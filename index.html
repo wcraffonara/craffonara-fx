@@ -279,14 +279,19 @@
         gap: 60px;
         align-items: center;
     }
+    .flagship-photo {
+        background: #000;
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: var(--radius);
+        padding: 24px;
+        box-shadow: 0 30px 55px rgba(0, 0, 0, 0.5);
+    }
     .flagship-photo img {
         width: 100%;
         max-width: 400px;
         height: auto;
         display: block;
         margin: 0 auto;
-        /* free-floating cutout: soft shadow instead of a framed box */
-        filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.6));
     }
     .flag-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
     .flag-chips span {
