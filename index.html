@@ -421,11 +421,11 @@
     }
     .card:hover .mini-led { fill: var(--led); filter: drop-shadow(0 0 6px var(--led-glow)); }
     .card-art {
-        background: radial-gradient(120% 90% at 50% 42%, #17191E 0%, #0A0B0D 62%, #050607 100%);
+        background: #000;
         display: flex;
         justify-content: center;
         padding: 26px 0 18px;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .card-art svg { width: 120px; height: auto; }
     .card-art img {
@@ -482,8 +482,8 @@
         grid-template-columns: 400px 1fr;
     }
     .modal-art {
-        background: radial-gradient(130% 100% at 50% 40%, #17191E 0%, #0A0B0D 62%, #050607 100%);
-        border-right: 1px solid var(--line);
+        background: #000;
+        border-right: 1px solid rgba(255,255,255,0.06);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -496,8 +496,9 @@
     .gallery .thumbs { display: flex; gap: 8px; justify-content: center; }
     .gallery .thumbs img {
         width: 68px; height: 68px; object-fit: cover;
+        background: #000;
         border-radius: 6px; cursor: pointer;
-        border: 2px solid var(--line); opacity: 0.6;
+        border: 2px solid rgba(255,255,255,0.10); opacity: 0.6;
         transition: opacity 0.2s, border-color 0.2s;
     }
     .gallery .thumbs img:hover { opacity: 1; }
@@ -508,7 +509,7 @@
     }
     .lightbox {
         position: fixed; inset: 0; z-index: 120;
-        background: rgba(5, 6, 8, 0.93);
+        background: rgba(0, 0, 0, 0.95);
         display: flex; align-items: center; justify-content: center;
         padding: 24px; cursor: zoom-out;
     }
@@ -751,7 +752,7 @@
         .cards-3 { grid-template-columns: 1fr; }
         .product-grid { grid-template-columns: repeat(2, 1fr); }
         .modal { grid-template-columns: 1fr; }
-        .modal-art { border-right: none; border-bottom: 1px solid var(--line); }
+        .modal-art { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .nav-links {
             display: none;
             position: absolute;
