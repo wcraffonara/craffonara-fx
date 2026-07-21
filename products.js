@@ -130,5 +130,32 @@ const PRODUCTS = [
         "gallery": [
             "img/ep-hero.webp"
         ]
+    },
+    {
+        "id": "midi-filter",
+        "name": "MIDI Filter",
+        "category": "midi",
+        "price": "on request",
+        "status": "built-to-order",
+        "color": "#A7ACB4",
+        "knobs": 0,
+        "switches": 0,
+        "blurb": "Not a pedal, but a lifesaver on a MIDI-heavy board. An ultra-compact utility (just 5 \u00d7 5 \u00d7 3 cm) that filters unwanted MIDI messages before they reach your gear. Eight DIP switches let you block SysEx, System Common, MIDI Clock, Program Change, Start/Stop/Continue and Active Sensing individually \u2014 with separate unfiltered, filtered and switchable TRS outputs.",
+        "specs": [
+            "Ultra-compact aluminium enclosure \u2014 just 5 \u00d7 5 \u00d7 3 cm, fits anywhere on a board",
+            "8 DIP switches \u2014 OFF = message is passed through, ON = message is filtered",
+            "Filterable: SysEx (1), System Common (2), MIDI Clock (3), Program Change (5), Start/Stop/Continue (6), Active Sensing (7)",
+            "DIP 4 is reserved \u2014 must stay OFF",
+            "Four MIDI TRS jacks: IN, THRU (always unfiltered), FLTR (always filtered), T/F (switchable)",
+            "DIP 8 sets the T/F output: OFF = THRU (unfiltered), ON = filtered MIDI",
+            "9\u201318 V DC, center-negative"
+        ],
+        "image": "img/midifilter-hero.webp",
+        "gallery": [
+            "img/midifilter-hero.webp",
+            "img/midifilter-top.webp",
+            "img/midifilter-angle2.webp",
+            "img/midifilter-side.webp"
+        ]
     }
 ];
