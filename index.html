@@ -117,7 +117,7 @@
     }
 
     .section {
-        padding: 110px 0;
+        padding: 60px 0;
         border-top: 1px solid var(--line);
     }
 
@@ -277,19 +277,21 @@
         display: grid;
         grid-template-columns: 0.9fr 1.1fr;
         gap: 60px;
-        align-items: center;
+        align-items: stretch;
     }
     .flagship-photo {
+        position: relative;
         background: #000;
-        border: 1px solid rgba(255,255,255,0.06);
-        border-radius: var(--radius);
+        border: none;
         padding: 24px;
-        box-shadow: 0 30px 55px rgba(0, 0, 0, 0.5);
+        min-height: 280px;
     }
     .flagship-photo img {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
+        position: absolute;
+        inset: 24px;
+        width: calc(100% - 48px);
+        height: calc(100% - 48px);
+        object-fit: contain;
         display: block;
         margin: 0 auto;
     }
@@ -306,6 +308,14 @@
     }
     @media (max-width: 900px) {
         .flagship-grid { grid-template-columns: 1fr; gap: 40px; }
+        .flagship-photo { min-height: 0; }
+        .flagship-photo img {
+            position: static;
+            inset: auto;
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+        }
     }
     /* ---- hero lineup photo (the full range, LEDs lit) -------- */
     .hero-lineup {
@@ -649,8 +659,9 @@
         background: var(--panel);
         border: 1px solid var(--line);
         border-radius: 14px;
-        padding: 30px;
-        margin-top: 44px;
+        padding: 22px;
+        margin: 34px auto 0;
+        max-width: 780px;   /* keep the demo compact, not full-bleed */
     }
     .how-stage svg { width: 100%; height: auto; display: block; }
     .demo .dk { cursor: ns-resize; touch-action: none; }
@@ -713,7 +724,7 @@
     .vibe-tag.hot { color: var(--led); border-color: var(--led); }
     @media (max-width: 900px) {
         .how-steps { grid-template-columns: 1fr; }
-        .how-stage { padding: 14px; }
+        .how-stage { padding: 14px; max-width: 100%; }
     }
 
     /* ============================================================
@@ -756,7 +767,7 @@
         .nav-links.open { display: flex; }
         .nav-links a { padding: 13px 0; border-bottom: 1px dashed var(--line); }
         .nav-toggle { display: block; }
-        .section { padding: 80px 0; }
+        .section { padding: 52px 0; }
     }
     @media (max-width: 560px) {
         .product-grid { grid-template-columns: 1fr; }
@@ -812,7 +823,7 @@
 
         <!-- The full CRAFFONARA FX lineup, LEDs lit -->
         <div class="hero-lineup">
-            <img src="img/lineup-hero.webp" alt="The CRAFFONARA FX lineup — EP Booster, KLON, UNI VIBE, OCD and the MIDI Filter, arranged on black with their LEDs lit" width="1024" height="771">
+            <img src="img/lineup-hero.webp" alt="The CRAFFONARA FX lineup — EP Booster, KLON, UNI VIBE, OCD and the MIDI Filter, arranged on black with their LEDs lit" width="823" height="754">
         </div>
     </div>
     </div>
@@ -822,7 +833,7 @@
 <section class="section" id="flagship">
     <div class="wrap flagship-grid">
         <div class="flagship-photo reveal">
-            <img src="img/ocd-hero.webp" alt="CRAFFONARA FX OCD — silver dual-preset overdrive pedal with MIDI" width="800" height="1062">
+            <img src="img/ocd-hero.webp" alt="CRAFFONARA FX OCD — silver dual-preset overdrive pedal with MIDI" width="560" height="912">
         </div>
         <div class="flagship-copy">
             <span class="eyebrow reveal">Fresh off the bench</span>
@@ -1131,6 +1142,27 @@
     </div>
 </section>
 
+<!-- ================= PRODUCTS ================= -->
+<section class="section" id="pedals">
+    <div class="wrap">
+        <span class="eyebrow reveal">Current builds &amp; services</span>
+        <h2 class="section-title reveal">Pedals</h2>
+        <p class="section-intro reveal">
+            The current builds, fresh off the bench — more pedals are in the
+            works and will land here soon. Everything can be adapted: colors,
+            controls, MIDI mapping.
+        </p>
+        <!-- Filter chips — re-enable once more products are in products.js:
+        <div class="filters reveal" id="filters" role="group" aria-label="Filter products">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="custom">Custom builds</button>
+            <button class="chip" data-filter="mod">Mods</button>
+            <button class="chip" data-filter="midi">MIDI</button>
+        </div> -->
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+</section>
+
 <!-- ================= SERVICES ================= -->
 <section class="section" id="services">
     <div class="wrap">
@@ -1163,27 +1195,6 @@
                    brought under Program Change and CC control with a clean TRS MIDI install.</p>
             </article>
         </div>
-    </div>
-</section>
-
-<!-- ================= PRODUCTS ================= -->
-<section class="section" id="pedals">
-    <div class="wrap">
-        <span class="eyebrow reveal">Current builds &amp; services</span>
-        <h2 class="section-title reveal">Pedals</h2>
-        <p class="section-intro reveal">
-            The current builds, fresh off the bench — more pedals are in the
-            works and will land here soon. Everything can be adapted: colors,
-            controls, MIDI mapping.
-        </p>
-        <!-- Filter chips — re-enable once more products are in products.js:
-        <div class="filters reveal" id="filters" role="group" aria-label="Filter products">
-            <button class="chip active" data-filter="all">All</button>
-            <button class="chip" data-filter="custom">Custom builds</button>
-            <button class="chip" data-filter="mod">Mods</button>
-            <button class="chip" data-filter="midi">MIDI</button>
-        </div> -->
-        <div class="product-grid" id="productGrid"></div>
     </div>
 </section>
 
