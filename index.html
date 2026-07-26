@@ -460,6 +460,14 @@
         color: var(--led);
         opacity: 0.85;
     }
+    .card-price {
+        margin-top: 12px;
+        font-family: var(--font-mono);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--text);
+    }
     .card-manual {
         display: inline-block;
         margin-top: 12px;
@@ -1407,6 +1415,7 @@
                         <h3>${p.name}</h3>
                         <p>${p.blurb}</p>
                         ${p.clone ? `<p class="card-clone">${p.clone}</p>` : ""}
+                        ${p.forSale && p.price ? `<p class="card-price">${p.price}</p>` : ""}
                         ${p.manual ? `<a class="card-manual" href="${p.manual}" target="_blank" rel="noopener">Manual (PDF) &#8599;</a>` : ""}
                     </div>`;
                 const manualLink = card.querySelector(".card-manual");
@@ -1506,9 +1515,14 @@
         } else {
             mw.style.display = "none";
         }
-        document.getElementById("modalNote").textContent = p.clone
-            ? p.clone + " · A personal build — not for sale, and not affiliated with or endorsed by any original manufacturer."
-            : "A personal build — not for sale.";
+        const noteEl = document.getElementById("modalNote");
+        if (p.forSale && p.price) {
+            noteEl.textContent = `My own design — available to order for ${p.price}. Get in touch via the contact form below.`;
+        } else if (p.clone) {
+            noteEl.textContent = p.clone + " \u00B7 A personal build \u2014 not for sale, and not affiliated with or endorsed by any original manufacturer.";
+        } else {
+            noteEl.textContent = "A personal build \u2014 not for sale.";
+        }
         backdrop.classList.add("open");
         document.getElementById("modalClose").focus();
     }
