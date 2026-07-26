@@ -451,6 +451,37 @@
         font-family: var(--font-mono);
         font-size: 12.5px;
     }
+    .card-clone {
+        margin-top: 10px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        color: var(--led);
+        opacity: 0.85;
+    }
+    .card-manual {
+        display: inline-block;
+        margin-top: 12px;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--led);
+        border-bottom: 1px solid rgba(255, 173, 46, 0.35);
+        padding-bottom: 2px;
+    }
+    .card-manual:hover { color: var(--text); border-bottom-color: var(--text); }
+    .modal-manual { margin-top: 20px; }
+    .modal-note {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1.6;
+        color: var(--dim);
+    }
     .price { color: var(--text); }
     .status { letter-spacing: 0.1em; text-transform: uppercase; font-size: 10.5px; }
     .status.available      { color: #6FD08C; }
@@ -839,10 +870,10 @@
             <span class="eyebrow reveal">Fresh off the bench</span>
             <h2 class="section-title reveal">The OCD — four sounds, one box</h2>
             <p class="section-intro reveal">
-                This is what leaves my workshop: an OCD-style drive with doubled
-                Drive and Tone pots, relay-switched presets and a MIDI socket where
-                the factory never planned one. Photographed exactly as built —
-                brushed aluminium, silent footswitch, no shortcuts.
+                One of my personal builds: a faithful clone of the OCD-style
+                overdrive, with doubled Drive and Tone pots, relay-switched presets
+                and a MIDI socket the original never had. Photographed exactly as
+                built — brushed aluminium, silent footswitch, no shortcuts.
             </p>
             <div class="flag-chips reveal">
                 <span>DUAL PRESETS</span><span>MIDI TRS</span><span>RELAY BYPASS</span><span>HANDMADE</span>
@@ -1145,12 +1176,15 @@
 <!-- ================= PRODUCTS ================= -->
 <section class="section" id="pedals">
     <div class="wrap">
-        <span class="eyebrow reveal">Current builds &amp; services</span>
+        <span class="eyebrow reveal">My personal builds</span>
         <h2 class="section-title reveal">Pedals</h2>
         <p class="section-intro reveal">
-            The current builds, fresh off the bench — more pedals are in the
-            works and will land here soon. Everything can be adapted: colors,
-            controls, MIDI mapping.
+            These are pedals I've built for myself — faithful, circuit-for-circuit
+            clones of classic designs, each with my own additions like relay-switched
+            dual presets and MIDI. They're shown here as a build log, not as products
+            for sale. Each pedal is named only to identify the original circuit it
+            recreates; CRAFFONARA FX is not affiliated with or endorsed by any of the
+            original manufacturers.
         </p>
         <!-- Filter chips — re-enable once more products are in products.js:
         <div class="filters reveal" id="filters" role="group" aria-label="Filter products">
@@ -1372,11 +1406,14 @@
                         <span class="card-cat">${CAT[p.category]}</span>
                         <h3>${p.name}</h3>
                         <p>${p.blurb}</p>
-                        <div class="card-foot">
-                            <span class="price">${p.price}</span>
-                            <span class="status ${p.status}">● ${statusText[p.status] || p.status}</span>
-                        </div>
+                        ${p.clone ? `<p class="card-clone">${p.clone}</p>` : ""}
+                        ${p.manual ? `<a class="card-manual" href="${p.manual}" target="_blank" rel="noopener">Manual (PDF) &#8599;</a>` : ""}
                     </div>`;
+                const manualLink = card.querySelector(".card-manual");
+                if (manualLink) {
+                    // keep the link independent of the card's open-modal handler
+                    manualLink.addEventListener("click", e => e.stopPropagation());
+                }
                 card.addEventListener("click", () => openModal(p));
                 card.addEventListener("keydown", e => {
                     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(p); }
@@ -1410,10 +1447,10 @@
                 <h3 id="modalTitle"></h3>
                 <p id="modalBlurb"></p>
                 <ul class="spec-list" id="modalSpecs"></ul>
-                <div class="card-foot">
-                    <span class="price" id="modalPrice"></span>
-                    <a class="btn primary" href="#contact" id="modalCta">Ask about this</a>
-                </div>
+                <p class="modal-manual" id="modalManualWrap">
+                    <a class="btn primary" id="modalManual" href="#" target="_blank" rel="noopener">Manual (PDF)</a>
+                </p>
+                <p class="modal-note" id="modalNote"></p>
             </div>
         </div>`;
     document.body.appendChild(backdrop);
@@ -1458,16 +1495,26 @@
             p.category === "midi" ? "MIDI" : p.category === "mod" ? "Mod" : "Custom build";
         document.getElementById("modalTitle").textContent = p.name;
         document.getElementById("modalBlurb").textContent = p.blurb;
-        document.getElementById("modalPrice").textContent = p.price;
         document.getElementById("modalSpecs").innerHTML =
             p.specs.map(s => `<li>${s}</li>`).join("");
+        const mw = document.getElementById("modalManualWrap");
+        const ml = document.getElementById("modalManual");
+        if (p.manual) {
+            ml.href = p.manual;
+            ml.textContent = `${p.name.split(" \u2014 ")[0]} manual (PDF)`;
+            mw.style.display = "";
+        } else {
+            mw.style.display = "none";
+        }
+        document.getElementById("modalNote").textContent = p.clone
+            ? p.clone + " · A personal build — not for sale, and not affiliated with or endorsed by any original manufacturer."
+            : "A personal build — not for sale.";
         backdrop.classList.add("open");
         document.getElementById("modalClose").focus();
     }
     function closeModal() { backdrop.classList.remove("open"); }
     backdrop.addEventListener("click", e => { if (e.target === backdrop) closeModal(); });
     document.getElementById("modalClose").addEventListener("click", closeModal);
-    document.getElementById("modalCta").addEventListener("click", closeModal);
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 
     /* Hero workshop scene animates via pure CSS (smoke, steam,

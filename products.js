@@ -1,23 +1,23 @@
-// CRAFFONARA FX — product catalog
-// Edit this file to add, remove, or update pedals.
-// Fields: id, name, category ("custom"|"mod"|"midi"), price, status
-//         ("available"|"built-to-order"|"sold"), blurb, specs[], image, gallery[]
+// CRAFFONARA FX — build log / showcase
+// These are personal builds shown as a portfolio, NOT products for sale.
+// Fields: id, name, category ("custom"|"mod"|"midi"), clone (based-on note),
+//         blurb, specs[], image, gallery[], manual (PDF path)
 
 const PRODUCTS = [
     {
         "id": "ocd-dual-preset",
+        "manual": "manuals/CRAFFONARAFX_OCD_Manual.pdf",
         "name": "OCD — Dual Preset MIDI Drive",
         "category": "custom",
-        "price": "€180",
-        "status": "built-to-order",
+        "clone": "A faithful, circuit-for-circuit clone of the OCD-style overdrive — with functions I added: relay-switched dual presets and MIDI.",
         "color": "#A7ACB4",
         "knobs": 5,
         "switches": 1,
-        "blurb": "High-end adaptation of the legendary OCD circuit. Doubled Drive and Tone pots with relay-switched presets give you four sounds in one pedal — by soft-touch button or MIDI. Internal DIP switches recreate every historic OCD version from V1.1 to the V2 Custom Shop germanium.",
+        "blurb": "A high-end take on the OCD-style overdrive circuit. Doubled Drive and Tone pots with relay-switched presets give you four sounds in one pedal — by soft-touch button or MIDI. Internal DIP switches recreate every historic OCD-style version from V1.1 to the V2 germanium.",
         "specs": [
             "Dual DRV + TONE presets — one white and one red pot per channel, relay-switched",
             "Independent preset buttons: LED off = white pot active, LED on = red pot active",
-            "All OCD versions V1.1–V1.7 and V2 via internal DIP switches (+GE, HI CUT, +BASS, +MIDS)",
+            "All OCD-style versions V1.1–V1.7 and V2 via internal DIP switches (+GE, HI CUT, +BASS, +MIDS)",
             "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel, CC 50 bypass",
             "CLIP toggle: MOSFET/germanium (M) or LED clipping (L) — FILTER toggle: high/low peak",
             "Silent soft-touch footswitch, relay true bypass",
@@ -33,18 +33,18 @@ const PRODUCTS = [
     },
     {
         "id": "klon-dual-preset",
+        "manual": "manuals/CRAFFONARAFX_KLON_Manual.pdf",
         "name": "KLON — Dual Preset MIDI Drive",
         "category": "custom",
-        "price": "on request",
-        "status": "built-to-order",
+        "clone": "A faithful, circuit-for-circuit clone of the Klon-style \u201Ctransparent\u201D overdrive — with relay-switched dual presets and MIDI added.",
         "color": "#A7ACB4",
         "knobs": 5,
         "switches": 1,
-        "blurb": "High-end adaptation of the legendary Klon Centaur with the original circuit. Doubled Gain and Treble pots with relay-switched presets, germanium or LED clipping, and full MIDI control.",
+        "blurb": "A high-end take on the Klon-style \u201Ctransparent\u201D overdrive, built from the original circuit. Doubled Gain and Treble pots with relay-switched presets, germanium or LED clipping, and full MIDI control.",
         "specs": [
-            "Original Klon Centaur circuit — GAIN, TREBLE, VOL",
+            "Klon-style circuit — GAIN, TREBLE, VOL",
             "Dual GAIN + TREBLE presets, relay-switched: LED off = upper pot, LED on = lower pot",
-            "CLIP toggle: GE = stock germanium diodes, LD = LED clipping for a more aggressive drive",
+            "CLIP toggle: GE = germanium diodes, LD = LED clipping for a more aggressive drive",
             "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel",
             "Silent soft-touch footswitch, relay true bypass",
             "9 V DC center-negative only — do NOT run at 18 V"
@@ -59,14 +59,14 @@ const PRODUCTS = [
     },
     {
         "id": "univibe-dual-preset",
+        "manual": "manuals/CRAFFONARAFX_UNIVIBE_Manual.pdf",
         "name": "UNI VIBE — Dual Preset MIDI Vibe",
         "category": "custom",
-        "price": "on request",
-        "status": "built-to-order",
+        "clone": "A faithful, circuit-for-circuit clone of the Uni-Vibe-style photocell modulation — with relay-switched dual presets and MIDI added.",
         "color": "#A7ACB4",
         "knobs": 6,
         "switches": 1,
-        "blurb": "Classic Uni-Vibe swirl with doubled Speed and Depth pots, relay-switched presets and full MIDI control. The MIX knob blends the effect signal, and MODE switches between chorus/vibe and tremolo.",
+        "blurb": "Classic Uni-Vibe-style swirl with doubled Speed and Depth pots, relay-switched presets and full MIDI control. The MIX knob blends the effect signal, and MODE switches between chorus/vibe and tremolo.",
         "specs": [
             "Dual SPEED + DEPTH presets, relay-switched — by soft-touch button or MIDI",
             "MIX control blends the vibe/tremolo signal with your dry tone",
@@ -84,16 +84,16 @@ const PRODUCTS = [
     },
     {
         "id": "big-muff-dual-preset",
+        "manual": "manuals/CRAFFONARAFX_BIGMUFF_Manual.pdf",
         "name": "BIG MUFF — Dual Preset MIDI Fuzz",
         "category": "custom",
-        "price": "on request",
-        "status": "built-to-order",
+        "clone": "A faithful, circuit-for-circuit clone of the Big Muff-style fuzz (Green Russian era) — with relay-switched dual presets and MIDI added.",
         "color": "#A7ACB4",
         "knobs": 5,
         "switches": 2,
-        "blurb": "Replica of the legendary Green Russian Big Muff, expanded with doubled Fuzz and Tone pots, relay-switched presets and full MIDI control. A CLIP toggle moves between thick fuzz and a tighter overdrive voicing.",
+        "blurb": "A Big Muff-style fuzz (Green Russian era), expanded with doubled Fuzz and Tone pots, relay-switched presets and full MIDI control. A CLIP toggle moves between thick fuzz and a tighter overdrive voicing.",
         "specs": [
-            "Green Russian Big Muff circuit — FUZZ, TONE, VOL",
+            "Green-Russian Big Muff-style circuit — FUZZ, TONE, VOL",
             "Dual FUZZ + TONE presets, relay-switched: LED off = upper pot, LED on = lower pot",
             "CLIP toggle: FZ = full fuzz, OD = tighter overdrive voicing",
             "FILTER toggle: high / low peak",
@@ -110,14 +110,14 @@ const PRODUCTS = [
     },
     {
         "id": "ep-booster",
+        "manual": "manuals/CRAFFONARAFX_EPBOOSTER_Manual.pdf",
         "name": "EP Booster — Echo Plex Boost",
         "category": "custom",
-        "price": "on request",
-        "status": "built-to-order",
+        "clone": "A faithful clone of the EP-style tape-preamp booster (Echoplex) — with MIDI added.",
         "color": "#A7ACB4",
         "knobs": 1,
         "switches": 1,
-        "blurb": "Discrete FET preamp in a mini enclosure — up to +20 dB of unadulterated boost with shimmering highs and lows, inspired by the legendary Echoplex preamp stage. Fully MIDI-controllable, down to switching in time with the MIDI clock.",
+        "blurb": "Discrete FET preamp in a mini enclosure — up to +20 dB of unadulterated boost with shimmering highs and lows, based on the EP-style Echoplex preamp stage. Fully MIDI-controllable, down to switching in time with the MIDI clock.",
         "specs": [
             "Discrete FET preamp, low-impedance output, up to +20 dB of clean boost",
             "Boost (+3 dB) and Bright (EQ) voicing via internal DIP switches — or via MIDI",
@@ -133,22 +133,22 @@ const PRODUCTS = [
     },
     {
         "id": "midi-filter",
+        "manual": "manuals/CRAFFONARAFX_MIDIFILTER_Manual.pdf",
         "name": "MIDI Filter",
         "category": "midi",
-        "price": "on request",
-        "status": "built-to-order",
+        "clone": "",
         "color": "#A7ACB4",
         "knobs": 0,
         "switches": 0,
-        "blurb": "Not a pedal, but a lifesaver on a MIDI-heavy board. An ultra-compact utility (just 5 \u00d7 5 \u00d7 3 cm) that filters unwanted MIDI messages before they reach your gear. Eight DIP switches let you block SysEx, System Common, MIDI Clock, Program Change, Start/Stop/Continue and Active Sensing individually \u2014 with separate unfiltered, filtered and switchable TRS outputs.",
+        "blurb": "My own design — not a pedal, but a lifesaver on a MIDI-heavy board. An ultra-compact utility (just 5 \u00d7 5 \u00d7 3 cm) that filters unwanted MIDI messages before they reach your gear. Eight DIP switches let you block SysEx, System Common, MIDI Clock, Program Change, Start/Stop/Continue and Active Sensing individually — with separate unfiltered, filtered and switchable TRS outputs.",
         "specs": [
-            "Ultra-compact aluminium enclosure \u2014 just 5 \u00d7 5 \u00d7 3 cm, fits anywhere on a board",
-            "8 DIP switches \u2014 OFF = message is passed through, ON = message is filtered",
+            "Ultra-compact aluminium enclosure — just 5 \u00d7 5 \u00d7 3 cm, fits anywhere on a board",
+            "8 DIP switches — OFF = message is passed through, ON = message is filtered",
             "Filterable: SysEx (1), System Common (2), MIDI Clock (3), Program Change (5), Start/Stop/Continue (6), Active Sensing (7)",
-            "DIP 4 is reserved \u2014 must stay OFF",
+            "DIP 4 is reserved — must stay OFF",
             "Four MIDI TRS jacks: IN, THRU (always unfiltered), FLTR (always filtered), T/F (switchable)",
             "DIP 8 sets the T/F output: OFF = THRU (unfiltered), ON = filtered MIDI",
-            "9\u201318 V DC, center-negative"
+            "9–18 V DC, center-negative"
         ],
         "image": "img/midifilter-hero.webp",
         "gallery": [
