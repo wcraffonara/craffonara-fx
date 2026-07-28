@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRAFFONARA FX — Custom Guitar Pedals & MIDI Mods, Handmade in Austria</title>
-<meta name="description" content="CRAFFONARA FX: hand-built boutique guitar pedals, true bypass mods and MIDI relay retrofits. Dual-preset builds — four sounds from one pedal, switchable via MIDI. Handmade in Austria by Walter Craffonara.">
+<title>CRAFFONARA FX — Handmade Pedals &amp; MIDI Mods by Walter Craffonara</title>
+<meta name="description" content="Walter Craffonara builds CRAFFONARA FX: hand-made boutique guitar pedals, true bypass mods and MIDI relay retrofits in Austria. Quad-preset builds — four sounds from one pedal, switchable via MIDI.">
+<meta name="author" content="Walter Craffonara">
 <link rel="canonical" href="https://wcraffonara.github.io/craffonara-fx/">
 <meta name="google-site-verification" content="4m1vdwFYcO3z8KPdegUHL0wh3D6-WNImnof4Buwhm8Y" />
 <meta name="theme-color" content="#000000">
@@ -13,17 +14,56 @@
 <meta property="og:title" content="CRAFFONARA FX — Custom Guitar Pedals & MIDI Mods">
 <meta property="og:description" content="Hand-built boutique pedals, mods and MIDI relay retrofits. Four sounds from one pedal, switchable via MIDI. Handmade in Austria.">
 <meta property="og:url" content="https://wcraffonara.github.io/craffonara-fx/">
+<meta property="og:image" content="https://wcraffonara.github.io/craffonara-fx/img/lineup-hero.jpg">
+<meta property="og:image:alt" content="The CRAFFONARA FX pedal lineup built by Walter Craffonara">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CRAFFONARA FX — Handmade Pedals &amp; MIDI Mods by Walter Craffonara">
+<meta name="twitter:description" content="Hand-built boutique pedals, mods and MIDI relay retrofits. Four sounds from one pedal, switchable via MIDI.">
+<meta name="twitter:image" content="https://wcraffonara.github.io/craffonara-fx/img/lineup-hero.jpg">
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "CRAFFONARA FX",
-    "founder": { "@type": "Person", "name": "Walter Craffonara" },
-    "description": "Hand-built boutique guitar pedals, pedal modifications and MIDI relay retrofits. Custom dual-preset builds switchable via MIDI.",
-    "url": "https://wcraffonara.github.io/craffonara-fx/",
-    "email": "wcraffonara@gmail.com",
-    "address": { "@type": "PostalAddress", "addressCountry": "AT" },
-    "knowsAbout": ["guitar effects pedals", "MIDI retrofits", "true bypass modification", "pedal repair"]
+    "@graph": [
+        {
+            "@type": "Person",
+            "@id": "https://wcraffonara.github.io/craffonara-fx/#walter",
+            "name": "Walter Craffonara",
+            "givenName": "Walter",
+            "familyName": "Craffonara",
+            "jobTitle": "Guitar pedal builder & electronics engineer",
+            "description": "Walter Craffonara designs and hand-builds boutique guitar effects pedals with relay bypass and MIDI control, and works professionally in automotive electronics.",
+            "email": "wcraffonara@gmail.com",
+            "url": "https://wcraffonara.github.io/craffonara-fx/",
+            "address": { "@type": "PostalAddress", "addressCountry": "AT" },
+            "knowsAbout": ["guitar effects pedals", "MIDI retrofits", "relay true bypass", "analog circuit design", "automotive electronics"],
+            "worksFor": { "@id": "https://wcraffonara.github.io/craffonara-fx/#craffonarafx" },
+            "sameAs": [
+                "https://github.com/wcraffonara"
+            ]
+        },
+        {
+            "@type": "Organization",
+            "@id": "https://wcraffonara.github.io/craffonara-fx/#craffonarafx",
+            "name": "CRAFFONARA FX",
+            "description": "Hand-built boutique guitar pedals, pedal modifications and MIDI relay retrofits. Custom quad-preset builds switchable via MIDI.",
+            "url": "https://wcraffonara.github.io/craffonara-fx/",
+            "email": "wcraffonara@gmail.com",
+            "logo": "https://wcraffonara.github.io/craffonara-fx/img/favicon-192.png",
+            "image": "https://wcraffonara.github.io/craffonara-fx/img/lineup-hero.jpg",
+            "founder": { "@id": "https://wcraffonara.github.io/craffonara-fx/#walter" },
+            "address": { "@type": "PostalAddress", "addressCountry": "AT" },
+            "knowsAbout": ["guitar effects pedals", "MIDI retrofits", "true bypass modification", "pedal repair"]
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://wcraffonara.github.io/craffonara-fx/#website",
+            "url": "https://wcraffonara.github.io/craffonara-fx/",
+            "name": "CRAFFONARA FX",
+            "author": { "@id": "https://wcraffonara.github.io/craffonara-fx/#walter" },
+            "publisher": { "@id": "https://wcraffonara.github.io/craffonara-fx/#craffonarafx" },
+            "inLanguage": "en"
+        }
+    ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -460,6 +500,21 @@
         color: var(--led);
         opacity: 0.85;
     }
+    .who {
+        font-family: var(--font-display);
+        font-size: 26px;
+        line-height: 1.05;
+        letter-spacing: 0.01em;
+        margin-bottom: 4px;
+    }
+    .who-role {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--led);
+        margin-bottom: 18px;
+    }
     .card-price {
         margin-top: 12px;
         font-family: var(--font-mono);
@@ -862,7 +917,7 @@
 
         <!-- The full CRAFFONARA FX lineup, LEDs lit -->
         <div class="hero-lineup">
-            <img src="img/lineup-hero.webp" alt="The CRAFFONARA FX lineup — EP Booster, KLON, UNI VIBE, OCD and the MIDI Filter, arranged on black with their LEDs lit" width="823" height="754">
+            <img src="img/lineup-hero.webp" alt="The CRAFFONARA FX pedal lineup hand-built by Walter Craffonara — EP Booster, KLON, UNI VIBE, OCD and the MIDI Filter, LEDs lit" width="823" height="754">
         </div>
     </div>
     </div>
@@ -1244,9 +1299,11 @@
 <section class="section" id="workshop">
     <div class="wrap">
         <span class="eyebrow reveal">Behind the pedals</span>
-        <h2 class="section-title reveal">The workshop</h2>
+        <h2 class="section-title reveal">The workshop — Walter Craffonara</h2>
         <div class="workshop-grid">
             <div class="workshop-copy reveal">
+                <h3 class="who reveal">Walter Craffonara</h3>
+                <p class="who-role reveal">Pedal builder &amp; electronics engineer · Austria</p>
                 <p><strong>CRAFFONARA FX is a one-man workshop in Austria, run by Walter Craffonara.</strong>
                    By day I design automotive electronics; by night the same discipline goes
                    into guitar pedals — proper PCB layout, clean wiring, and measurements
@@ -1325,7 +1382,7 @@
                 <circle cx="13.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
                 <circle cx="26.5" cy="13.5" r="2.2" fill="#FFAD2E"/>
             </svg>
-            <span>CRAFFONARA FX — handmade pedal electronics by Walter Craffonara</span>
+            <span>CRAFFONARA FX — handmade pedal electronics by <a href="#workshop">Walter Craffonara</a></span>
         </span>
         <span>© 2026 · Austria · All signals true bypass</span>
     </div>
