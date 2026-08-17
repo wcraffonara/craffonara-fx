@@ -159,5 +159,29 @@ const PRODUCTS = [
             "img/midifilter-angle2.webp",
             "img/midifilter-side.webp"
         ]
+    },
+    {
+        "id": "miniswitch",
+        "manual": "manuals/CRAFFONARAFX_MINISWITCH_Manual.pdf",
+        "name": "MiniSwitch — Compact Remote Footswitch",
+        "category": "custom",
+        "clone": "A faithful, circuit-for-circuit clone of the Strymon MiniSwitch — 100 % compatible with it, built into a smaller enclosure.",
+        "color": "#A7ACB4",
+        "knobs": 0,
+        "switches": 1,
+        "blurb": "A remote footswitch for pedals that take an external switch on their expression jack. It is 100 % compatible with the Strymon MiniSwitch — same connection, same behaviour — but housed in a noticeably smaller enclosure, so it claims less space on a crowded board. A jumper inside selects what the switch does: TAP (tap tempo) or FAV / BOOST (recall a favourite setting).",
+        "specs": [
+            "100 % compatible with the Strymon MiniSwitch — same wiring, same behaviour",
+            "Smaller enclosure than the original — less space taken on the board",
+            "Jumper selects TAP or FAV / BOOST mode",
+            "Connects with a single 1/4″ TRS (stereo) cable — a mono TS cable will not work",
+            "No power supply needed — powered by the host pedal over the TRS cable",
+            "One footswitch, one 5 mm indicator LED",
+            "Illustrated assembly manual (PDF, see link below)"
+        ],
+        "image": "img/miniswitch-kit.webp",
+        "gallery": [
+            "img/miniswitch-kit.webp"
+        ]
     }
 ];

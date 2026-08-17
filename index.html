@@ -1255,6 +1255,7 @@
             <button class="chip" data-filter="custom">Custom builds</button>
             <button class="chip" data-filter="mod">Mods</button>
             <button class="chip" data-filter="midi">MIDI</button>
+            <button class="chip" data-filter="kit">DIY kits</button>
         </div> -->
         <div class="product-grid" id="productGrid"></div>
     </div>
@@ -1449,7 +1450,7 @@
     const grid = document.getElementById("productGrid");
     // ---- simple English labels ---------------------------------------
     const statusText = { "available": "available", "built-to-order": "built to order", "sold": "sold" };
-    const CAT = { custom: "Custom build", mod: "Mod", midi: "MIDI" };
+    const CAT = { custom: "Custom build", mod: "Mod", midi: "MIDI", kit: "DIY kit" };
 
     // Render all product cards for the active filter
     function renderProducts(filter) {
@@ -1574,7 +1575,10 @@
         }
         const noteEl = document.getElementById("modalNote");
         if (p.forSale && p.price) {
-            noteEl.textContent = `My own design — available to order for ${p.price}. Get in touch via the contact form below.`;
+            // for-sale items: state the price, and keep the clone disclaimer where it applies
+            noteEl.textContent = (p.clone ? p.clone + " \u00B7 " : "")
+                + `Available to order for ${p.price} \u2014 get in touch via the contact form below.`
+                + (p.clone ? " CRAFFONARA FX is not affiliated with or endorsed by any original manufacturer." : "");
         } else if (p.clone) {
             noteEl.textContent = p.clone + " \u00B7 A personal build \u2014 not for sale, and not affiliated with or endorsed by any original manufacturer.";
         } else {

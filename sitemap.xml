@@ -2,43 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://wcraffonara.github.io/craffonara-fx/</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://wcraffonara.github.io/craffonara-fx/manuals/CRAFFONARAFX_BIGMUFF_Manual.pdf</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-17</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://wcraffonara.github.io/craffonara-fx/manuals/CRAFFONARAFX_EPBOOSTER_Manual.pdf</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-17</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://wcraffonara.github.io/craffonara-fx/manuals/CRAFFONARAFX_KLON_Manual.pdf</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-17</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://wcraffonara.github.io/craffonara-fx/manuals/CRAFFONARAFX_MIDIFILTER_Manual.pdf</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-17</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://wcraffonara.github.io/craffonara-fx/manuals/CRAFFONARAFX_MINISWITCH_Manual.pdf</loc>
+        <lastmod>2026-08-17</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://wcraffonara.github.io/craffonara-fx/manuals/CRAFFONARAFX_OCD_Manual.pdf</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-17</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://wcraffonara.github.io/craffonara-fx/manuals/CRAFFONARAFX_UNIVIBE_Manual.pdf</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-17</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
