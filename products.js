@@ -18,7 +18,7 @@ const PRODUCTS = [
             "Quad-preset system: DRV ×2 + TONE ×2 on two independent relays — one white and one red pot per channel",
             "Independent preset buttons: LED off = white pot active, LED on = red pot active",
             "All OCD-style versions V1.1–V1.7 and V2 via internal DIP switches (+GE, HI CUT, +BASS, +MIDS)",
-            "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel, CC 50 bypass",
+            "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel, CC 20 effect on/off",
             "CLIP toggle: MOSFET/germanium (M) or LED clipping (L) — FILTER toggle: high/low peak",
             "Silent soft-touch footswitch, relay true bypass",
             "9–18 V DC center-negative — run it at 18 V for more headroom and dynamics"
@@ -45,7 +45,7 @@ const PRODUCTS = [
             "Klon-style circuit — GAIN, TREBLE, VOL",
             "Quad-preset system: GAIN ×2 + TREBLE ×2 on two independent relays — LED ring dark = upper pot, lit = lower pot",
             "CLIP toggle: GE = germanium diodes, LD = LED clipping for a more aggressive drive",
-            "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel",
+            "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel, CC 20 effect on/off",
             "Silent soft-touch footswitch, relay true bypass",
             "9 V DC center-negative only — do NOT run at 18 V"
         ],
@@ -97,7 +97,7 @@ const PRODUCTS = [
             "Quad-preset system: FUZZ ×2 + TONE ×2 on two independent relays — LED ring dark = upper pot, lit = lower pot",
             "CLIP toggle: FZ = full fuzz, OD = tighter overdrive voicing",
             "FILTER toggle: high / low peak",
-            "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel",
+            "MIDI IN / THRU (TRS): CC 00 recalls all four combos, CC 10/30 per channel, CC 20 effect on/off",
             "Silent soft-touch footswitch, relay true bypass",
             "9 V DC center-negative"
         ],
